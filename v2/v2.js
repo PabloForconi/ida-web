@@ -167,6 +167,22 @@
   function winnersGrid(list) {
     return '<div class="winners' + (list.length === 3 ? ' winners--3' : '') + '">' + list.map(winnerCard).join('') + '</div>';
   }
+  // Premio mayor del año (award.top): portada grande + laurel con la categoría y el año; debajo, el resto
+  function topWinner(a, e) {
+    var cat = T(a.cat).split(' · ');
+    var also = e.awards.filter(function (b) { return b !== a && b.game === a.game; }).map(function (b) { return T(b.cat); });
+    var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
+    return '<article class="topwin"><div class="topwin__pic">' + pic + '</div><div class="topwin__body">' +
+      '<div class="laurel"><img src="' + IMG + 'deco/laurel-color.png" alt="" width="385" height="337"><span class="laurel__txt"><b>' + esc(cat[0]) + '</b><i>' + e.year + '</i></span></div>' +
+      (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '') +
+      '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
+      (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
+    '</div></article>';
+  }
+  function awardsBlock(e) {
+    var top = e.awards.filter(function (a) { return a.top; })[0];
+    return top ? topWinner(top, e) + winnersGrid(e.awards.filter(function (a) { return a !== top; })) : winnersGrid(e.awards);
+  }
   // Home: solo los premios marcados con `featured`
   R.winners = function (el) {
     var aw = cur.awards || [];
@@ -183,7 +199,7 @@
         '<div class="yhead"><span class="yhead__year">' + e.year + '</span><h2 class="display">Premios IDA ' + e.year + '</h2>' +
         '<a class="u-link" href="ediciones.html#ed-' + e.year + '">Ver la edición ' + e.year + '</a></div>' +
         (e.placeholder && e.placeholder.awards ? '<p class="note">' + ph(U('v2.aw.ph')) + '</p>' : '') +
-        winnersGrid(e.awards) + '</div></section>';
+        awardsBlock(e) + '</div></section>';
     }).join('');
   };
 
@@ -251,8 +267,9 @@
   function logoRow(ids, cls) {
     return '<div class="logos logos--even ' + (cls || '') + '" style="--cols:' + (ids.length > 4 ? Math.ceil(ids.length / 2) : ids.length) + '">' + ids.map(logo).join('') + '</div>';
   }
-  function sponsorGroups(s) {
-    return [['presenta', 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
+  // compact: versión chica para la página de ediciones ("Presentado por" no va más grande)
+  function sponsorGroups(s, compact) {
+    return [['presenta', compact ? '' : 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
       var t = tiers(s[g[0]]);
       return t.length ? '<div class="pgroup"><span class="pgroup__label">' + esc(U('sp.' + g[0])) + '</span><div class="tiers">' + t.map(function (ids, i) {
         return logoRow(ids, g[1] || (t.length > 1 && i === 0 ? 'logos--lg' : ''));
@@ -329,18 +346,23 @@
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>' : '';
       var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
-      var awards = e.awards.length ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + winnersGrid(e.awards) + '</div>' : '';
+      var awards = e.awards.length ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
           '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(e.hours) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +
         '<div class="ed__intro"><p class="lead">' + esc(T(e.summary)) + '</p><ul class="topics">' + e.highlights.map(function (h) { return '<li>' + esc(T(h)) + '</li>'; }).join('') + '</ul></div>' +
         '<div class="ed__stats">' + stats + '</div>' +
         ((e.statsNote || P.stats) ? '<p class="note">' + (e.statsNote ? esc(T(e.statsNote)) + ' ' : '') + (P.stats ? ph(U('ph.numbers')) : '') + '</p>' : '') +
+        (e.guests && e.guests.length ? '<div class="ed__block"><h3 class="ed__label">Speakers internacionales</h3><div class="guests">' + e.guests.map(function (g) {
+          return '<article class="guest"><span class="guest__from">' + esc(T(g.from)) + '</span><h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p>' +
+            (g.talk ? '<p class="guest__talk"><span>Charla</span>«' + esc(g.talk) + '»</p>' : '') +
+            (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
+        }).join('') + '</div></div>' : '') +
         gallery + games +
         (e.steam ? '<div class="ed__block"><h3 class="ed__label">Exhibición digital en Steam</h3>' + steamStats(e.steam) +
           '<a class="pill" href="' + e.steam.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a></div>' : '') +
         video + awards +
-        '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3>' + sponsorGroups(e.sponsors) + '</div>' +
+        '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3><div class="sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div></div>' +
       '</div></section>';
     }).join('');
   };

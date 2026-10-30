@@ -367,6 +367,40 @@ button, input { font: inherit; color: inherit; }
 .games { display: flex; flex-wrap: wrap; gap: 8px; }
 .games li { padding: 7px 14px; border: 1px solid #3a3a46; border-radius: 999px; font: 600 .85rem/1.3 var(--f-head); }
 .ed__video { max-width: 640px; }
+/* Speakers internacionales de cada edición */
+.guests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.guest { position: relative; padding: 28px 28px 30px 34px; border-radius: var(--radius); background: #15151e; border: 1px solid #2a2a33; overflow: hidden; }
+.guest::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--mag); }
+.guest:nth-child(2)::before { background: var(--green); }
+.guest__from { display: inline-block; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .08); font: 700 .7rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .1em; color: #fff; }
+.guest h4 { font: 800 condensed clamp(2rem, 3.6vw, 2.8rem)/.95 var(--f-display); text-transform: uppercase; color: #fff; margin: 14px 0 8px; }
+.guest__role { font-weight: 600; color: #d8d8e0; margin-bottom: 0; }
+.guest__talk { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid #2a2a33; font: 500 1.05rem/1.35 var(--f-head); color: #fff; }
+.guest__talk span { display: block; font: 700 .7rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .1em; color: var(--pink-2); margin-bottom: 6px; }
+.guest__note { margin: 12px 0 0; font-size: .88rem; color: var(--muted); }
+/* Sponsors de cada edición: logos chicos, en columnas fijas para que queden alineados entre filas */
+.sponsors-compact .pgroup { padding: 20px 0; }
+.sponsors-compact .tiers { gap: 22px; }
+.sponsors-compact .logos--even { --cw: 150px; --ch: 44px; grid-template-columns: repeat(auto-fill, 150px); justify-content: start; justify-items: start; gap: 22px 36px; }
+.sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); }
+.sponsors-compact .logos--even > a, .sponsors-compact .logos--even > span { justify-content: flex-start; }
+
+/* Premio mayor del año: portada grande + laurel */
+.topwin { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.topwin__pic { aspect-ratio: 616 / 353; margin: 9px; border-radius: var(--radius); overflow: hidden; display: grid; place-items: center; background: var(--ink); box-shadow: 0 0 0 6px var(--pink), 0 0 0 9px var(--mag); }
+.dark .topwin__pic { box-shadow: 0 0 0 3px var(--mag); margin: 3px; }
+.topwin__pic img { width: 100%; height: 100%; object-fit: cover; }
+.topwin__body { text-align: center; }
+.laurel { position: relative; width: min(250px, 72%); margin: 0 auto 4px; }
+.laurel img { width: 100%; }
+.laurel__txt { position: absolute; left: 24%; right: 24%; top: 22%; display: grid; justify-items: center; gap: 6px; }
+.laurel__txt b { font: 700 .86rem/1.15 var(--f-head); text-transform: uppercase; letter-spacing: .06em; }
+.laurel__txt i { font: 400 2.4rem/1 var(--f-num); font-style: normal; color: var(--mag); }
+.topwin__extra { font: 700 .74rem/1.3 var(--f-head); text-transform: uppercase; letter-spacing: .08em; color: var(--mag-ink); margin-bottom: 10px; }
+.dark .topwin__extra { color: var(--mag); }
+.topwin h3 { font: 800 condensed clamp(2.4rem, 5vw, 4rem)/.95 var(--f-display); text-transform: uppercase; margin-bottom: 10px; }
+.topwin__studio { font-weight: 600; margin-bottom: 8px; }
+.topwin__also { margin: 0; font-size: .92rem; color: var(--muted); }
 .edition .pgroup:first-of-type { border-top: 0; padding-top: 0; }
 
 /* Encabezado con año (premios por edición, niveles) */
@@ -437,7 +471,7 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   .pgroup { grid-template-columns: 1fr; }
   .foot__tag { justify-self: start; text-align: left; }
   .socials { justify-content: flex-start; }
-  .phero--split .wrap, .ed__intro, .growth-split, .steam { grid-template-columns: 1fr; }
+  .phero--split .wrap, .ed__intro, .growth-split, .steam, .topwin { grid-template-columns: 1fr; }
   .ed__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -467,6 +501,7 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   .facts div { grid-template-columns: 1fr; gap: 2px; }
   .announce .pill { width: 100%; justify-content: center; }
   .audience { grid-template-columns: 1fr; }
+  .guests { grid-template-columns: 1fr; }
   .reasons { grid-template-columns: 1fr; }
   .reason, .reason:nth-child(4) { grid-column: auto; }
   .yhead .u-link { margin-left: 0; }

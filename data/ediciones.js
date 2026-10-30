@@ -12,7 +12,8 @@
   (se usan <nombre>.jpg y <nombre>-800.jpg). Logos: archivo en src/img/logos.
   `games` (opcional): nombres de los juegos del showcase, se listan en el archivo de ediciones.
   Premios: `cover` = portada del juego en src/img/games (la de Steam, 616x353); `img` = foto en img/photos.
-  `featured: true` marca los premios que se muestran en la home (si no hay ninguno, van los primeros).
+  `featured: true` marca los premios que se muestran en la home (si no hay ninguno, van los primeros);
+  `top: true`, el premio mayor del año (Mejor Videojuego): en la versión 2 se destaca con un laurel.
   Sponsors: cada grupo es una lista de ids, o una lista de niveles ([[grandes], [resto]]) cuando
   algunos aportaron más: el primer nivel se muestra más grande y cada nivel, con logos del mismo tamaño.
   `placeholder: true` muestra la etiqueta PLACEHOLDER en la web: sacarla cuando el dato sea real.
@@ -115,6 +116,11 @@ window.IDA_DATA = {
         { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' },
         { es: 'Primera exhibición digital en Steam: más de 150 juegos argentinos', en: 'First digital showcase on Steam: over 150 Argentine games' }
       ],
+      // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
+      guests: [
+        { name: 'Yoan Fanise', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
+        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista y localizador de videojuegos', en: 'Game writer and localizer' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+      ],
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
       steam: {
         url: 'https://store.steampowered.com/sale/indiedevargentina2026',
@@ -128,7 +134,7 @@ window.IDA_DATA = {
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
       awards: [
-        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', cover: 'outer-frame.jpg', featured: true },
+        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', cover: 'outer-frame.jpg', featured: true, top: true },
         { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', cover: 'teios.jpg' },
         { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', cover: 'xplorite.jpg' },
         { cat: { es: 'Mejor Multijugador o Cooperativo', en: 'Best Multiplayer or Co-op' }, game: 'AstroBrawl', studio: 'Papa Corps', cover: 'astrobrawl.jpg' },
@@ -160,6 +166,11 @@ window.IDA_DATA = {
       },
       stats: { attendees: 2000, games: 21, talks: 12, speakers: 16 },
       statsNote: { es: '2 speakers internacionales', en: '2 international speakers' },
+      // Fuente: newsletter de Press Over (11/7/2025). Cerraron los dos días de charlas.
+      guests: [
+        { name: 'Arturo Monedero', from: { es: 'España', en: 'Spain' }, role: { es: 'CEO de TLR Games y vicepresidente de AEVI', en: 'CEO of TLR Games and vice president of AEVI' }, talk: 'Cómo vender tu primer videojuego' },
+        { name: 'David Lucio', from: { es: 'México', en: 'Mexico' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
+      ],
       highlights: [
         { es: 'Primera edición de dos días', en: 'First two-day edition' },
         { es: 'Primeros speakers internacionales', en: 'First international speakers' },
@@ -170,7 +181,7 @@ window.IDA_DATA = {
       games: ['The Last Librarian', 'Rising Fox', 'Hammer Princess', 'Go Slimey Go!', 'Dead Sale', 'Letalis', 'C.A.B.A. (ex Fábulas Porteñas)', 'Piso 6', 'Zupay', 'Kernel Hearts', 'El 39', 'Shippin', 'Malvinas: La última carta', 'Pungo', 'Ruless', 'The Lost Land of Bahía Blanca', 'Cazadora', 'Not So Smart Delivery', 'House of Horror: Outside Is Better', 'Quantum Echoes', 'The Path into the Abyss'],
       awards: [
         // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2025" (12 premios, 8 juegos)
-        { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true },
+        { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true, top: true },
         { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
         { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
         { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true },
