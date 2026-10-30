@@ -128,7 +128,8 @@ window.IDA_DATA = {
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
       steam: {
         url: 'https://store.steampowered.com/sale/indiedevargentina2026',
-        img: 'steam-26',
+        img: 'steam-26',          // arte del evento
+        shot: 'steam-page-26',    // captura de la página del evento en Steam (se muestra en lugar del arte)
         partner: 'Skull Queens Games',
         games: 150,     // la página lista 152; la prensa habló de "+150"
         featured: 25,   // la selección de la exhibición presencial
