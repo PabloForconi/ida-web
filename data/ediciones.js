@@ -103,23 +103,23 @@ window.IDA_DATA = {
       hours: '11 – 20 h',
       venue: 'ccc',
       summary: {
-        es: 'La tercera edición ocupó todo el edificio del Centro Cultural de la Cooperación: showcase de juegos, charlas en simultáneo, networking y la segunda entrega de los Premios IDA, con diez categorías.',
+        es: 'La tercera edición ocupó todo el edificio del Centro Cultural de la Cooperación: showcase de videojuegos, charlas en simultáneo, networking y la segunda entrega de los Premios IDA, con diez categorías.',
         en: 'The third edition took over the whole Centro Cultural de la Cooperación building: game showcase, parallel talks, networking and the second IDA Awards, with ten categories.'
       },
       // Asistentes, juegos, postulaciones y charlas: notas de Press Over (3/8 y 7/8/2026). Speakers, provisorio.
       stats: { attendees: 3000, games: 25, talks: 22, speakers: 24 },
-      statsNote: { es: '25 juegos seleccionados entre 114 postulados · 20 charlas nacionales y 2 internacionales', en: '25 games picked from 114 submissions · 20 national talks and 2 international' },
+      statsNote: { es: '25 videojuegos seleccionados entre 114 postulados · 20 charlas nacionales y 2 internacionales', en: '25 games picked from 114 submissions · 20 national talks and 2 international' },
       highlights: [
         { es: 'Primera edición en los tres pisos del CCC', en: 'First edition across all three floors of the CCC' },
         { es: 'Charlas internacionales de Yoan Fanise (Valiant Hearts, Road 96) y Josué Monchán, con más de 170 personas en cada una', en: 'International talks by Yoan Fanise (Valiant Hearts, Road 96) and Josué Monchán, with over 170 people at each' },
         { es: 'Premios IDA en diez categorías; The Outer Frame, Mejor Videojuego', en: 'IDA Awards in ten categories; The Outer Frame, Best Game' },
         { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' },
-        { es: 'Primer showcase de Steam dedicado a videojuegos argentinos: más de 150 juegos y 48 horas en la portada', en: 'First Steam showcase devoted to Argentine games: over 150 games and 48 hours on the front page' }
+        { es: 'Primer showcase de Steam dedicado a videojuegos argentinos: más de 150 títulos y 48 horas en la portada', en: 'First Steam showcase devoted to Argentine games: over 150 games and 48 hours on the front page' }
       ],
       // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
       guests: [
         { name: 'Yoan Fanise', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
-        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los juegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los videojuegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
       ],
       guestsNote: { es: 'Más de 170 personas en cada charla, con el auditorio lleno.', en: 'Over 170 people at each talk, with a packed auditorium.' },
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
@@ -219,7 +219,7 @@ window.IDA_DATA = {
       statsNote: null,
       highlights: [
         { es: 'Nace IDA, creado por Press Over', en: 'IDA is born, created by Press Over' },
-        { es: 'Primer showcase de juegos en desarrollo: 10 elegidos por el jurado entre más de 40 obras, y 2 por Press Over', en: 'First showcase of games in development: 10 picked by the jury from over 40 entries, plus 2 by Press Over' },
+        { es: 'Primer showcase de videojuegos en desarrollo: 10 elegidos por el jurado entre más de 40 obras, y 2 por Press Over', en: 'First showcase of games in development: 10 picked by the jury from over 40 entries, plus 2 by Press Over' },
         { es: 'Jurado con Daniel Benmergui (Storyteller) y Mauricio García (The Game Kitchen, Blasphemous)', en: 'Jury including Daniel Benmergui (Storyteller) and Mauricio García (The Game Kitchen, Blasphemous)' }
       ],
       video: null,

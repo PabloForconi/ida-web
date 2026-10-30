@@ -69,9 +69,9 @@ window.IDA_V2 = {
   ui: {
     es: {
       'v2.stat.total': 'Asistentes en {n} ediciones',
-      'v2.ann.open.title': '¡Abrió la convocatoria de juegos para IDA {y}!',
+      'v2.ann.open.title': '¡Abrió la convocatoria de videojuegos para IDA {y}!',
       'v2.ann.open.text': 'Postulá tu proyecto al showcase y mostralo frente a miles de jugadores.',
-      'v2.ann.open.cta': 'Postulá tu juego',
+      'v2.ann.open.cta': 'Postulá tu videojuego',
       'v2.ann.soon.title': 'La convocatoria de IDA {y} abre pronto',
       'v2.ann.soon.text': 'Suscribite y te avisamos apenas abra, junto con la fecha y la sede.',
       'v2.ann.soon.cta': 'Avisame',
@@ -79,7 +79,12 @@ window.IDA_V2 = {
       'v2.aw.all': 'Ver todos los premios',
       'v2.vid.after': 'Aftermovie IDA {y}',
       'v2.past.title': 'Ediciones anteriores',
-      'v2.sp.join': 'Quiero ser sponsor de IDA {y}'
+      'v2.sp.join': 'Quiero ser sponsor de IDA {y}',
+      // "videojuego" en vez de "juego": pisan los textos compartidos de ../js/i18n.js solo en esta versión
+      'stat.games': 'Videojuegos exhibidos',
+      'stat.short.games': 'videojuegos',
+      'call.games.title': 'Mostrá tu videojuego',
+      'call.games.cta': 'Postulá tu videojuego'
     },
     en: {
       'v2.stat.total': 'Attendees across {n} editions',
@@ -93,7 +98,11 @@ window.IDA_V2 = {
       'v2.aw.all': 'See all awards',
       'v2.vid.after': 'IDA {y} aftermovie',
       'v2.past.title': 'Past editions',
-      'v2.sp.join': 'I want to sponsor IDA {y}'
+      'v2.sp.join': 'I want to sponsor IDA {y}',
+      'stat.games': 'Games shown',
+      'stat.short.games': 'games',
+      'call.games.title': 'Show your game',
+      'call.games.cta': 'Submit your game'
     }
   }
 };

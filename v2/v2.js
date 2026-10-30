@@ -206,7 +206,7 @@
   // Exhibición digital en Steam (edition.steam)
   function steamStats(s) {
     return '<div class="steam__stats">' +
-      '<div><b>+' + num(s.games) + '</b><span>juegos argentinos</span></div>' +
+      '<div><b>+' + num(s.games) + '</b><span>videojuegos argentinos</span></div>' +
       (s.featured ? '<div><b>' + num(s.featured) + '</b><span>de la exhibición presencial</span></div>' : '') +
       (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
       (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
@@ -310,7 +310,7 @@
   R.totals = function (el) {
     var t = { attendees: 0, games: 0, talks: 0, speakers: 0 };
     D.editions.forEach(function (e) { Object.keys(t).forEach(function (k) { t[k] += e.stats[k] || 0; }); });
-    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Juegos exhibidos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
+    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Videojuegos exhibidos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
     el.innerHTML = '<div class="stats">' + items.map(function (i) {
       return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
     }).join('') + '</div>' +
@@ -343,7 +343,7 @@
       }).join('');
       var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería' + (P.photos ? ' ' + ph(U('ph.photos')) : '') + '</h3><div class="gallery">' +
         e.photos.slice(0, 9).map(function (p) { return '<a href="' + IMG + 'photos/' + p + '.jpg" target="_blank" rel="noopener">' + photo(p, '(max-width: 760px) 50vw, 30vw') + '</a>'; }).join('') + '</div></div>' : '';
-      var games = e.games && e.games.length ? '<div class="ed__block"><h3 class="ed__label">Juegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
+      var games = e.games && e.games.length ? '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>' : '';
       var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
