@@ -142,19 +142,20 @@
   // 4 caminos (como "Find Your Path")
   R.paths = function (el) {
     var c = D.next.calls, y = D.next.year;
+    // Sin links al pie; solo cuando una convocatoria está abierta aparece el link para postularse
     function card(key, img, statusKey, href, ctaKey) {
       return '<article class="path">' + photo(img) +
         '<span class="chip">' + esc(U(statusKey)) + '</span>' +
         '<h3>' + esc(U('call.' + key + '.title')) + '</h3><p>' + esc(U('call.' + key + '.text', { y: y })) + '</p>' +
-        '<a class="u-link" href="' + href + '"' + ext(href) + '>' + esc(U(ctaKey)) + '</a></article>';
+        (href ? '<a class="u-link" href="' + href + '"' + ext(href) + '>' + esc(U(ctaKey)) + '</a>' : '') + '</article>';
     }
     function call(key, img) {
       var o = c[key].open && c[key].url;
-      return card(key, img, o ? 'call.open' : 'call.closed', o ? c[key].url : '#newsletter', o ? 'call.' + key + '.cta' : 'call.notify');
+      return card(key, img, o ? 'call.open' : 'call.closed', o ? c[key].url : null, 'call.' + key + '.cta');
     }
     el.innerHTML = '<div class="paths">' + call('games', 'g26-02') + call('talks', 'g26-04') +
-      card('team', 'g24-01', 'call.always', '#newsletter', 'call.team.cta') +
-      card('sponsor', 'g25-01', 'call.always', '#ser-sponsor', 'call.sponsor.cta') + '</div>';
+      card('team', 'g24-01', 'call.always') +
+      card('sponsor', 'g25-01', 'call.always') + '</div>';
   };
 
   // Ganadores: portada del juego, categoría, juego y estudio
