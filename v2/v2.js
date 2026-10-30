@@ -208,6 +208,7 @@
     return '<div class="steam__stats">' +
       '<div><b>+' + num(s.games) + '</b><span>juegos argentinos</span></div>' +
       (s.featured ? '<div><b>' + num(s.featured) + '</b><span>de la exhibición presencial</span></div>' : '') +
+      (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
       (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
   }
   R.steam = function (el) {
@@ -217,10 +218,10 @@
     el.innerHTML = '<div class="steam">' +
       '<div><p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p>' +
         '<h2 class="display">IDA en Steam</h2>' +
-        '<p class="lead">Llevamos IDA a la tienda de Steam con un evento oficial que reúne y destaca juegos hechos en Argentina: demos para probar, descuentos y la selección completa de la exhibición presencial.</p>' +
+        '<p class="lead">El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos: un evento oficial dentro de la tienda, con demos para probar, descuentos y la selección completa de la exhibición presencial. Durante sus primeras 48 horas, el banner de IDA estuvo en la portada de Steam para todos los usuarios de Argentina.</p>' +
         steamStats(s) +
         '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
-        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + '.</p>' : '') + '</div>' +
+        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + ', el publisher mexicano que hizo posible el acuerdo con Valve.</p>' : '') + '</div>' +
       '<a class="steam__art" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
         '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + cur.year + ', en Steam" loading="lazy" width="800" height="450"></a>' +
     '</div>';
@@ -357,7 +358,7 @@
           return '<article class="guest"><span class="guest__from">' + esc(T(g.from)) + '</span><h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p>' +
             (g.talk ? '<p class="guest__talk"><span>Charla</span>«' + esc(g.talk) + '»</p>' : '') +
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
-        }).join('') + '</div></div>' : '') +
+        }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
         gallery + games +
         (e.steam ? '<div class="ed__block"><h3 class="ed__label">Exhibición digital en Steam</h3>' + steamStats(e.steam) +
           '<a class="pill" href="' + e.steam.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a></div>' : '') +

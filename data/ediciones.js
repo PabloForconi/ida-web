@@ -106,21 +106,22 @@ window.IDA_DATA = {
         es: 'La tercera edición ocupó todo el edificio del Centro Cultural de la Cooperación: showcase de juegos, charlas en simultáneo, networking y la segunda entrega de los Premios IDA, con diez categorías.',
         en: 'The third edition took over the whole Centro Cultural de la Cooperación building: game showcase, parallel talks, networking and the second IDA Awards, with ten categories.'
       },
-      // Juegos y charlas: nota de Press Over (3/8/2026). Asistentes y speakers, provisorios.
-      stats: { attendees: 2500, games: 25, talks: 22, speakers: 24 },
-      statsNote: { es: '20 charlas nacionales y 2 internacionales', en: '20 national talks and 2 international' },
+      // Asistentes, juegos, postulaciones y charlas: notas de Press Over (3/8 y 7/8/2026). Speakers, provisorio.
+      stats: { attendees: 3000, games: 25, talks: 22, speakers: 24 },
+      statsNote: { es: '25 juegos seleccionados entre 114 postulados · 20 charlas nacionales y 2 internacionales', en: '25 games picked from 114 submissions · 20 national talks and 2 international' },
       highlights: [
         { es: 'Primera edición en los tres pisos del CCC', en: 'First edition across all three floors of the CCC' },
-        { es: 'Charlas internacionales de Yoan Fanise (Valiant Hearts, Road 96) y Josué Monchan', en: 'International talks by Yoan Fanise (Valiant Hearts, Road 96) and Josué Monchan' },
+        { es: 'Charlas internacionales de Yoan Fanise (Valiant Hearts, Road 96) y Josué Monchán, con más de 170 personas en cada una', en: 'International talks by Yoan Fanise (Valiant Hearts, Road 96) and Josué Monchán, with over 170 people at each' },
         { es: 'Premios IDA en diez categorías; The Outer Frame, Mejor Videojuego', en: 'IDA Awards in ten categories; The Outer Frame, Best Game' },
         { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' },
-        { es: 'Primera exhibición digital en Steam: más de 150 juegos argentinos', en: 'First digital showcase on Steam: over 150 Argentine games' }
+        { es: 'Primer showcase de Steam dedicado a videojuegos argentinos: más de 150 juegos y 48 horas en la portada', en: 'First Steam showcase devoted to Argentine games: over 150 games and 48 hours on the front page' }
       ],
       // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
       guests: [
         { name: 'Yoan Fanise', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
-        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista y localizador de videojuegos', en: 'Game writer and localizer' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los juegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
       ],
+      guestsNote: { es: 'Más de 170 personas en cada charla, con el auditorio lleno.', en: 'Over 170 people at each talk, with a packed auditorium.' },
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
       steam: {
         url: 'https://store.steampowered.com/sale/indiedevargentina2026',
@@ -128,6 +129,7 @@ window.IDA_DATA = {
         partner: 'Skull Queens Games',
         games: 150,     // la página lista 152; la prensa habló de "+150"
         featured: 25,   // la selección de la exhibición presencial
+        frontpage: 48,  // horas con el banner de IDA en la portada de Steam en Argentina (1 al 3 de agosto)
         followers: 1462 // seguidores de Indie Dev Argentina en Steam (octubre 2026)
       },
       video: null, // id de YouTube del aftermovie
