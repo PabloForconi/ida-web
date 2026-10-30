@@ -24,7 +24,7 @@ window.IDA_I18N = {
     // home · hero
     'hero.eyebrow': 'IDA <span data-render="year"></span> · <span data-render="ord"></span>',
     'hero.title': 'Thanks for making <span class="hl">IDA <span data-render="year"></span></span> happen with us!',
-    'hero.lead': 'A full day of independent games, talks and community across the whole Centro Cultural de la Cooperación. The Argentine indie scene keeps growing, and we’re already working on the next one.',
+    'hero.lead': 'A full day of independent games, talks and community across three floors of the Centro Cultural de la Cooperación. The Argentine indie scene keeps growing, and we’re already working on the next one.',
     'hero.cta.sponsor': 'Become a sponsor',
     'hero.cta.news': 'Get updates',
     'hero.photo.alt': 'Group photo of the IDA community on stage, with the giant IDA letters',

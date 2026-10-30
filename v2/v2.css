@@ -370,13 +370,17 @@ button, input { font: inherit; color: inherit; }
 .ed__video { max-width: 640px; }
 /* Speakers internacionales de cada edición */
 .guests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.guest { position: relative; padding: 28px 28px 30px 34px; border-radius: var(--radius); background: #15151e; border: 1px solid #2a2a33; overflow: hidden; }
-.guest::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--mag); }
-.guest:nth-child(2)::before { background: var(--green); }
-.guest__from { display: inline-block; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .08); font: 700 .7rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .1em; color: #fff; }
-.guest h4 { font: 800 condensed clamp(2rem, 3.6vw, 2.8rem)/.95 var(--f-display); text-transform: uppercase; color: #fff; margin: 14px 0 8px; }
-.guest__role { font-weight: 600; color: #d8d8e0; margin-bottom: 0; }
-.guest__talk { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid #2a2a33; font: 500 1.05rem/1.35 var(--f-head); color: #fff; }
+.guest { padding: 26px 28px 28px; border-radius: var(--radius); background: #15151e; border: 1px solid #2a2a33; }
+.guest__head { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 22px; align-items: center; }
+.guest__pic { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: #23232e; box-shadow: 0 0 0 3px var(--mag); }
+.guest:nth-child(2) .guest__pic { box-shadow: 0 0 0 3px var(--green); }
+.guest__pic img { width: 100%; height: 100%; object-fit: cover; }
+.guest__pic span { font: 400 2.6rem/1 var(--f-num); color: #fff; letter-spacing: .02em; }
+.guest h4 { font: 800 condensed clamp(1.8rem, 3vw, 2.3rem)/.95 var(--f-display); text-transform: uppercase; color: #fff; margin: 0 0 6px; }
+.guest__role { font-weight: 600; color: #d8d8e0; margin: 0 0 10px; line-height: 1.4; }
+.guest__from { display: flex; align-items: center; gap: 8px; margin: 0; font: 700 .74rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .1em; color: #fff; }
+.guest__from img { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .25); }
+.guest__talk { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid #2a2a33; font: 500 1.05rem/1.35 var(--f-head); color: #fff; }
 .guest__talk span { display: block; font: 700 .7rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .1em; color: var(--pink-2); margin-bottom: 6px; }
 .guest__note { margin: 12px 0 0; font-size: .88rem; color: var(--muted); }
 /* Sponsors de cada edición: logos chicos, en columnas fijas para que queden alineados entre filas */
@@ -503,6 +507,8 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   .announce .pill { width: 100%; justify-content: center; }
   .audience { grid-template-columns: 1fr; }
   .guests { grid-template-columns: 1fr; }
+  .guest__head { grid-template-columns: 84px minmax(0, 1fr); gap: 16px; }
+  .guest__pic { width: 84px; height: 84px; }
   .reasons { grid-template-columns: 1fr; }
   .reason, .reason:nth-child(4) { grid-column: auto; }
   .yhead .u-link { margin-left: 0; }

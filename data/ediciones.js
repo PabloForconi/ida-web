@@ -14,6 +14,7 @@
   Premios: `cover` = portada del juego en src/img/games (la de Steam, 616x353); `img` = foto en img/photos.
   `featured: true` marca los premios que se muestran en la home (si no hay ninguno, van los primeros);
   `top: true`, el premio mayor del año (Mejor Videojuego): en la versión 2 se destaca con un laurel.
+  `guests`: speakers internacionales; `flag` = código de país (img/flags/<código>.png), `img` = foto cuadrada en img/photos (sin foto, van las iniciales).
   Sponsors: cada grupo es una lista de ids, o una lista de niveles ([[grandes], [resto]]) cuando
   algunos aportaron más: el primer nivel se muestra más grande y cada nivel, con logos del mismo tamaño.
   `placeholder: true` muestra la etiqueta PLACEHOLDER en la web: sacarla cuando el dato sea real.
@@ -98,19 +99,19 @@ window.IDA_DATA = {
     {
       year: 2026,
       ord: { es: 'Tercera edición', en: 'Third edition' },
-      tag: { es: 'Todo el CCC', en: 'The whole building' },
+      tag: { es: 'Tres pisos del CCC', en: 'Three floors of the CCC' },
       date: { es: 'Sábado 1 de agosto', en: 'Saturday, August 1' },
       hours: '11 – 20 h',
       venue: 'ccc',
       summary: {
-        es: 'La tercera edición ocupó todo el edificio del Centro Cultural de la Cooperación: showcase de videojuegos, charlas en simultáneo, networking y la segunda entrega de los Premios IDA, con diez categorías.',
-        en: 'The third edition took over the whole Centro Cultural de la Cooperación building: game showcase, parallel talks, networking and the second IDA Awards, with ten categories.'
+        es: 'La tercera edición ocupó tres pisos y cuatro salas de conferencias del Centro Cultural de la Cooperación: showcase de videojuegos, charlas en simultáneo, networking y la segunda entrega de los Premios IDA, con diez categorías.',
+        en: 'The third edition filled three floors and four conference rooms of the Centro Cultural de la Cooperación: game showcase, parallel talks, networking and the second IDA Awards, with ten categories.'
       },
       // Asistentes, juegos, postulaciones y charlas: notas de Press Over (3/8 y 7/8/2026). Speakers, provisorio.
       stats: { attendees: 3000, games: 25, talks: 22, speakers: 24 },
       statsNote: { es: '25 videojuegos seleccionados entre 114 postulados · 20 charlas nacionales y 2 internacionales', en: '25 games picked from 114 submissions · 20 national talks and 2 international' },
       highlights: [
-        { es: 'Primera edición en los tres pisos del CCC', en: 'First edition across all three floors of the CCC' },
+        { es: 'Tres pisos y cuatro salas de conferencias del CCC', en: 'Three floors and four conference rooms at the CCC' },
         { es: 'Charlas internacionales de Yoan Fanise (Valiant Hearts, Road 96) y Josué Monchán, con más de 170 personas en cada una', en: 'International talks by Yoan Fanise (Valiant Hearts, Road 96) and Josué Monchán, with over 170 people at each' },
         { es: 'Premios IDA en diez categorías; The Outer Frame, Mejor Videojuego', en: 'IDA Awards in ten categories; The Outer Frame, Best Game' },
         { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' },
@@ -118,8 +119,8 @@ window.IDA_DATA = {
       ],
       // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
       guests: [
-        { name: 'Yoan Fanise', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
-        { name: 'Josué Monchán', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los videojuegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+        { name: 'Yoan Fanise', flag: 'fr', img: 'guest-yoan', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
+        { name: 'Josué Monchán', flag: 'es', img: 'guest-josue', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los videojuegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
       ],
       guestsNote: { es: 'Más de 170 personas en cada charla, con el auditorio lleno.', en: 'Over 170 people at each talk, with a packed auditorium.' },
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
@@ -170,8 +171,8 @@ window.IDA_DATA = {
       statsNote: { es: '2 speakers internacionales', en: '2 international speakers' },
       // Fuente: newsletter de Press Over (11/7/2025). Cerraron los dos días de charlas.
       guests: [
-        { name: 'Arturo Monedero', from: { es: 'España', en: 'Spain' }, role: { es: 'CEO de TLR Games y vicepresidente de AEVI', en: 'CEO of TLR Games and vice president of AEVI' }, talk: 'Cómo vender tu primer videojuego' },
-        { name: 'David Lucio', from: { es: 'México', en: 'Mexico' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
+        { name: 'Arturo Monedero', flag: 'es', img: 'guest-arturo', from: { es: 'España', en: 'Spain' }, role: { es: 'CEO de TLR Games y vicepresidente de AEVI', en: 'CEO of TLR Games and vice president of AEVI' }, talk: 'Cómo vender tu primer videojuego' },
+        { name: 'David Lucio', flag: 'mx', img: 'guest-david', from: { es: 'México', en: 'Mexico' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
       ],
       highlights: [
         { es: 'Primera edición de dos días', en: 'First two-day edition' },
@@ -223,7 +224,7 @@ window.IDA_DATA = {
         { es: 'Jurado con Daniel Benmergui (Storyteller) y Mauricio García (The Game Kitchen, Blasphemous)', en: 'Jury including Daniel Benmergui (Storyteller) and Mauricio García (The Game Kitchen, Blasphemous)' }
       ],
       video: null,
-      photos: ['g24-01', 'g24-02'],
+      photos: ['g24-03', 'g24-04', 'g24-05', 'g24-01', 'g24-07', 'g24-06', 'g24-09', 'g24-02', 'g24-08', 'g24-11', 'g24-10', 'g24-12'],
       games: ['Power Solenoid', 'Cards of Prophecy', 'Era en un bosque', 'Quantum Echoes', 'Blink and Die Replay', 'Dreieck', 'Dungeon Concierge', 'Oneiro Man', 'La Salamanca', 'Por el Campo', 'The Path into the Abyss', 'Malvinas: La última carta'],
       awards: [],
       sponsors: {
@@ -232,7 +233,7 @@ window.IDA_DATA = {
         acompanan: []
       },
       communities: [],
-      placeholder: { stats: false, photos: true, video: false, awards: false }
+      placeholder: { stats: false, photos: false, video: false, awards: false }
     }
   ]
 };

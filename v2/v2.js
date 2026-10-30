@@ -356,7 +356,12 @@
         '<div class="ed__stats">' + stats + '</div>' +
         ((e.statsNote || P.stats) ? '<p class="note">' + (e.statsNote ? esc(T(e.statsNote)) + ' ' : '') + (P.stats ? ph(U('ph.numbers')) : '') + '</p>' : '') +
         (e.guests && e.guests.length ? '<div class="ed__block"><h3 class="ed__label">Speakers internacionales</h3><div class="guests">' + e.guests.map(function (g) {
-          return '<article class="guest"><span class="guest__from">' + esc(T(g.from)) + '</span><h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p>' +
+          // Tarjeta de speaker: foto redonda (o iniciales), nombre, cargo, bandera y país; debajo, la charla
+          var initials = g.name.split(' ').map(function (w) { return w.charAt(0); }).join('').slice(0, 2);
+          return '<article class="guest"><div class="guest__head">' +
+            '<div class="guest__pic">' + (g.img ? '<img src="' + IMG + 'photos/' + g.img + '.jpg" alt="' + esc(g.name) + '" loading="lazy" width="300" height="300">' : '<span aria-hidden="true">' + esc(initials) + '</span>') + '</div>' +
+            '<div><h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p>' +
+            '<p class="guest__from">' + (g.flag ? '<img src="' + IMG + 'flags/' + g.flag + '.png" alt="" width="24" height="16">' : '') + esc(T(g.from)) + '</p></div></div>' +
             (g.talk ? '<p class="guest__talk"><span>Charla</span>«' + esc(g.talk) + '»</p>' : '') +
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
         }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
