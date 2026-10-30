@@ -160,19 +160,16 @@
   // Ganadores: portada del juego, categoría, juego y estudio
   // Link a la página del juego en Steam (award.steam = id de la app)
   function steamUrl(a) { return a.steam ? 'https://store.steampowered.com/app/' + a.steam + '/' : ''; }
-  function steamLink(a, cls) {
-    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(a.game) + ' en Steam">Ver en Steam</a>' : '';
-  }
-  // La portada lleva a Steam cuando el juego tiene link
+  // La portada es el link a Steam cuando el juego tiene id
   function picLink(a, pic, cls) {
-    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
+    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(a.game) + ' en Steam" title="Ver ' + esc(a.game) + ' en Steam">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
   }
   function winnerCard(a) {
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
       a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
     return '<article class="winner">' + picLink(a, pic, 'winner__pic') +
       '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p>' +
-      steamLink(a, 'steam-link') + '</article>';
+      '</article>';
   }
   function winnersGrid(list) {
     return '<div class="winners' + (list.length === 3 ? ' winners--3' : '') + '">' + list.map(winnerCard).join('') + '</div>';
@@ -187,7 +184,6 @@
       (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '') +
       '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
       (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
-      steamLink(a, 'pill topwin__steam') +
     '</div></article>';
   }
   function awardsBlock(e) {
