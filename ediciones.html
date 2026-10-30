@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ediciones · IDA · Indie Dev Argentina</title>
+  <meta name="description" content="El archivo de IDA: todas las ediciones de la exposición de videojuegos independientes de Argentina, con números, fotos, videos y ganadores.">
+  <meta property="og:image" content="https://indiedevargentina.com/img/photos/group.jpg">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="img/logos/ida.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Tomorrow:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="ediciones" data-title-es="Ediciones · IDA · Indie Dev Argentina" data-title-en="Editions · IDA · Indie Dev Argentina">
+
+<div id="topbar"></div>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <img class="deco deco--cloud hide-sm" src="img/deco/cloud-l.png" alt="" style="width:220px;top:50px;right:6%">
+    <img class="deco hide-sm" src="img/deco/grid-blue.png" alt="" style="width:180px;bottom:10px;right:30%;opacity:.5">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">IDA</a> / <span data-i18n="nav.ediciones">Ediciones</span></div>
+      <h1 data-i18n="eds.title">Ediciones <span class="c-mag">anteriores</span></h1>
+      <p class="lead" data-i18n="eds.lead">La historia de IDA, año por año. Abrí cada edición para ver sus números, fotos, video, ganadores y sponsors. La última edición, <a class="c-mag" href="index.html#edicion">IDA <span data-render="year"></span></a>, está en la home.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="ed-archive" data-render="archive"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow eyebrow--yellow" data-i18n="eds.totals">IDA en números</div>
+      <div data-render="totals"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow eyebrow--green" data-i18n="eds.growth">Crecimiento</div>
+        <h2 class="title-sm" style="margin-bottom:24px" data-i18n="eds.growth.title">Asistentes por edición</h2>
+        <div data-render="growth" data-key="attendees"></div>
+      </div>
+      <div>
+        <div class="eyebrow eyebrow--yellow" data-i18n="eds.growth2">Showcase</div>
+        <h2 class="title-sm" style="margin-bottom:24px" data-i18n="eds.growth2.title">Juegos exhibidos por edición</h2>
+        <div data-render="growth" data-key="games"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="data/ediciones.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IDA · Indie Dev Argentina · Exposición de videojuegos independientes</title>
+  <meta name="description" content="IDA es la exposición de videojuegos independientes de Argentina: showcase de juegos en desarrollo, charlas, networking y Premios IDA. Entrada libre y gratuita.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IDA · Indie Dev Argentina">
+  <meta property="og:description" content="Construyendo la escena indie argentina. Tres ediciones, miles de asistentes y la comunidad indie más grande del país.">
+  <meta property="og:image" content="https://indiedevargentina.com/img/photos/group.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="img/logos/ida.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Tomorrow:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home" data-title-es="IDA · Indie Dev Argentina · Exposición de videojuegos independientes" data-title-en="IDA · Indie Dev Argentina · Independent videogame expo">
+
+<div id="topbar"></div>
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ============ HERO: recap de la última edición + próxima ============ -->
+  <section class="hero" id="inicio">
+    <img class="deco deco--spin hide-sm" src="img/deco/star.png" alt="" style="width:84px;top:28px;right:44%">
+    <img class="deco deco--cloud" src="img/deco/cloud-m.png" alt="" style="width:96px;top:40px;right:8%">
+    <img class="deco hide-sm" src="img/deco/grid-mag.png" alt="" style="width:220px;top:70px;right:30%;opacity:.55">
+    <img class="deco deco--cloud hide-sm" src="img/deco/cloud-l.png" alt="" style="width:200px;bottom:-6px;left:38%">
+    <div class="wrap hero__grid">
+      <div>
+        <div class="eyebrow" data-i18n="hero.eyebrow">IDA <span data-render="year"></span> · <span data-render="ord"></span></div>
+        <h1 data-i18n="hero.title">¡Gracias por hacer <span class="hl">IDA <span data-render="year"></span></span> con nosotros!</h1>
+        <p class="lead" data-i18n="hero.lead">Una jornada entera de juegos independientes, charlas y comunidad en todo el Centro Cultural de la Cooperación. La escena indie argentina sigue creciendo y ya estamos armando la próxima.</p>
+        <div class="hero__ctas">
+          <a class="btn" href="#ser-sponsor" data-i18n="hero.cta.sponsor">Quiero ser sponsor</a>
+          <a class="btn btn--ghost btn--green" href="#newsletter" data-i18n="hero.cta.news">Recibir novedades</a>
+        </div>
+        <div class="frame next-card" data-render="next"></div>
+      </div>
+      <div class="hero__media">
+        <div class="frame frame--white"><img src="img/photos/group-960.jpg" srcset="img/photos/group-960.jpg 960w, img/photos/group.jpg 1920w" sizes="(max-width: 860px) 100vw, 55vw" alt="Foto grupal de la comunidad de IDA sobre el escenario, con las letras gigantes de IDA" data-i18n-attr="alt:hero.photo.alt" width="1920" height="1075" fetchpriority="high"></div>
+        <span class="hero__badge" data-i18n="hero.badge">Construyendo la escena indie argentina</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDICIÓN ACTUAL: números, fotos, video ============ -->
+  <section class="section" id="edicion">
+    <img class="deco deco--cloud hide-sm" src="img/deco/cloud-m.png" alt="" style="width:110px;top:80px;right:6%">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow" data-render="edMeta"></div>
+          <h2 class="title" data-i18n="recap.title">Así se vivió <em>IDA <span data-render="year"></span></em></h2>
+          <p class="lead" data-i18n="recap.lead">Juegos en desarrollo en cada piso, charlas en simultáneo, devs mostrando sus proyectos y una comunidad que no para de crecer.</p>
+        </div>
+      </div>
+      <div class="reveal" style="position:relative;margin-bottom:clamp(32px,4vw,48px)">
+        <img class="numbers__chev numbers__chev--l" src="img/deco/chevron-mag.png" alt="">
+        <img class="numbers__chev numbers__chev--r" src="img/deco/chevron-green.png" alt="">
+        <div data-render="stats"></div>
+      </div>
+      <div class="reveal" data-render="gallery" data-max="8"></div>
+      <div class="recap__bottom reveal">
+        <div data-render="video"></div>
+        <div class="frame frame--green recap__facts" data-render="recapFacts"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PREMIOS ============ -->
+  <section class="section" id="premios" style="background:var(--bg-2)">
+    <img class="deco hide-sm" src="img/deco/grid-yellow.png" alt="" style="width:200px;top:40px;right:4%;opacity:.5">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow eyebrow--yellow" data-i18n="aw.eyebrow">Premiamos lo mejor del showcase</div>
+          <h2 class="title" data-i18n="aw.title">Premios <em>IDA</em></h2>
+          <p class="lead" data-i18n="aw.lead">Desde 2025 entregamos los Premios IDA a los juegos del showcase: un reconocimiento para los equipos que están construyendo la escena independiente.</p>
+        </div>
+      </div>
+      <h3 class="sub-head reveal" data-i18n="aw.winners">Ganadores <span data-render="year"></span></h3>
+      <div class="reveal" data-render="awards" data-max="4" data-wide="1" data-featured="1"></div>
+      <div class="frame frame--yellow trophy-strip reveal">
+        <img src="img/photos/trophy-26.jpg" alt="Trofeos de los Premios IDA 2026: las letras IDA en magenta, azul y verde sobre placas de acrílico" data-i18n-attr="alt:aw.trophy.alt" loading="lazy" width="1200" height="750">
+        <div>
+          <div class="eyebrow eyebrow--plain" data-i18n="aw.trophy">Trofeos IDA 2026</div>
+          <h3 data-i18n="aw.trophy.title">Las tres letras de IDA, para los mejores juegos del showcase</h3>
+          <p data-i18n="aw.trophy.text">En cada edición premiamos a juegos del showcase en distintas categorías, de audio y narrativa al mejor videojuego. Todos los ganadores, edición por edición, están en la página de premios.</p>
+          <a class="btn btn--yellow" href="premios.html" data-i18n="aw.all">Ver todos los premios</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTICIPÁ ============ -->
+  <section class="section" id="participa">
+    <img class="deco deco--cloud hide-sm" src="img/deco/cloud-l.png" alt="" style="width:200px;top:60px;right:4%">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow eyebrow--green" data-i18n="join.eyebrow">Participá</div>
+          <h2 class="title" data-i18n="join.title">Sumate a <em>IDA <span data-render="nextYear"></span></em></h2>
+          <p class="lead" data-i18n="join.lead">Mostrá tu juego, dá una charla o sumate al equipo. Cada edición la hacemos entre todos.</p>
+        </div>
+      </div>
+      <div class="reveal" data-render="calls"></div>
+      <div class="frame community-box reveal" id="sumate">
+        <div>
+          <img src="img/deco/heart-mag.png" alt="" width="36" style="image-rendering:pixelated;margin-bottom:16px">
+          <h3 data-i18n="join.box.title">¿Querés formar parte de <span class="c-green">IDA</span>?</h3>
+          <p data-i18n="join.box.text">Referentes de la industria, la academia y los medios ya acompañaron nuestras ediciones. Elegí cómo querés sumarte y te escribimos para coordinar.</p>
+        </div>
+        <form class="form" data-form="participa" novalidate>
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <fieldset style="border:0;margin:0;padding:0">
+            <legend class="sr-only" data-i18n="join.box.legend">¿Cómo querés participar?</legend>
+            <div class="profiles">
+              <label><input type="radio" name="perfil" value="games" required><img src="img/icons/joystick.png" alt=""><span data-i18n="pr.games">Mostrar mi juego</span></label>
+              <label><input type="radio" name="perfil" value="talks"><img src="img/icons/media.png" alt=""><span data-i18n="pr.talks">Dar una charla</span></label>
+              <label><input type="radio" name="perfil" value="publishers"><img src="img/icons/draw.png" alt=""><span data-i18n="pr.publishers">Publishers y estudios</span></label>
+              <label><input type="radio" name="perfil" value="universidades"><img src="img/icons/uni.png" alt=""><span data-i18n="pr.uni">Universidades</span></label>
+              <label><input type="radio" name="perfil" value="organizaciones"><img src="img/icons/org.png" alt=""><span data-i18n="pr.org">Organizaciones</span></label>
+              <label><input type="radio" name="perfil" value="medios"><img src="img/icons/media.png" alt="" style="filter:hue-rotate(200deg)"><span data-i18n="pr.media">Medios</span></label>
+              <label><input type="radio" name="perfil" value="comunidades"><img src="img/icons/community.png" alt=""><span data-i18n="pr.community">Comunidades</span></label>
+              <label><input type="radio" name="perfil" value="voluntarios"><img src="img/icons/volunteer.png" alt=""><span data-i18n="pr.volunteer">Voluntariado</span></label>
+            </div>
+          </fieldset>
+          <div class="form-row">
+            <div class="field"><label for="pa-name" data-i18n="f.name">Nombre</label><input class="input" id="pa-name" name="nombre" required autocomplete="name"></div>
+            <div class="field"><label for="pa-email">Email</label><input class="input" id="pa-email" type="email" name="email" required autocomplete="email" placeholder="tu@email.com"></div>
+          </div>
+          <div class="field"><label for="pa-msg" data-i18n="f.msg">Contanos un poco más (opcional)</label><textarea id="pa-msg" name="mensaje"></textarea></div>
+          <button class="btn btn--green" type="submit" data-i18n="join.box.btn">Quiero sumarme</button>
+          <p class="form-note" style="--c:var(--green)" data-i18n="join.box.note">Te escribimos para contarte cómo participar y avisarte cuando abran las convocatorias.</p>
+          <p class="form-status" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPONSORS ============ -->
+  <section class="section" id="sponsors" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow" data-i18n="sp.eyebrow">Quienes hicieron posible IDA <span data-render="year"></span></div>
+          <h2 class="title" data-i18n="sp.title">Nuestros <em>patrocinadores</em></h2>
+          <p class="lead" data-i18n="sp.lead">Empresas, instituciones y organizaciones que creen en el desarrollo independiente y hacen que IDA siga creciendo.</p>
+        </div>
+      </div>
+      <div class="reveal" data-render="sponsors"></div>
+      <div class="frame sponsor-band reveal" id="ser-sponsor">
+        <div class="sponsor-band__pitch">
+          <img class="sponsor-cta__icon" src="img/icons/handshake.png" alt="">
+          <h3 data-i18n="sp.cta.title">¿Querés ser sponsor de IDA <span data-render="nextYear"></span>?</h3>
+          <p data-i18n="sp.cta.text">Conectá tu marca con la comunidad indie más grande de Argentina: desarrolladores, estudiantes, estudios y miles de jugadores en un mismo lugar.</p>
+        </div>
+        <form class="form" data-form="sponsor" novalidate>
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-row">
+              <div class="field"><label for="sp-name" data-i18n="f.name">Nombre</label><input class="input" id="sp-name" name="nombre" required autocomplete="name"></div>
+              <div class="field"><label for="sp-company" data-i18n="f.company">Empresa / institución</label><input class="input" id="sp-company" name="empresa" required autocomplete="organization"></div>
+            </div>
+            <div class="field"><label for="sp-email">Email</label><input class="input" id="sp-email" type="email" name="email" required autocomplete="email" placeholder="tu@empresa.com"></div>
+            <button class="btn" type="submit" data-i18n="sp.cta.btn">Hablemos</button>
+            <p class="form-note" data-i18n="sp.cta.note">Te contactamos con la propuesta y las oportunidades de colaboración.</p>
+            <p class="form-status" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDICIONES ANTERIORES ============ -->
+  <section class="section" id="anteriores">
+    <img class="deco deco--cloud hide-sm" src="img/deco/cloud-s.png" alt="" style="width:60px;top:120px;right:12%">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow eyebrow--blue" data-i18n="ed.eyebrow">La historia de IDA, año por año</div>
+          <h2 class="title" data-i18n="ed.title">Ediciones <em>anteriores</em></h2>
+          <p class="lead" data-i18n="ed.lead">Números, fotos, videos y ganadores de cada edición, guardados en un solo lugar.</p>
+        </div>
+        <a class="btn btn--ghost btn--blue" href="ediciones.html" data-i18n="ed.archive">Ver todas las ediciones</a>
+      </div>
+      <div class="reveal" data-render="pastEditions"></div>
+    </div>
+  </section>
+
+  <!-- ============ ACERCA ============ -->
+  <section class="section" id="acerca">
+    <img class="deco hide-sm" src="img/deco/grid-blue.png" alt="" style="width:180px;top:60px;right:3%;opacity:.6">
+    <div class="wrap about">
+      <img class="about__logo" src="img/deco/ida-vertical.png" alt="" width="226" height="651">
+      <div class="about__cols">
+        <div class="reveal">
+          <div class="eyebrow eyebrow--blue" data-i18n="ab.eyebrow">Acerca de IDA</div>
+          <h3 data-i18n="ab.title">Un espacio donde las ideas despiertan y los sueños de crear <span class="c-yellow">videojuegos</span> se hacen realidad.</h3>
+          <p data-i18n="ab.text">IDA es el evento creado por <a href="https://pressover.news/" target="_blank" rel="noopener" class="c-mag">Press Over</a> que busca ser el primer acercamiento al mundo del desarrollo de videojuegos independiente en Argentina.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-i18n="ab.find">¿Qué vas a encontrar?</h3>
+          <ul class="dash-list" data-i18n="ab.find.list">
+            <li><em>Showcase</em> de videojuegos en desarrollo</li>
+            <li><em>Charlas</em> de desarrolladores con años en la industria</li>
+            <li>Espacios de <em>networking</em></li>
+            <li>Entrega de los <em>Premios IDA</em></li>
+          </ul>
+          <h3 style="margin-top:28px" data-i18n="ab.who">¿Para quién es?</h3>
+          <ul class="dash-list" data-i18n="ab.who.list">
+            <li><em>Desarrolladores</em> principiantes o aspirantes</li>
+            <li>Estudiantes de videojuegos</li>
+            <li>Devs con experiencia en busca de <em>talento</em></li>
+            <li><em>Público</em> general interesado en los videojuegos</li>
+          </ul>
+        </div>
+        <div class="why reveal">
+          <h3 data-i18n="ab.why">¿Por qué asistir?</h3>
+          <ol>
+            <li data-i18n="why.1">Para descubrir de primera mano la escena indie y entender hacia dónde va la industria local.</li>
+            <li data-i18n="why.2">Para aprender de profesionales, con charlas y talleres de referentes nacionales e internacionales.</li>
+            <li data-i18n="why.3">Para recibir feedback concreto sobre tu proyecto de otros devs, expertos y del público que lo juega.</li>
+            <li data-i18n="why.4">Para ampliar tu red de contactos y generar vínculos que pueden convertirse en colaboraciones.</li>
+            <li data-i18n="why.5">Para llegar mejor preparado a la próxima EVA, con proyectos más pulidos y la comunidad de tu lado.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMUNIDADES ============ -->
+  <section class="section section--tight" id="comunidades" data-hide-empty style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap reveal" style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between">
+      <div class="eyebrow eyebrow--blue" style="margin:0" data-i18n="com.eyebrow">Comunidades que nos acompañan</div>
+      <div data-render="communities" style="flex:1;min-width:min(100%,520px)"></div>
+    </div>
+  </section>
+
+  <!-- ============ INFO + FAQ ============ -->
+  <section class="section" id="info">
+    <img class="deco hide-sm" src="img/deco/grid-yellow.png" alt="" style="width:180px;bottom:40px;left:2%;opacity:.4">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow eyebrow--green" data-i18n="info.eyebrow">IDA <span data-render="nextYear"></span>: lo que hay que saber</div>
+          <h2 class="title" data-i18n="info.title">Información <em>práctica</em></h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="reveal" data-render="info"></div>
+        <div class="faq reveal">
+          <details open>
+            <summary data-i18n="faq.1.q">¿Cuánto cuesta la entrada?</summary>
+            <div><p data-i18n="faq.1.a">Nada: IDA es de entrada libre y gratuita.</p></div>
+          </details>
+          <details>
+            <summary data-i18n="faq.2.q">¿Cómo muestro mi juego en IDA?</summary>
+            <div><p data-i18n="faq.2.a">Con la convocatoria que abrimos antes de cada edición. En la última pedimos una demo jugable, que el equipo traiga su propia notebook y que al menos dos integrantes estén presentes toda la jornada. La selección prioriza primeras obras y equipos nuevos, sin dejar de lado la calidad.</p></div>
+          </details>
+          <details>
+            <summary data-i18n="faq.3.q">¿Puedo dar una charla?</summary>
+            <div><p data-i18n="faq.3.a">¡Sí! Dejanos tus datos en <a href="#sumate" class="c-mag">Participá</a> eligiendo «Dar una charla» y te avisamos cuando abra la convocatoria.</p></div>
+          </details>
+          <details>
+            <summary data-i18n="faq.4.q">¿Sirve si recién estoy empezando?</summary>
+            <div><p data-i18n="faq.4.a">Para eso existe IDA: es un primer acercamiento al desarrollo indie, con charlas para quienes recién arrancan, devs con experiencia y público general.</p></div>
+          </details>
+          <details>
+            <summary data-i18n="faq.5.q">¿Cómo puede participar mi empresa o institución?</summary>
+            <div><p data-i18n="faq.5.a">Como sponsor, aliado o con un espacio propio. Mirá la <a href="sponsors.html" class="c-mag">propuesta para sponsors</a> o escribinos desde el formulario.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="data/ediciones.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
