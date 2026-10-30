@@ -152,7 +152,7 @@
       var o = c[key].open && c[key].url;
       return card(key, img, o ? 'call.open' : 'call.closed', o ? c[key].url : null, 'call.' + key + '.cta');
     }
-    el.innerHTML = '<div class="paths">' + call('games', 'g26-02') + call('talks', 'g26-04') +
+    el.innerHTML = '<div class="paths">' + call('games', 'g26-15') + call('talks', 'g26-04') +
       card('team', 'g24-01', 'call.always') +
       card('sponsor', 'g25-01', 'call.always') + '</div>';
   };
@@ -166,7 +166,7 @@
   }
   // "Presentado por" + logo del sponsor del premio (award.by = id de orgs)
   function awardBy(a, cls) {
-    var o = a.by && D.orgs[a.by]; if (!o) return '';
+    var o = a.by && D.orgs[a.by]; if (!o || PAGE !== 'premios') return ''; // solo en la página de premios
     var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '">';
     return '<p class="award-by ' + cls + '"><span>Presentado por</span>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : img) + '</p>';
   }
@@ -276,7 +276,7 @@
   // Sponsors sobre negro (como "Thank you to our Diamond Partners")
   function logo(id) {
     var o = D.orgs[id]; if (!o) return '';
-    var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '" title="' + esc(o.name) + '" loading="lazy">';
+    var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '" title="' + esc(o.name) + '">';
     var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '');
     return o.url ? '<a class="' + c.trim() + '" href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : '<span class="' + c.trim() + '">' + img + '</span>';
   }
@@ -401,6 +401,24 @@
 
   function renderAll() {
     document.querySelectorAll('[data-render]').forEach(function (el) { var fn = R[el.dataset.render]; if (fn) fn(el); });
+    fitLogos();
+  }
+
+  // Equilibrio óptico de los logos: todos ocupan más o menos la misma superficie, así un logo cuadrado
+  // no se ve chico al lado de uno muy ancho. Deja un ancho por contexto (lo elige el CSS):
+  // --lw-l escritorio, --lw-m sponsors compactos de Ediciones, --lw-s celular. [común, destacado]
+  var LOGO_AREA = { l: [7000, 15000], m: [2600, 5200], s: [2300, 3400] };
+  function fitLogos() {
+    document.querySelectorAll('.logos--even img').forEach(function (img) {
+      function fit() {
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        var ar = img.naturalWidth / img.naturalHeight, lg = img.closest('.logos--lg') ? 1 : 0;
+        Object.keys(LOGO_AREA).forEach(function (k) {
+          img.style.setProperty('--lw-' + k, Math.round(Math.sqrt(LOGO_AREA[k][lg] * ar)) + 'px');
+        });
+      }
+      if (img.complete) fit(); else img.addEventListener('load', fit, { once: true });
+    });
   }
 
   // ---------------------------------------------------------------- idioma

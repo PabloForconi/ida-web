@@ -155,7 +155,7 @@ window.IDA_DATA = {
       ],
       sponsors: {
         presenta: ['pressover', 'ocppc'],
-        apoyo: [['ccc', 'storyteller'], ['francia', 'maimonides', 'oxobox', 'pm', 'osai', 'comu']], // CCC y Storyteller aportaron más: van más grandes
+        apoyo: [['storyteller', 'ccc', 'pm'], ['francia', 'maimonides', 'oxobox', 'amd', 'osai', 'comu']], // CCC, Storyteller y Provincia Microcréditos aportaron más: van más grandes
         acompanan: ['adva', 'fundav', 'playbold', 'gameever']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],

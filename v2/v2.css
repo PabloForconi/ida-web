@@ -13,7 +13,7 @@
   --mag-ink: #d1007f;     /* magenta para texto chico sobre blanco */
   --pink: #ffe0f2;
   --pink-2: #ffb3df;
-  --blue: #0000ff;
+  --blue: #3d5afe;       /* azul vibrante: el #0000ff puro casi no se ve sobre negro */
   --ink: #0b0b12;
   --black: #000;
   --green: #00ff00;
@@ -203,7 +203,7 @@ button, input { font: inherit; color: inherit; }
 .reasons { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
 .reason { --c: var(--mag); position: relative; padding: 26px 22px 28px; border-radius: var(--radius); background: #101018; border: 1px solid #23232b; transition: transform .2s, border-color .2s; }
 .reason:nth-child(2) { --c: #a26bff; }
-.reason:nth-child(3) { --c: #5b7bff; }
+.reason:nth-child(3) { --c: var(--blue); }
 .reason:nth-child(4) { --c: var(--green); }
 .reason:nth-child(5) { --c: var(--yellow); }
 .reason:hover { transform: translateY(-4px); border-color: var(--c); }
@@ -288,7 +288,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .logos--even { --cw: 230px; --ch: 74px; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); justify-items: center; gap: 40px 32px; }
 .logos--even.logos--lg { --cw: 320px; --ch: 112px; }
 .logos--even > a, .logos--even > span { width: 100%; max-width: var(--cw); height: var(--ch); justify-content: center; }
-.logos--even img { max-width: 100%; max-height: 100%; }
+.logos--even img { width: var(--lw-l, auto); height: auto; max-width: 100%; max-height: 100%; }
 #sponsors .pill { margin-top: 32px; }
 
 /* ---------- Info + FAQ ---------- */
@@ -395,6 +395,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .sponsors-compact .logos--even { --cw: 150px; --ch: 44px; grid-template-columns: repeat(auto-fill, 150px); justify-content: start; justify-items: start; gap: 22px 36px; }
 .sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); }
 .sponsors-compact .logos--even > a, .sponsors-compact .logos--even > span { justify-content: flex-start; }
+.sponsors-compact .logos--even img { width: var(--lw-m, auto); }
 
 /* Premio mayor del año: portada grande + laurel */
 .topwin { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 5vw, 64px); }
@@ -519,8 +520,10 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   .form-row { grid-template-columns: 1fr; }
   .form-inline { flex-direction: column; }
   .form-inline .pill { justify-content: center; }
-  .logos--even { --ch: 52px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
-  .logos--even.logos--lg { --ch: 66px; }
+  .logos--even { --cw: 130px; --ch: 38px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 24px; }
+  .logos--even.logos--lg { --cw: 150px; --ch: 48px; }
+  .logos--even img, .sponsors-compact .logos--even img { width: var(--lw-s, auto); }
+  .tiers { gap: 26px; }
   .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .facts div { grid-template-columns: 1fr; gap: 2px; }
   .announce .pill { width: 100%; justify-content: center; }
