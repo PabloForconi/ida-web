@@ -68,7 +68,7 @@ button, input { font: inherit; color: inherit; }
 /* Secciones oscuras: negro (y "ink" para alternar); dos oscuras seguidas se separan con una línea */
 .dark { background: var(--black); color: #ececf1; --muted: #a9a9b8; --line: #2a2a33; }
 .dark--ink { background: #0e0e16; }
-.statband + .dark, .dark + .dark:not(.band--flush):not(.section--top0) { border-top: 1px solid #23232b; }
+.dark + .dark:not(.band--flush):not(.section--top0) { border-top: 1px solid #23232b; }
 .dark .display--ink { color: #fff; }
 .dark .u-link { color: #fff; }
 .dark .u-link:hover { color: var(--mag); }
@@ -147,7 +147,7 @@ button, input { font: inherit; color: inherit; }
 .hero__date { font: 600 clamp(1.15rem, 2.2vw, 1.6rem)/1.3 var(--f-head); margin: 0; }
 
 /* ---------- Números ---------- */
-.statband { background: var(--black); color: #fff; padding: clamp(28px, 4vw, 44px) 0; }
+.statband { background: #fff; color: var(--ink); padding: clamp(28px, 4vw, 44px) 0; }
 .stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; text-align: center; }
 .stats--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .stat b { display: block; font: 400 clamp(2.8rem, 6vw, 4.8rem)/.9 var(--f-num); letter-spacing: .01em; font-variant-numeric: tabular-nums; }
@@ -412,6 +412,16 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .topwin h3 { font: 800 condensed clamp(2.4rem, 5vw, 4rem)/.95 var(--f-display); text-transform: uppercase; margin-bottom: 10px; }
 .topwin__studio { font-weight: 600; margin-bottom: 8px; }
 .topwin__also { margin: 0; font-size: .92rem; color: var(--muted); }
+/* Sponsor que presenta un premio (ej.: Premio AMD): texto arriba, logo abajo */
+.award-by { display: flex; flex-direction: column; align-items: center; gap: 7px; margin: 4px 0 18px; }
+.award-by span { font: 700 .66rem/1.2 var(--f-head); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+.award-by img { height: 26px; width: auto; display: block; }
+.award-by a { display: block; transition: opacity .2s; }
+.award-by a:hover { opacity: .7; }
+.award-by--sm { margin: 14px 0 0; gap: 5px; }
+.award-by--sm span { font-size: .6rem; }
+.award-by--sm img { height: 16px; }
+.dark .award-by img { filter: brightness(0) invert(1); }
 .topwin__pic img { transition: transform .3s; }
 .edition .pgroup:first-of-type { border-top: 0; padding-top: 0; }
 

@@ -164,11 +164,17 @@
   function picLink(a, pic, cls) {
     return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(a.game) + ' en Steam" title="Ver ' + esc(a.game) + ' en Steam">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
   }
+  // "Presentado por" + logo del sponsor del premio (award.by = id de orgs)
+  function awardBy(a, cls) {
+    var o = a.by && D.orgs[a.by]; if (!o) return '';
+    var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '">';
+    return '<p class="award-by ' + cls + '"><span>Presentado por</span>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : img) + '</p>';
+  }
   function winnerCard(a) {
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
       a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
     return '<article class="winner">' + picLink(a, pic, 'winner__pic') +
-      '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p>' +
+      '<p class="winner__cat">' + esc(a.by ? T(a.cat).split(' · ')[0] : T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p>' + awardBy(a, 'award-by--sm') +
       '</article>';
   }
   function winnersGrid(list) {
@@ -181,7 +187,7 @@
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
     return '<article class="topwin">' + picLink(a, pic, 'topwin__pic') + '<div class="topwin__body">' +
       '<div class="laurel"><img src="' + IMG + 'deco/laurel-color.png" alt="" width="385" height="337"><span class="laurel__txt"><b>' + esc(cat[0]) + '</b><i>' + e.year + '</i></span></div>' +
-      (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '') +
+      (a.by ? awardBy(a, '') : (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '')) +
       '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
       (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
     '</div></article>';
@@ -321,7 +327,7 @@
   R.totals = function (el) {
     var t = { attendees: 0, games: 0, talks: 0, speakers: 0 };
     D.editions.forEach(function (e) { Object.keys(t).forEach(function (k) { t[k] += e.stats[k] || 0; }); });
-    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Videojuegos exhibidos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
+    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Videojuegos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
     el.innerHTML = '<div class="stats">' + items.map(function (i) {
       return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
     }).join('') + '</div>' +

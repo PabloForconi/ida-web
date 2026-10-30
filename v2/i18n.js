@@ -81,7 +81,7 @@ window.IDA_V2 = {
       'v2.past.title': 'Ediciones anteriores',
       'v2.sp.join': 'Quiero ser sponsor de IDA {y}',
       // "videojuego" en vez de "juego": pisan los textos compartidos de ../js/i18n.js solo en esta versión
-      'stat.games': 'Videojuegos exhibidos',
+      'stat.games': 'Videojuegos',
       'stat.short.games': 'videojuegos',
       'call.games.title': 'Mostrá tu videojuego',
       'call.games.cta': 'Postulá tu videojuego'

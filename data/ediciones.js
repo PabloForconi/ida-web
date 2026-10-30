@@ -14,6 +14,7 @@
   Premios: `cover` = portada del juego en src/img/games (la de Steam, 616x353); `img` = foto en img/photos.
   `featured: true` marca los premios que se muestran en la home (si no hay ninguno, van los primeros);
   `steam`: id de la app en Steam (store.steampowered.com/app/<id>), para el link de cada juego premiado.
+  `by`: id de `orgs` del sponsor que presenta el premio (en la versión 2 se muestra su logo).
   `top: true`, el premio mayor del año (Mejor Videojuego): en la versión 2 se destaca con un laurel.
   `guests`: speakers internacionales; `flag` = código de país (img/flags/<código>.png), `img` = foto cuadrada en img/photos (sin foto, van las iniciales).
   Sponsors: cada grupo es una lista de ids, o una lista de niveles ([[grandes], [resto]]) cuando
@@ -87,6 +88,7 @@ window.IDA_DATA = {
     playbold:    { name: 'Play Bold', logo: 'playbold.png', url: null },
     gameever:    { name: 'Game Ever', logo: 'gameever.png', url: null },
     foton:       { name: 'Foton Games', logo: 'foton.png', url: null },
+    amd:         { name: 'AMD', logo: 'amd.svg', url: 'https://www.amd.com/', mono: true },
     // comunidades
     godot:       { name: 'Godot Argentina', logo: 'godot.png', url: null },
     audiovj:     { name: 'Audio para Videojuegos Argentina', logo: 'audio-vj.png', url: null },
@@ -140,7 +142,7 @@ window.IDA_DATA = {
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
       awards: [
-        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg', featured: true, top: true },
+        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg', featured: true, top: true, by: 'amd' },
         { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg' },
         { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', steam: 2720230, cover: 'xplorite.jpg' },
         { cat: { es: 'Mejor Multijugador o Cooperativo', en: 'Best Multiplayer or Co-op' }, game: 'AstroBrawl', studio: 'Papa Corps', steam: 3175020, cover: 'astrobrawl.jpg' },
