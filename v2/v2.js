@@ -110,23 +110,22 @@
     var n = D.next, v = n.venue && D.venues[n.venue];
     var items = [['date', '<span class="ib-yr">IDA ' + n.year + ' · </span>' + esc(T(n.dateLabel))]];
     items.push(['hours', n.hours ? esc(n.hours) : esc(U('info.hoursTbc'))]);
-    items.push(['venue', v ? '<a href="' + v.map + '" target="_blank" rel="noopener">' + esc(v.name) + (v.address ? '<span class="infobar__addr"> (' + esc(v.address) + ')</span>' : '') + '</a>' : esc(U('info.venueTbc'))]);
+    items.push(['venue', v ? '<a href="' + v.map + '" target="_blank" rel="noopener">' + '<span class="ib-long">' + esc(v.name) + '</span>' + (v.short ? '<span class="ib-short">' + esc(v.short) + '</span>' : '') + (v.address ? '<span class="infobar__addr"> (' + esc(v.address) + ')</span>' : '') + '</a>' : esc(U('info.venueTbc'))]);
     items.push(['free', esc(U('info.free'))]);
     el.innerHTML = items.map(function (i) {
       return '<span class="infobar__' + i[0] + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + INFO_ICON[i[0]] + '</svg><span>' + i[1] + '</span></span>';
     }).join('');
   };
 
+  // Banda de números de la home: solo la última edición
   R.stats = function (el) {
-    var tot = 0; D.editions.forEach(function (e) { tot += e.stats.attendees || 0; });
     var items = [
-      [cur.stats.attendees, '+', U('stat.attendees') + ' ' + cur.year],
+      [cur.stats.attendees, '+', U('stat.attendees')],
       [cur.stats.games, '', U('stat.games')],
       [cur.stats.talks, '', U('stat.talks')],
-      [cur.stats.speakers, '', U('stat.speakers')],
-      [tot, '+', U('v2.stat.total', { n: D.editions.length }), 1]
+      [cur.stats.speakers, '', U('stat.speakers')]
     ];
-    el.innerHTML = '<div class="stats">' + items.map(function (i) {
+    el.innerHTML = '<div class="stats stats--4">' + items.map(function (i) {
       return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
     }).join('') + '</div>';
     countUp(el);

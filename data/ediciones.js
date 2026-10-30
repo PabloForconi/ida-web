@@ -26,10 +26,10 @@ window.IDA_DATA = {
   next: {
     year: 2027,
     ord: { es: 'Cuarta edición', en: 'Fourth edition' },
-    date: null, // ej.: '2027-08-07T11:00:00-03:00'
-    dateLabel: { es: 'Fecha a confirmar', en: 'Date to be announced' },
-    hours: null,
-    venue: null, // ej.: 'ccc' (clave de `venues`)
+    date: '2027-06-26T11:00:00-03:00', // activa la cuenta regresiva de la home actual
+    dateLabel: { es: 'Sábado 26 de junio', en: 'Saturday, June 26' },
+    hours: '11 – 20 h',
+    venue: 'ccc', // clave de `venues`
     calls: {
       games: { open: false, url: 'https://oxoawards.com/ida2026' },
       talks: { open: false, url: null }
@@ -54,6 +54,7 @@ window.IDA_DATA = {
   venues: {
     ccc: {
       name: 'Centro Cultural de la Cooperación',
+      short: 'CCC', // nombre corto para la barra superior en celular
       address: 'Av. Corrientes 1543, CABA',
       map: 'https://maps.app.goo.gl/QorT6KUPbsa9SZ6o8',
       embed: 'https://maps.google.com/maps?q=Av.%20Corrientes%201543%2C%20CABA&t=m&z=15&output=embed&iwloc=near'

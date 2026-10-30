@@ -154,7 +154,7 @@
     var items = [
       ['date', '<span class="ib-yr">IDA ' + n.year + ' · </span>' + esc(T(n.dateLabel))],
       ['hours', esc(n.hours || U('info.hoursTbc'))],
-      ['venue', v ? '<a href="' + v.map + '" target="_blank" rel="noopener">' + esc(v.name) + '</a>' : esc(U('info.venueTbc'))],
+      ['venue', v ? '<a href="' + v.map + '" target="_blank" rel="noopener"><span class="ib-long">' + esc(v.name) + '</span>' + (v.short ? '<span class="ib-short">' + esc(v.short) + '</span>' : '') + '</a>' : esc(U('info.venueTbc'))],
       ['free', esc(U('info.free'))]
     ];
     el.innerHTML = '<div class="wrap">' + items.map(function (i) {
