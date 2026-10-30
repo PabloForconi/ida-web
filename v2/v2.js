@@ -187,6 +187,29 @@
     }).join('');
   };
 
+  // Exhibición digital en Steam (edition.steam)
+  function steamStats(s) {
+    return '<div class="steam__stats">' +
+      '<div><b>+' + num(s.games) + '</b><span>juegos argentinos</span></div>' +
+      (s.featured ? '<div><b>' + num(s.featured) + '</b><span>de la exhibición presencial</span></div>' : '') +
+      (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
+  }
+  R.steam = function (el) {
+    var s = cur.steam;
+    var sec = el.closest('section');
+    if (!s) { if (sec) sec.hidden = true; return; }
+    el.innerHTML = '<div class="steam">' +
+      '<div><p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p>' +
+        '<h2 class="display">IDA en Steam</h2>' +
+        '<p class="lead">Llevamos IDA a la tienda de Steam con un evento oficial que reúne y destaca juegos hechos en Argentina: demos para probar, descuentos y la selección completa de la exhibición presencial.</p>' +
+        steamStats(s) +
+        '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
+        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + '.</p>' : '') + '</div>' +
+      '<a class="steam__art" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
+        '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + cur.year + ', en Steam" loading="lazy" width="800" height="450"></a>' +
+    '</div>';
+  };
+
   // 3 videos (como "Why Attend?")
   R.videos = function (el) {
     var withVideo = D.editions.filter(function (e) { return e.video && !(e.placeholder && e.placeholder.video); });
@@ -313,7 +336,10 @@
         '<div class="ed__intro"><p class="lead">' + esc(T(e.summary)) + '</p><ul class="topics">' + e.highlights.map(function (h) { return '<li>' + esc(T(h)) + '</li>'; }).join('') + '</ul></div>' +
         '<div class="ed__stats">' + stats + '</div>' +
         ((e.statsNote || P.stats) ? '<p class="note">' + (e.statsNote ? esc(T(e.statsNote)) + ' ' : '') + (P.stats ? ph(U('ph.numbers')) : '') + '</p>' : '') +
-        gallery + games + video + awards +
+        gallery + games +
+        (e.steam ? '<div class="ed__block"><h3 class="ed__label">Exhibición digital en Steam</h3>' + steamStats(e.steam) +
+          '<a class="pill" href="' + e.steam.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a></div>' : '') +
+        video + awards +
         '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3>' + sponsorGroups(e.sponsors) + '</div>' +
       '</div></section>';
     }).join('');

@@ -112,8 +112,18 @@ window.IDA_DATA = {
         { es: 'Primera edición en los tres pisos del CCC', en: 'First edition across all three floors of the CCC' },
         { es: 'Charlas internacionales de Yoan Fanise (Valiant Hearts, Road 96) y Josué Monchan', en: 'International talks by Yoan Fanise (Valiant Hearts, Road 96) and Josué Monchan' },
         { es: 'Premios IDA en diez categorías; The Outer Frame, Mejor Videojuego', en: 'IDA Awards in ten categories; The Outer Frame, Best Game' },
-        { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' }
+        { es: 'Los ganadores tienen lugar asegurado en el showcase de EVA 2026, gracias a ADVA', en: 'Winners get a guaranteed spot in the EVA 2026 showcase, thanks to ADVA' },
+        { es: 'Primera exhibición digital en Steam: más de 150 juegos argentinos', en: 'First digital showcase on Steam: over 150 Argentine games' }
       ],
+      // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
+      steam: {
+        url: 'https://store.steampowered.com/sale/indiedevargentina2026',
+        img: 'steam-26',
+        partner: 'Skull Queens Games',
+        games: 150,     // la página lista 152; la prensa habló de "+150"
+        featured: 25,   // la selección de la exhibición presencial
+        followers: 1462 // seguidores de Indie Dev Argentina en Steam (octubre 2026)
+      },
       video: null, // id de YouTube del aftermovie
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
@@ -153,24 +163,33 @@ window.IDA_DATA = {
       highlights: [
         { es: 'Primera edición de dos días', en: 'First two-day edition' },
         { es: 'Primeros speakers internacionales', en: 'First international speakers' },
-        { es: 'Primera entrega de los Premios IDA', en: 'First IDA Awards' }
+        { es: 'Primera entrega de los Premios IDA: 12 premios; Go Slimey Go!, Mejor Videojuego', en: 'First IDA Awards: 12 awards; Go Slimey Go!, Best Game' }
       ],
       video: '4j2kHT8cM8M',
       photos: ['g25-01', 'g25-02', 'g25-03', 'g25-04', 'g25-05', 'g25-06', 'g25-07', 'g25-08', 'g25-09', 'g25-10', 'g25-11', 'award-25'],
-      games: ['The Last Librarian', 'Rising Fox', 'Hammer Princess', 'Go Slimey Go!', 'Dead Sale', 'Letalis', 'Fábulas Porteñas', 'Piso 6', 'Zupay', 'Kernel Hearts', 'El 39', 'Shippin', 'Malvinas: La última carta', 'Pungo', 'Ruless', 'The Lost Land of Bahía Blanca', 'Cazadora', 'Not So Smart Delivery', 'House of Horror: Outside Is Better', 'Quantum Echoes', 'The Path into the Abyss'],
+      games: ['The Last Librarian', 'Rising Fox', 'Hammer Princess', 'Go Slimey Go!', 'Dead Sale', 'Letalis', 'C.A.B.A. (ex Fábulas Porteñas)', 'Piso 6', 'Zupay', 'Kernel Hearts', 'El 39', 'Shippin', 'Malvinas: La última carta', 'Pungo', 'Ruless', 'The Lost Land of Bahía Blanca', 'Cazadora', 'Not So Smart Delivery', 'House of Horror: Outside Is Better', 'Quantum Echoes', 'The Path into the Abyss'],
       awards: [
-        { cat: { es: 'Mejor apartado visual', en: 'Best Visuals' }, game: 'Nombre del juego', studio: 'Estudio', img: null },
-        { cat: { es: 'Mejor juego', en: 'Best Game' }, game: 'Nombre del juego', studio: 'Estudio', img: null },
-        { cat: { es: 'Mejor diseño de juego', en: 'Best Game Design' }, game: 'Nombre del juego', studio: 'Estudio', img: null },
-        { cat: { es: 'Premio del público', en: 'Audience Award' }, game: 'Nombre del juego', studio: 'Estudio', img: null }
+        // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2025" (12 premios, 8 juegos)
+        { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true },
+        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
+        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
+        { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true },
+        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', cover: 'malvinas.jpg' },
+        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', cover: 'malvinas.jpg', featured: true },
+        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Quantum Echoes', studio: 'Comfy Games', cover: 'quantum-echoes.jpg' },
+        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Kernel Hearts', studio: 'Ephemera Games', cover: 'kernel-hearts.jpg' },
+        { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'C.A.B.A. (ex Fábulas Porteñas)', studio: 'Hypnos Team', cover: 'fabulas.jpg' },
+        { cat: { es: 'Mejor UX/UI', en: 'Best UX/UI' }, game: 'The Last Librarian', studio: 'Leandro Davel, Franco Castellacci y Juliana Zaccone', cover: 'last-librarian.jpg' },
+        { cat: { es: 'Mejor Pixel Art', en: 'Best Pixel Art' }, game: 'Letalis', studio: 'Monkiato', cover: 'letalis.jpg' },
+        { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', cover: 'piso6.jpg' }
       ],
       sponsors: {
-        presenta: ['pressover'],
-        apoyo: ['casapba', 'ubasociales', 'comu', 'pm', 'ocppc', 'ccc', 'osai'],
+        presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)
+        apoyo: ['casapba', 'ubasociales', 'comu', 'pm', 'ccc', 'osai'],
         acompanan: ['playbold', 'gameever', 'fundav', 'adva']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],
-      placeholder: { stats: false, photos: false, video: false, awards: true }
+      placeholder: { stats: false, photos: false, video: false, awards: false }
     },
     {
       year: 2024,
