@@ -13,6 +13,7 @@
   `games` (opcional): nombres de los juegos del showcase, se listan en el archivo de ediciones.
   Premios: `cover` = portada del juego en src/img/games (la de Steam, 616x353); `img` = foto en img/photos.
   `featured: true` marca los premios que se muestran en la home (si no hay ninguno, van los primeros);
+  `steam`: id de la app en Steam (store.steampowered.com/app/<id>), para el link de cada juego premiado.
   `top: true`, el premio mayor del año (Mejor Videojuego): en la versión 2 se destaca con un laurel.
   `guests`: speakers internacionales; `flag` = código de país (img/flags/<código>.png), `img` = foto cuadrada en img/photos (sin foto, van las iniciales).
   Sponsors: cada grupo es una lista de ids, o una lista de niveles ([[grandes], [resto]]) cuando
@@ -120,7 +121,7 @@ window.IDA_DATA = {
       // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
       guests: [
         { name: 'Yoan Fanise', flag: 'fr', img: 'guest-yoan', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
-        { name: 'Josué Monchán', flag: 'es', img: 'guest-josue', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista (Brainwash Gang) y localizador de los videojuegos de Lucas Pope', en: 'Writer (Brainwash Gang) and localizer of Lucas Pope’s games' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+        { name: 'Josué Monchán', flag: 'es', img: 'guest-josue', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista de Pendulo Studios (Runaway, Yesterday) y Brainwash Gang. Localizó decenas de videojuegos, entre ellos los de Lucas Pope', en: 'Writer at Pendulo Studios (Runaway, Yesterday) and Brainwash Gang. He has localized dozens of games, including Lucas Pope’s' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
       ],
       guestsNote: { es: 'Más de 170 personas en cada charla, con el auditorio lleno.', en: 'Over 170 people at each talk, with a packed auditorium.' },
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.
@@ -137,16 +138,16 @@ window.IDA_DATA = {
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
       awards: [
-        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', cover: 'outer-frame.jpg', featured: true, top: true },
-        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', cover: 'teios.jpg' },
-        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', cover: 'xplorite.jpg' },
-        { cat: { es: 'Mejor Multijugador o Cooperativo', en: 'Best Multiplayer or Co-op' }, game: 'AstroBrawl', studio: 'Papa Corps', cover: 'astrobrawl.jpg' },
-        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'The Outer Frame', studio: 'Sapucai Games', cover: 'outer-frame.jpg' },
-        { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Teios Journey', studio: 'Serendipia Games', cover: 'teios.jpg', featured: true },
-        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Treetopians', studio: 'Aparato Games', cover: 'treetopians.jpg' },
-        { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'La Hija del Delta', studio: 'Bicho Raro', cover: 'hija-delta.jpg' },
-        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Phantom Gear', studio: 'Bits Rule', cover: 'phantom-gear.jpg' },
-        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Zupay: Sombras de la Independencia', studio: 'Abstract Tales', cover: 'zupay.jpg', featured: true }
+        { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg', featured: true, top: true },
+        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg' },
+        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', steam: 2720230, cover: 'xplorite.jpg' },
+        { cat: { es: 'Mejor Multijugador o Cooperativo', en: 'Best Multiplayer or Co-op' }, game: 'AstroBrawl', studio: 'Papa Corps', steam: 3175020, cover: 'astrobrawl.jpg' },
+        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg' },
+        { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg', featured: true },
+        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Treetopians', studio: 'Aparato Games', steam: 3967310, cover: 'treetopians.jpg' },
+        { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'La Hija del Delta', studio: 'Bicho Raro', steam: 3301850, cover: 'hija-delta.jpg' },
+        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Phantom Gear', studio: 'Bits Rule', steam: 1802240, cover: 'phantom-gear.jpg' },
+        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Zupay: Sombras de la Independencia', studio: 'Abstract Tales', steam: 4074370, cover: 'zupay.jpg', featured: true }
       ],
       sponsors: {
         presenta: ['pressover', 'ocppc'],
@@ -172,7 +173,7 @@ window.IDA_DATA = {
       // Fuente: newsletter de Press Over (11/7/2025). Cerraron los dos días de charlas.
       guests: [
         { name: 'Arturo Monedero', flag: 'es', img: 'guest-arturo', from: { es: 'España', en: 'Spain' }, role: { es: 'CEO de TLR Games y vicepresidente de AEVI', en: 'CEO of TLR Games and vice president of AEVI' }, talk: 'Cómo vender tu primer videojuego' },
-        { name: 'David Lucio', flag: 'mx', img: 'guest-david', from: { es: 'México', en: 'Mexico' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
+        { name: 'David Lucio', flag: 'co', img: 'guest-david', from: { es: 'Colombia', en: 'Colombia' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
       ],
       highlights: [
         { es: 'Primera edición de dos días', en: 'First two-day edition' },
@@ -184,18 +185,18 @@ window.IDA_DATA = {
       games: ['The Last Librarian', 'Rising Fox', 'Hammer Princess', 'Go Slimey Go!', 'Dead Sale', 'Letalis', 'C.A.B.A. (ex Fábulas Porteñas)', 'Piso 6', 'Zupay', 'Kernel Hearts', 'El 39', 'Shippin', 'Malvinas: La última carta', 'Pungo', 'Ruless', 'The Lost Land of Bahía Blanca', 'Cazadora', 'Not So Smart Delivery', 'House of Horror: Outside Is Better', 'Quantum Echoes', 'The Path into the Abyss'],
       awards: [
         // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2025" (12 premios, 8 juegos)
-        { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true, top: true },
-        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
-        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg' },
-        { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', cover: 'go-slimey.jpg', featured: true },
-        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', cover: 'malvinas.jpg' },
-        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', cover: 'malvinas.jpg', featured: true },
-        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Quantum Echoes', studio: 'Comfy Games', cover: 'quantum-echoes.jpg' },
-        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Kernel Hearts', studio: 'Ephemera Games', cover: 'kernel-hearts.jpg' },
-        { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'C.A.B.A. (ex Fábulas Porteñas)', studio: 'Hypnos Team', cover: 'fabulas.jpg' },
-        { cat: { es: 'Mejor UX/UI', en: 'Best UX/UI' }, game: 'The Last Librarian', studio: 'Leandro Davel, Franco Castellacci y Juliana Zaccone', cover: 'last-librarian.jpg' },
-        { cat: { es: 'Mejor Pixel Art', en: 'Best Pixel Art' }, game: 'Letalis', studio: 'Monkiato', cover: 'letalis.jpg' },
-        { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', cover: 'piso6.jpg' }
+        { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg', featured: true, top: true },
+        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
+        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
+        { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg', featured: true },
+        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg' },
+        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg', featured: true },
+        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Quantum Echoes', studio: 'Comfy Games', steam: 4095460, cover: 'quantum-echoes.jpg' },
+        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Kernel Hearts', studio: 'Ephemera Games', steam: 2902170, cover: 'kernel-hearts.jpg' },
+        { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'C.A.B.A. (ex Fábulas Porteñas)', studio: 'Hypnos Team', steam: 3279900, cover: 'fabulas.jpg' },
+        { cat: { es: 'Mejor UX/UI', en: 'Best UX/UI' }, game: 'The Last Librarian', studio: 'Leandro Davel, Franco Castellacci y Juliana Zaccone', steam: 2602080, cover: 'last-librarian.jpg' },
+        { cat: { es: 'Mejor Pixel Art', en: 'Best Pixel Art' }, game: 'Letalis', studio: 'Monkiato', steam: 2396200, cover: 'letalis.jpg' },
+        { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', steam: 3919710, cover: 'piso6.jpg' }
       ],
       sponsors: {
         presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)

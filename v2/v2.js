@@ -159,11 +159,21 @@
   };
 
   // Ganadores: portada del juego, categoría, juego y estudio
+  // Link a la página del juego en Steam (award.steam = id de la app)
+  function steamUrl(a) { return a.steam ? 'https://store.steampowered.com/app/' + a.steam + '/' : ''; }
+  function steamLink(a, cls) {
+    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(a.game) + ' en Steam">Ver en Steam</a>' : '';
+  }
+  // La portada lleva a Steam cuando el juego tiene link
+  function picLink(a, pic, cls) {
+    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
+  }
   function winnerCard(a) {
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
       a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
-    return '<article class="winner"><div class="winner__pic">' + pic + '</div>' +
-      '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p></article>';
+    return '<article class="winner">' + picLink(a, pic, 'winner__pic') +
+      '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p>' +
+      steamLink(a, 'steam-link') + '</article>';
   }
   function winnersGrid(list) {
     return '<div class="winners' + (list.length === 3 ? ' winners--3' : '') + '">' + list.map(winnerCard).join('') + '</div>';
@@ -173,11 +183,12 @@
     var cat = T(a.cat).split(' · ');
     var also = e.awards.filter(function (b) { return b !== a && b.game === a.game; }).map(function (b) { return T(b.cat); });
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
-    return '<article class="topwin"><div class="topwin__pic">' + pic + '</div><div class="topwin__body">' +
+    return '<article class="topwin">' + picLink(a, pic, 'topwin__pic') + '<div class="topwin__body">' +
       '<div class="laurel"><img src="' + IMG + 'deco/laurel-color.png" alt="" width="385" height="337"><span class="laurel__txt"><b>' + esc(cat[0]) + '</b><i>' + e.year + '</i></span></div>' +
       (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '') +
       '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
       (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
+      steamLink(a, 'pill topwin__steam') +
     '</div></article>';
   }
   function awardsBlock(e) {
@@ -212,20 +223,23 @@
       (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
       (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
   }
-  R.steam = function (el) {
-    var s = cur.steam;
-    var sec = el.closest('section');
-    if (!s) { if (sec) sec.hidden = true; return; }
-    el.innerHTML = '<div class="steam">' +
-      '<div><p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p>' +
-        '<h2 class="display">IDA en Steam</h2>' +
+  // Bloque completo (texto, números, botón y arte). head = lo que va arriba del texto (título de la home o etiqueta de la edición)
+  function steamBlock(e, head) {
+    var s = e.steam;
+    return '<div class="steam">' +
+      '<div>' + head +
         '<p class="lead">El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos: un evento oficial dentro de la tienda, con demos para probar, descuentos y la selección completa de la exhibición presencial. Durante sus primeras 48 horas, el banner de IDA estuvo en la portada de Steam para todos los usuarios de Argentina.</p>' +
         steamStats(s) +
         '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
         (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + ', el publisher mexicano que hizo posible el acuerdo con Valve.</p>' : '') + '</div>' +
       '<a class="steam__art" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
-        '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + cur.year + ', en Steam" loading="lazy" width="800" height="450"></a>' +
+        '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + e.year + ', en Steam" loading="lazy" width="800" height="450"></a>' +
     '</div>';
+  }
+  R.steam = function (el) {
+    var sec = el.closest('section');
+    if (!cur.steam) { if (sec) sec.hidden = true; return; }
+    el.innerHTML = steamBlock(cur, '<p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p><h2 class="display">IDA en Steam</h2>');
   };
 
   // 3 videos (como "Why Attend?")
@@ -366,8 +380,7 @@
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
         }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
         gallery + games +
-        (e.steam ? '<div class="ed__block"><h3 class="ed__label">Exhibición digital en Steam</h3>' + steamStats(e.steam) +
-          '<a class="pill" href="' + e.steam.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a></div>' : '') +
+        (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">Exhibición digital en Steam</h3><h4 class="steam__title">IDA en Steam</h4>') + '</div>' : '') +
         video + awards +
         '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3><div class="sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div></div>' +
       '</div></section>';

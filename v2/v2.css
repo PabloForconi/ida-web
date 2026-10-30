@@ -220,7 +220,11 @@ button, input { font: inherit; color: inherit; }
 .winners { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; text-align: center; }
 .winners--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .winner__pic { width: calc(100% - 18px); aspect-ratio: 616 / 353; margin: 9px auto 22px; border-radius: var(--radius); overflow: hidden; display: grid; place-items: center; background: var(--ink); box-shadow: 0 0 0 6px var(--pink), 0 0 0 9px var(--mag); }
-.winner__pic img { width: 100%; height: 100%; object-fit: cover; }
+.winner__pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
+.steam-link { display: inline-block; margin-top: 10px; padding-bottom: 2px; border-bottom: 2px solid var(--mag); font: 700 .72rem/1.2 var(--f-head); text-transform: uppercase; letter-spacing: .08em; text-decoration: none; color: inherit; }
+.steam-link::after { content: " →"; }
+.steam-link:hover { color: var(--mag); }
 .winner__pic img.is-ph { width: 56%; height: auto; image-rendering: pixelated; }
 .winner h3 { font: 500 1.35rem/1.2 var(--f-head); margin-bottom: 4px; }
 .winner__cat { font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; margin-bottom: 8px; }
@@ -238,7 +242,7 @@ button, input { font: inherit; color: inherit; }
 .steam__art { display: block; border-radius: var(--radius); overflow: hidden; box-shadow: 0 0 0 3px var(--mag); transition: transform .2s; }
 .steam__art:hover { transform: translateY(-4px); }
 .steam__art img { width: 100%; }
-.ed__block .steam__stats { margin-top: 0; }
+.steam__title { font: 800 condensed clamp(2.2rem, 4vw, 3.2rem)/.95 var(--f-display); color: var(--mag); margin: 0 0 18px; }
 
 /* ---------- Videos ---------- */
 .vcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -406,6 +410,8 @@ button, input { font: inherit; color: inherit; }
 .topwin h3 { font: 800 condensed clamp(2.4rem, 5vw, 4rem)/.95 var(--f-display); text-transform: uppercase; margin-bottom: 10px; }
 .topwin__studio { font-weight: 600; margin-bottom: 8px; }
 .topwin__also { margin: 0; font-size: .92rem; color: var(--muted); }
+.topwin__steam { margin-top: 20px; }
+.topwin__pic img { transition: transform .3s; }
 .edition .pgroup:first-of-type { border-top: 0; padding-top: 0; }
 
 /* Encabezado con año (premios por edición, niveles) */
