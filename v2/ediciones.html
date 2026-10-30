@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ediciones · IDA · Versión 2</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ff009d">
+  <link rel="icon" href="../img/logos/ida.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Anton&family=Tomorrow:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2.css">
+</head>
+<body data-page="ediciones" data-title-es="Ediciones · IDA · Versión 2">
+
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+<div id="v2-head"></div>
+
+<main id="main">
+
+  <!-- ============ ENCABEZADO DE PÁGINA ============ -->
+  <section class="phero">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">IDA</a> / Ediciones</p>
+      <h1>Ediciones</h1>
+      <p class="lead">La historia de IDA, año por año: números, fotos, juegos, ganadores y sponsors de cada edición, de la más nueva a la primera.</p>
+      <div class="ynav" data-render="yearNav"></div>
+    </div>
+  </section>
+
+  <!-- ============ IDA EN NÚMEROS (acumulado) ============ -->
+  <section class="statband" aria-label="IDA en números">
+    <div class="wrap" data-render="totals"></div>
+  </section>
+
+  <!-- ============ CADA EDICIÓN, DESPLEGADA ============ -->
+  <div data-render="editionsAll"></div>
+
+  <!-- ============ CRECIMIENTO ============ -->
+  <section class="section">
+    <div class="wrap growth-split">
+      <div>
+        <h2 class="display">Asistentes por edición</h2>
+        <div data-render="growth" data-key="attendees"></div>
+      </div>
+      <div>
+        <h2 class="display">Juegos por edición</h2>
+        <div data-render="growth" data-key="games"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="v2-foot"></div>
+
+<script src="../data/ediciones.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="i18n.js"></script>
+<script src="v2.js"></script>
+</body>
+</html>

@@ -48,6 +48,53 @@
     youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>'
   };
 
+  // ---------------------------------------------------------------- encabezado y pie (iguales en todas las páginas)
+  // body[data-page]: home | ediciones | premios | sponsors. Fuera de la home, las anclas apuntan a index.html.
+  var PAGE = body.dataset.page || 'home';
+  function homeLink(anchor) { return (PAGE === 'home' ? '' : 'index.html') + anchor; }
+  function navLink(href, page, key, text) {
+    return '<a href="' + href + '"' + (PAGE === page ? ' aria-current="page"' : '') + ' data-i18n="' + key + '">' + text + '</a>';
+  }
+  var TILES = '<div class="tiles" aria-hidden="true">' +
+    '<span class="t t--mag">{</span>' +
+    '<span class="t t--white"><svg class="px" viewBox="0 0 9 8"><path fill="#ff0055" d="M1 0h2v1H1zM6 0h2v1H6zM0 1h4v1H0zM5 1h4v1H5zM0 2h9v2H0zM1 4h7v1H1zM2 5h5v1H2zM3 6h3v1H3zM4 7h1v1H4z"/></svg></span>' +
+    '<span class="t t--blue"><svg viewBox="0 0 24 24"><g fill="#ff009d"><path id="spoke" d="M10.2 .6h3.6v22.8h-3.6z"/><use href="#spoke" transform="rotate(45 12 12)"/><use href="#spoke" transform="rotate(90 12 12)"/><use href="#spoke" transform="rotate(135 12 12)"/></g></svg></span>' +
+    '<span class="t t--green"><svg class="px t__sm" viewBox="0 0 3 3"><path fill="#0b0b12" d="M1 0h1v1h1v1H2v1H1V2H0V1h1z"/></svg></span>' +
+    '<span class="t t--black"><svg class="px" viewBox="0 0 16 16"><path fill="#ffe500" d="M8 0h7v1H8zM7 1h2v1H7zM10 1h6v1h-6zM7 2h9v2H7zM7 4h5v1H7zM7 5h7v1H7zM0 6h1v3H0zM6 6h5v1H6zM5 7h9v1H5zM1 8h1v1H1zM4 8h7v1H4zM12 8h1v1h-1zM0 9h11v1H0zM1 10h10v1H1zM2 11h8v1H2zM3 12h6v1H3zM4 13h3v1H4zM8 13h2v1H8zM4 14h2v1H4zM9 14h1v1H9zM4 15h3v1H4zM9 15h2v1H9z"/></svg></span>' +
+    '<span class="t t--yellow">&gt;</span><span class="t t--pink">=</span><span class="t t--mag">}</span></div>';
+  function injectChrome() {
+    var h = document.getElementById('v2-head');
+    if (h) h.outerHTML = '<header class="masthead">' +
+      '<div class="infobar"><div class="wrap infobar__in" data-render="infobar"></div></div>' +
+      '<div class="navbar"><div class="wrap navbar__in">' +
+        '<a class="brand" href="index.html" aria-label="IDA, inicio"><img src="' + IMG + 'logos/ida.png" alt="IDA" width="95" height="33">' +
+          '<span>Indie Dev Argentina<small data-i18n="brand.sub">Exposición de videojuegos</small></span></a>' +
+        '<nav class="nav" id="nav" aria-label="Principal">' +
+          navLink(homeLink('#participa'), '', 'nav.participa', 'Participá') +
+          navLink('premios.html', 'premios', 'nav.premios', 'Premios') +
+          navLink('sponsors.html', 'sponsors', 'nav.sponsors', 'Sponsors') +
+          navLink('ediciones.html', 'ediciones', 'nav.ediciones', 'Ediciones') +
+          navLink(homeLink('#info'), '', 'nav.info', 'Información') +
+        '</nav>' +
+        '<div class="navbar__tools">' +
+          '<div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>' +
+          '<a class="pill hide-sm" href="#newsletter" data-i18n="nav.news">Recibir novedades</a>' +
+          '<button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-attr="aria-label:nav.menu" aria-label="Menú"><span></span></button>' +
+        '</div>' +
+      '</div></div></header>';
+    var f = document.getElementById('v2-foot');
+    if (f) f.outerHTML = '<footer class="foot">' + TILES +
+      '<div class="wrap foot__in">' +
+        '<div class="foot__news" id="newsletter"><h2 data-i18n="foot.news">Enterate primero de IDA <span data-render="nextYear"></span></h2>' +
+          '<form class="form" data-form="newsletter" novalidate><div class="form-inline"><label class="sr-only" for="nl-email">Email</label>' +
+          '<input class="input" id="nl-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">' +
+          '<button class="pill pill--dark" type="submit" data-i18n="foot.news.btn">Suscribirme</button></div><p class="form-status" role="status"></p></form></div>' +
+        '<div class="foot__tag"><p class="hashtag">#IDA<span data-render="nextYear"></span></p><div data-render="socials"></div></div>' +
+      '</div>' +
+      '<div class="wrap foot__bottom"><span>© <span data-render="thisYear"></span> Indie Dev Argentina · <span data-i18n="foot.by">Un evento de Press Over</span></span>' +
+        '<a href="../index.html" data-i18n="foot.v1">Ver la versión actual</a></div></footer>';
+  }
+
   // ---------------------------------------------------------------- renderers
   var R = {};
 
@@ -110,20 +157,34 @@
       card('sponsor', 'g25-01', 'call.always', '#ser-sponsor', 'call.sponsor.cta') + '</div>';
   };
 
-  // Ganadores en círculos (como "Festival Speakers")
+  // Ganadores: portada del juego, categoría, juego y estudio
+  function winnerCard(a) {
+    var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
+      a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
+    return '<article class="winner"><div class="winner__pic">' + pic + '</div>' +
+      '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p></article>';
+  }
+  function winnersGrid(list) {
+    return '<div class="winners' + (list.length === 3 ? ' winners--3' : '') + '">' + list.map(winnerCard).join('') + '</div>';
+  }
+  // Home: solo los premios marcados con `featured`
   R.winners = function (el) {
     var aw = cur.awards || [];
     if (!aw.length) { el.innerHTML = '<p>' + esc(U('aw.none')) + '</p>'; return; }
     var feat = aw.filter(function (a) { return a.featured; });
-    if (feat.length) aw = feat;
-    el.innerHTML = '<div class="winners' + (aw.length === 3 ? ' winners--3' : '') + '">' + aw.map(function (a) {
-      var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
-        a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
-      return '<article class="winner"><div class="winner__pic">' + pic + '</div>' +
-        '<p class="winner__cat">' + esc(T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p></article>';
-    }).join('') + '</div>' +
+    el.innerHTML = winnersGrid(feat.length ? feat : aw) +
       '<div class="winners__foot">' + (cur.placeholder && cur.placeholder.awards ? ph(U('v2.aw.ph')) : '') +
-      '<a class="u-link" href="../premios.html">' + esc(U('v2.aw.all')) + '</a></div>';
+      '<a class="u-link" href="premios.html">' + esc(U('v2.aw.all')) + '</a></div>';
+  };
+  // Página de premios: todos los premios, edición por edición
+  R.awardsAll = function (el) {
+    el.innerHTML = D.editions.filter(function (e) { return e.awards.length; }).map(function (e, i) {
+      return '<section class="section' + (i % 2 ? ' dark' : '') + '" id="premios-' + e.year + '"><div class="wrap">' +
+        '<div class="yhead"><span class="yhead__year">' + e.year + '</span><h2 class="display">Premios IDA ' + e.year + '</h2>' +
+        '<a class="u-link" href="ediciones.html#ed-' + e.year + '">Ver la edición ' + e.year + '</a></div>' +
+        (e.placeholder && e.placeholder.awards ? '<p class="note">' + ph(U('v2.aw.ph')) + '</p>' : '') +
+        winnersGrid(e.awards) + '</div></section>';
+    }).join('');
   };
 
   // 3 videos (como "Why Attend?")
@@ -150,7 +211,7 @@
 
   R.past = function (el) {
     el.innerHTML = '<h3>' + esc(U('v2.past.title')) + '</h3><div class="past__list">' + D.editions.slice(1).map(function (e) {
-      return '<a class="past__item" href="../ediciones.html#ed-' + e.year + '"><b>IDA ' + e.year + '</b><span>' + esc(T(e.ord)) + ' · ' + esc(T(e.date)) + ' · ' + esc(venueName(e)) + '</span><i>' +
+      return '<a class="past__item" href="ediciones.html#ed-' + e.year + '"><b>IDA ' + e.year + '</b><span>' + esc(T(e.ord)) + ' · ' + esc(T(e.date)) + ' · ' + esc(venueName(e)) + '</span><i>' +
         '+' + num(e.stats.attendees) + ' ' + esc(U('stat.short.attendees')) + ' · ' + e.stats.games + ' ' + esc(U('stat.short.games')) + '</i></a>';
     }).join('') + '</div>';
   };
@@ -162,17 +223,37 @@
     var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '');
     return o.url ? '<a class="' + c.trim() + '" href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : '<span class="' + c.trim() + '">' + img + '</span>';
   }
-  R.partners = function (el) {
-    var s = cur.sponsors;
-    // Cada grupo puede venir en niveles ([[más aporte], [resto]]): el primero va más grande
-    el.innerHTML = [['presenta', 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
-      var list = s[g[0]] || [];
-      var t = list.length && Array.isArray(list[0]) ? list : (list.length ? [list] : []);
+  // Un grupo de sponsors es una lista de ids o una lista de niveles ([[más aporte], [resto]]): el primero va más grande
+  function tiers(list) { return list && list.length ? (Array.isArray(list[0]) ? list : [list]) : []; }
+  function logoRow(ids, cls) {
+    return '<div class="logos logos--even ' + (cls || '') + '" style="--cols:' + (ids.length > 4 ? Math.ceil(ids.length / 2) : ids.length) + '">' + ids.map(logo).join('') + '</div>';
+  }
+  function sponsorGroups(s) {
+    return [['presenta', 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
+      var t = tiers(s[g[0]]);
       return t.length ? '<div class="pgroup"><span class="pgroup__label">' + esc(U('sp.' + g[0])) + '</span><div class="tiers">' + t.map(function (ids, i) {
-        var c = g[1] || (t.length > 1 && i === 0 ? 'logos--lg' : '');
-        return '<div class="logos logos--even ' + c + '" style="--cols:' + (ids.length > 4 ? Math.ceil(ids.length / 2) : ids.length) + '">' + ids.map(logo).join('') + '</div>';
+        return logoRow(ids, g[1] || (t.length > 1 && i === 0 ? 'logos--lg' : ''));
       }).join('') + '</div></div>' : '';
-    }).join('') + '<a class="pill pill--white" href="#ser-sponsor">' + esc(U('v2.sp.join', { y: D.next.year })) + '</a>';
+    }).join('');
+  }
+  R.partners = function (el) {
+    el.innerHTML = sponsorGroups(cur.sponsors) +
+      '<a class="pill pill--white" href="' + homeLink('#ser-sponsor') + '">' + esc(U('v2.sp.join', { y: D.next.year })) + '</a>';
+  };
+  // Página de sponsors: todos los que acompañaron alguna edición
+  R.wall = function (el) {
+    var seen = {}, ids = [];
+    D.editions.forEach(function (e) {
+      ['presenta', 'apoyo', 'acompanan'].forEach(function (g) {
+        [].concat.apply([], tiers(e.sponsors[g])).forEach(function (id) { if (!seen[id]) { seen[id] = 1; ids.push(id); } });
+      });
+    });
+    // Columnas que dejen la última fila lo más llena posible (16 logos = 4 x 4)
+    var cols = [6, 5, 4].reduce(function (best, c) {
+      var fill = ids.length % c ? ids.length % c / c : 1;
+      return fill > best.fill ? { c: c, fill: fill } : best;
+    }, { c: 5, fill: -1 }).c;
+    el.innerHTML = '<div class="logos logos--even" style="--cols:' + cols + '">' + ids.map(logo).join('') + '</div>';
   };
 
   R.info = function (el) {
@@ -181,7 +262,61 @@
       '<div><dt>' + esc(U('info.when')) + '</dt><dd>' + esc(T(n.dateLabel)) + (n.hours ? ', ' + esc(n.hours) : '') + '</dd></div>' +
       '<div><dt>' + esc(U('info.where')) + '</dt><dd>' + (v ? esc(v.name) + ' · ' + esc(v.address) : esc(U('info.venueTbc'))) + '</dd></div>' +
       '<div><dt>' + esc(U('info.cost')) + '</dt><dd>' + esc(U('info.free')) + '</dd></div>' +
-      '</dl><p class="note">' + esc(U('info.past', { v: venueName(cur) })) + '</p>';
+      '</dl>';
+  };
+
+  // IDA en números, acumulado de todas las ediciones (ediciones y sponsors)
+  R.totals = function (el) {
+    var t = { attendees: 0, games: 0, talks: 0, speakers: 0 };
+    D.editions.forEach(function (e) { Object.keys(t).forEach(function (k) { t[k] += e.stats[k] || 0; }); });
+    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Juegos exhibidos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
+    el.innerHTML = '<div class="stats">' + items.map(function (i) {
+      return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
+    }).join('') + '</div>' +
+      (cur.placeholder && cur.placeholder.stats ? '<p class="statband__note">' + ph('incluye datos provisorios de ' + cur.year) + '</p>' : '');
+    countUp(el);
+  };
+
+  // Barras de crecimiento por edición (data-key: attendees | games)
+  R.growth = function (el) {
+    var key = el.dataset.key || 'attendees';
+    var list = D.editions.slice().reverse();
+    var max = Math.max.apply(null, list.map(function (e) { return e.stats[key]; }));
+    el.innerHTML = '<div class="growth">' + list.map(function (e) {
+      return '<div class="growth__row"><b>' + e.year + '</b><div class="growth__bar"><i style="width:' + Math.round(e.stats[key] / max * 100) + '%"></i></div><span>' + num(e.stats[key]) + '</span></div>';
+    }).join('') + '</div>';
+  };
+
+  // Accesos a cada año (página de ediciones)
+  R.yearNav = function (el) {
+    el.innerHTML = D.editions.map(function (e) { return '<a class="pill pill--ghost" href="#ed-' + e.year + '">IDA ' + e.year + '</a>'; }).join('');
+  };
+
+  // Página de ediciones: todas desplegadas, de la más nueva a la más vieja
+  R.editionsAll = function (el) {
+    el.innerHTML = D.editions.map(function (e, i) {
+      var v = D.venues[e.venue] || {}, P = e.placeholder || {};
+      var stats = ['attendees', 'games', 'talks', 'speakers'].map(function (k) {
+        var pre = k === 'attendees' ? '+' : '';
+        return '<div><b>' + pre + num(e.stats[k]) + '</b><span>' + esc(U('stat.' + k)) + '</span></div>';
+      }).join('');
+      var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería' + (P.photos ? ' ' + ph(U('ph.photos')) : '') + '</h3><div class="gallery">' +
+        e.photos.slice(0, 9).map(function (p) { return '<a href="' + IMG + 'photos/' + p + '.jpg" target="_blank" rel="noopener">' + photo(p, '(max-width: 760px) 50vw, 30vw') + '</a>'; }).join('') + '</div></div>' : '';
+      var games = e.games && e.games.length ? '<div class="ed__block"><h3 class="ed__label">Juegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
+        e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>' : '';
+      var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
+        '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
+      var awards = e.awards.length ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + winnersGrid(e.awards) + '</div>' : '';
+      return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
+        '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
+          '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(e.hours) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +
+        '<div class="ed__intro"><p class="lead">' + esc(T(e.summary)) + '</p><ul class="topics">' + e.highlights.map(function (h) { return '<li>' + esc(T(h)) + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="ed__stats">' + stats + '</div>' +
+        ((e.statsNote || P.stats) ? '<p class="note">' + (e.statsNote ? esc(T(e.statsNote)) + ' ' : '') + (P.stats ? ph(U('ph.numbers')) : '') + '</p>' : '') +
+        gallery + games + video + awards +
+        '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3>' + sponsorGroups(e.sponsors) + '</div>' +
+      '</div></section>';
+    }).join('');
   };
 
   R.socials = function (el) {
@@ -303,9 +438,15 @@
   }
 
   // ---------------------------------------------------------------- boot
+  injectChrome();
   captureES();
   initNav();
   initVideo();
   initForms();
   applyLang();
+  // Las secciones con id (#ed-2025, #premios-2026) las arma el JS: se baja a la del link después de armarlas
+  if (location.hash.length > 1) {
+    var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) setTimeout(function () { target.scrollIntoView(); }, 60);
+  }
 })();

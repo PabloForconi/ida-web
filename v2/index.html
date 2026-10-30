@@ -12,36 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Anton&family=Tomorrow:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="v2.css">
 </head>
-<body data-title-es="IDA · Indie Dev Argentina · Versión 2" data-title-en="IDA · Indie Dev Argentina · Version 2">
+<body data-page="home" data-title-es="IDA · Indie Dev Argentina · Versión 2" data-title-en="IDA · Indie Dev Argentina · Version 2">
 
 <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
 
-<!-- ============ BARRA DE INFO (magenta, como la web original) + MARCA Y NAV (negra) ============ -->
-<header class="masthead">
-  <div class="infobar">
-    <div class="wrap infobar__in" data-render="infobar"></div>
-  </div>
-  <div class="navbar">
-    <div class="wrap navbar__in">
-      <a class="brand" href="index.html" aria-label="IDA, inicio">
-        <img src="../img/logos/ida.png" alt="IDA" width="95" height="33">
-        <span>Indie Dev Argentina<small data-i18n="brand.sub">Exposición de videojuegos</small></span>
-      </a>
-      <nav class="nav" id="nav" aria-label="Principal">
-        <a href="#participa" data-i18n="nav.participa">Participá</a>
-        <a href="#premios" data-i18n="nav.premios">Premios</a>
-        <a href="#sponsors" data-i18n="nav.sponsors">Sponsors</a>
-        <a href="../ediciones.html" data-i18n="nav.ediciones">Ediciones</a>
-        <a href="#info" data-i18n="nav.info">Información</a>
-      </nav>
-      <div class="navbar__tools">
-        <div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>
-        <a class="pill hide-sm" href="#newsletter" data-i18n="nav.news">Recibir novedades</a>
-        <button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-attr="aria-label:nav.menu" aria-label="Menú"><span></span></button>
-      </div>
-    </div>
-  </div>
-</header>
+<!-- Encabezado (barra de info + marca y menú): lo arma v2.js, igual en todas las páginas -->
+<div id="v2-head"></div>
 
 <main id="main">
 
@@ -92,7 +68,7 @@
       <div>
         <h2 class="display display--ink" data-i18n="sp.cta.title">Sé sponsor de IDA <span data-render="nextYear"></span></h2>
         <p data-i18n="sp.cta.text">Conectá tu marca con la comunidad indie más grande de Argentina: desarrolladores, estudiantes, estudios y miles de jugadores en un mismo lugar.</p>
-        <a class="u-link" href="../sponsors.html" data-i18n="sp.cta.more">Ver la propuesta para sponsors</a>
+        <a class="u-link" href="sponsors.html" data-i18n="sp.cta.more">Ver la propuesta para sponsors</a>
       </div>
       <form class="form" data-form="sponsor" novalidate>
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -144,7 +120,7 @@
         <h3 data-i18n="ft.3.title">Premios IDA</h3>
         <p class="feature__sub" data-i18n="ft.3.sub">Lo mejor del showcase, desde 2025.</p>
         <p data-i18n="ft.3.text">En cada edición premiamos a juegos del showcase en distintas categorías, de audio y narrativa al mejor videojuego.</p>
-        <a class="u-link" href="../premios.html" data-i18n="ft.3.cta">Ver todos los premios</a>
+        <a class="u-link" href="premios.html" data-i18n="ft.3.cta">Ver todos los premios</a>
       </article>
     </div>
   </section>
@@ -212,37 +188,8 @@
 
 </main>
 
-<!-- ============ FOOTER: mosaico de bloques + hashtag ============ -->
-<footer class="foot">
-  <div class="tiles" aria-hidden="true">
-    <span class="t t--mag">{</span>
-    <span class="t t--white"><svg class="px" viewBox="0 0 9 8"><path fill="#ff0055" d="M1 0h2v1H1zM6 0h2v1H6zM0 1h4v1H0zM5 1h4v1H5zM0 2h9v2H0zM1 4h7v1H1zM2 5h5v1H2zM3 6h3v1H3zM4 7h1v1H4z"/></svg></span>
-    <span class="t t--blue"><svg viewBox="0 0 24 24"><g fill="#ff009d"><path id="spoke" d="M10.2 .6h3.6v22.8h-3.6z"/><use href="#spoke" transform="rotate(45 12 12)"/><use href="#spoke" transform="rotate(90 12 12)"/><use href="#spoke" transform="rotate(135 12 12)"/></g></svg></span>
-    <span class="t t--green"><svg class="px t__sm" viewBox="0 0 3 3"><path fill="#0b0b12" d="M1 0h1v1h1v1H2v1H1V2H0V1h1z"/></svg></span>
-    <span class="t t--black"><svg class="px" viewBox="0 0 16 16"><path fill="#ffe500" d="M8 0h7v1H8zM7 1h2v1H7zM10 1h6v1h-6zM7 2h9v2H7zM7 4h5v1H7zM7 5h7v1H7zM0 6h1v3H0zM6 6h5v1H6zM5 7h9v1H5zM1 8h1v1H1zM4 8h7v1H4zM12 8h1v1h-1zM0 9h11v1H0zM1 10h10v1H1zM2 11h8v1H2zM3 12h6v1H3zM4 13h3v1H4zM8 13h2v1H8zM4 14h2v1H4zM9 14h1v1H9zM4 15h3v1H4zM9 15h2v1H9z"/></svg></span>
-    <span class="t t--yellow">&gt;</span>
-    <span class="t t--pink">=</span>
-    <span class="t t--mag">}</span>
-  </div>
-  <div class="wrap foot__in">
-    <div class="foot__news" id="newsletter">
-      <h2 data-i18n="foot.news">Enterate primero de IDA <span data-render="nextYear"></span></h2>
-      <form class="form" data-form="newsletter" novalidate>
-        <div class="form-inline"><label class="sr-only" for="nl-email">Email</label><input class="input" id="nl-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">
-        <button class="pill pill--dark" type="submit" data-i18n="foot.news.btn">Suscribirme</button></div>
-        <p class="form-status" role="status"></p>
-      </form>
-    </div>
-    <div class="foot__tag">
-      <p class="hashtag">#IDA<span data-render="nextYear"></span></p>
-      <div data-render="socials"></div>
-    </div>
-  </div>
-  <div class="wrap foot__bottom">
-    <span>© <span data-render="thisYear"></span> Indie Dev Argentina · <span data-i18n="foot.by">Un evento de Press Over</span></span>
-    <a href="../index.html" data-i18n="foot.v1">Ver la versión actual</a>
-  </div>
-</footer>
+<!-- Pie (mosaico, newsletter, redes): lo arma v2.js -->
+<div id="v2-foot"></div>
 
 <script src="../data/ediciones.js"></script>
 <script src="../js/i18n.js"></script>
