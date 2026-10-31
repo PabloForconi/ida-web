@@ -17,7 +17,7 @@ window.IDA_V2 = {
     'hero.thanks': 'Thanks for making IDA <span data-render="year"></span>! See you at IDA <span data-render="nextYear"></span>.',
     'stats.label': 'IDA in numbers',
     'about.alt': 'Group photo of the IDA community on stage, with the giant IDA letters',
-    'about.title': 'Where ideas come alive',
+    'about.title': 'Your first step into the indie scene',
     'about.lead': 'Whether you’re making your first game, already run a studio or simply love videogames, IDA is your place.',
     'about.text': 'IDA is the independent videogame expo created by <a href="https://pressover.news/" target="_blank" rel="noopener">Press Over</a>: a day of games in development, talks, networking and the IDA Awards, with free admission. The first step into indie development in Argentina.',
     'about.cta': 'Find your place',
