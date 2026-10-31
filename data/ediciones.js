@@ -203,8 +203,8 @@ window.IDA_DATA = {
         { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', steam: 3919710, cover: 'piso6.jpg' }
       ],
       sponsors: {
-        presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)
-        apoyo: ['casapba', 'ubasociales', 'comu', 'pm', 'ccc', 'osai'],
+        presenta: ['pressover', 'foton', 'ocppc', 'comu'], // coproducción (nota de Press Over sobre los ganadores 2025)
+        apoyo: ['casapba', 'ubasociales', 'pm', 'ccc', 'osai'],
         acompanan: ['playbold', 'gameever', 'fundav', 'adva']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],
@@ -233,8 +233,8 @@ window.IDA_DATA = {
       games: ['Power Solenoid', 'Cards of Prophecy', 'Era en un bosque', 'Quantum Echoes', 'Blink and Die Replay', 'Dreieck', 'Dungeon Concierge', 'Oneiro Man', 'La Salamanca', 'Por el Campo', 'The Path into the Abyss', 'Malvinas: La última carta'],
       awards: [],
       sponsors: {
-        presenta: ['pressover'],
-        apoyo: ['ocppc', 'ccc', 'ubasociales', 'comu', 'osai', 'adva', 'fundav'],
+        presenta: ['pressover', 'ocppc'],
+        apoyo: ['ccc', 'ubasociales', 'comu', 'osai', 'adva', 'fundav'],
         acompanan: []
       },
       communities: [],
