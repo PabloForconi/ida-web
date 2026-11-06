@@ -1,6 +1,6 @@
-/* IDA · versión 2 · textos
-   - en: inglés de cada [data-i18n] de v2/index.html (el español es el HTML).
-   - ui: strings que arman los renderers de v2.js. Si una clave no está acá, se usa la de ../js/i18n.js.
+/* IDA · textos
+   - en: inglés de cada [data-i18n] de las páginas (el español es el HTML).
+   - ui: strings que arman los renderers de js/main.js. Si una clave no está acá, se usa la de js/i18n.js.
 */
 window.IDA_V2 = {
   en: {
@@ -63,8 +63,7 @@ window.IDA_V2 = {
     'faq.4.a': 'That’s what IDA is for: a first step into indie development, with talks for beginners, experienced devs and the general public.',
     'foot.news': 'Be the first to hear about IDA <span data-render="nextYear"></span>',
     'foot.news.btn': 'Subscribe',
-    'foot.by': 'A Press Over event',
-    'foot.v1': 'See the current version'
+    'foot.by': 'A Press Over event'
   },
   ui: {
     es: {
@@ -80,7 +79,7 @@ window.IDA_V2 = {
       'v2.vid.after': 'Aftermovie IDA {y}',
       'v2.past.title': 'Ediciones anteriores',
       'v2.sp.join': 'Quiero ser sponsor de IDA {y}',
-      // "videojuego" en vez de "juego": pisan los textos compartidos de ../js/i18n.js solo en esta versión
+      // "videojuego" en vez de "juego": pisan los textos compartidos de ../js/i18n.js en toda la web
       'stat.games': 'Videojuegos',
       'stat.short.games': 'videojuegos',
       'call.games.title': 'Mostrá tu videojuego',

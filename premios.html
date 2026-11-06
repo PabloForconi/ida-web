@@ -5,62 +5,64 @@
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Premios IDA · Indie Dev Argentina</title>
-  <meta name="description" content="Los Premios IDA reconocen a los mejores juegos del showcase de Indie Dev Argentina. Categorías y ganadores de cada edición.">
-  <meta property="og:image" content="https://indiedevargentina.com/img/photos/trophy-26.jpg">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Los Premios IDA reconocen a los mejores videojuegos del showcase de Indie Dev Argentina. Categorías y ganadores de cada edición.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Premios IDA · Indie Dev Argentina">
+  <meta property="og:description" content="Los Premios IDA reconocen a los mejores videojuegos del showcase de Indie Dev Argentina. Categorías y ganadores de cada edición.">
+  <meta property="og:image" content="https://indiedevargentina.com/img/photos/aw26-01.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ff009d">
   <link rel="icon" href="img/logos/ida.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Tomorrow:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Anton&family=Tomorrow:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="premios" data-title-es="Premios IDA · Indie Dev Argentina" data-title-en="IDA Awards · Indie Dev Argentina">
 
-<div id="topbar"></div>
-<div id="site-header"></div>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+<div id="v2-head"></div>
 
-<main>
-  <section class="page-hero">
-    <img class="deco deco--spin hide-sm" src="img/deco/star.png" alt="" style="width:64px;top:48px;right:44%">
-    <div class="wrap split" style="align-items:center">
+<main id="main">
+
+  <!-- ============ ENCABEZADO DE PÁGINA ============ -->
+  <section class="phero phero--split">
+    <div class="wrap">
       <div>
-        <div class="crumbs"><a href="index.html">IDA</a> / <span data-i18n="nav.premios">Premios</span></div>
-        <h1 data-i18n="awp.title">Premios <span class="c-yellow">IDA</span></h1>
-        <p class="lead" data-i18n="awp.lead">Desde 2025, IDA premia a los juegos del showcase. Es un reconocimiento al trabajo de los equipos independientes y una vidriera más para sus proyectos.</p>
+        <p class="crumbs"><a href="index.html">IDA</a> / Premios</p>
+        <h1>Premios IDA</h1>
+        <p class="lead">Desde 2025, Indie Dev Argentina premia a los mejores videojuegos de su showcase presencial. Un reconocimiento al trabajo de los equipos que exponen y, por un acuerdo con la Asociación de Desarrolladores de Videojuegos Argentina (ADVA), un boleto directo a la EVA Play de cada año.</p>
       </div>
-      <figure class="frame frame--yellow awards__trophy" style="margin:0">
-        <img src="img/photos/trophy-26.jpg" alt="Trofeos de los Premios IDA 2026" data-i18n-attr="alt:awp.trophy.alt" width="1200" height="750">
-        <figcaption data-i18n="aw.trophy">Trofeos IDA 2026</figcaption>
-      </figure>
+      <img class="phero__img" src="img/photos/trophy-26.jpg" alt="Trofeos de los Premios IDA 2026" width="1200" height="750">
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap" data-render="awards" data-mode="all"></div>
-  </section>
+  <!-- ============ GANADORES, EDICIÓN POR EDICIÓN ============ -->
+  <div data-render="awardsAll"></div>
 
-  <section class="section" style="background:var(--bg-2)">
+  <!-- ============ CÓMO FUNCIONAN ============ -->
+  <section class="section dark">
     <div class="wrap split">
       <div>
-        <div class="eyebrow eyebrow--yellow" data-i18n="awp.how">Cómo funcionan</div>
-        <h2 class="title-sm" style="margin-bottom:18px" data-i18n="awp.how.title">De la convocatoria al escenario</h2>
-        <ul class="checklist" data-i18n="awp.how.list">
-          <li>Participan los juegos seleccionados para el showcase de cada edición.</li>
-          <li>Las categorías y el jurado se anuncian antes del evento. <span class="ph">Placeholder</span></li>
-          <li>Los ganadores se anuncian en el cierre de IDA, sobre el escenario principal.</li>
+        <h2 class="display">De la convocatoria al escenario</h2>
+        <ul class="topics">
+          <li><b>El showcase</b> – Participan los videojuegos seleccionados para el showcase de cada edición.</li>
+          <li><b>Las categorías</b> – Se anuncian antes del evento, junto con el jurado. <span class="ph">Placeholder</span></li>
+          <li><b>La gala</b> – Los ganadores se conocen en la entrega de premios, sobre el escenario principal.</li>
+          <li><b>Rumbo a EVA</b> – En 2026, los ganadores tuvieron un lugar asegurado en el showcase de EVA, gracias a ADVA.</li>
         </ul>
       </div>
-      <div class="frame award-photo" style="padding:10px">
-        <img src="img/photos/award-25-800.jpg" srcset="img/photos/award-25-800.jpg 800w, img/photos/award-25.jpg 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="Ganadores de los Premios IDA 2025 sobre el escenario" data-i18n-attr="alt:awp.photo.alt" loading="lazy" width="1600" height="1067">
-      </div>
+      <img class="split__img" src="img/photos/aw26-01-800.jpg" srcset="img/photos/aw26-01-800.jpg 800w, img/photos/aw26-01.jpg 1600w" sizes="(max-width: 960px) 100vw, 45vw" alt="Entrega del premio a Mejor Videojuego de IDA 2026" loading="lazy" width="800" height="533">
     </div>
   </section>
+
 </main>
 
-<div id="site-footer"></div>
+<div id="v2-foot"></div>
 
 <script src="data/ediciones.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/textos.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
