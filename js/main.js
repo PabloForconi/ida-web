@@ -298,8 +298,8 @@
   // Sponsors sobre negro (como "Thank you to our Diamond Partners")
   function logo(id) {
     var o = D.orgs[id]; if (!o) return '';
-    var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '" title="' + esc(o.name) + '">';
-    var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '');
+    var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '" title="' + esc(o.name) + '"' + (o.scale ? ' data-scale="' + o.scale + '"' : '') + '>';
+    var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '') + (o.scale ? ' is-wide' : '');
     return o.url ? '<a class="' + c.trim() + '" href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : '<span class="' + c.trim() + '">' + img + '</span>';
   }
   // Un grupo de sponsors es una lista de ids o una lista de niveles ([[más aporte], [resto]]): el primero va más grande
@@ -328,12 +328,15 @@
         [].concat.apply([], tiers(e.sponsors[g])).forEach(function (id) { if (!seen[id]) { seen[id] = 1; ids.push(id); } });
       });
     });
-    // Columnas que dejen la última fila lo más llena posible (16 logos = 4 x 4)
+    // Los logos compuestos (scale) van al final, en una fila propia
+    var wide = ids.filter(function (id) { return D.orgs[id] && D.orgs[id].scale; });
+    ids = ids.filter(function (id) { return wide.indexOf(id) < 0; });
+    // Columnas que dejen la última fila lo más llena posible (15 logos = 3 x 5)
     var cols = [6, 5, 4].reduce(function (best, c) {
       var fill = ids.length % c ? ids.length % c / c : 1;
       return fill > best.fill ? { c: c, fill: fill } : best;
     }, { c: 5, fill: -1 }).c;
-    el.innerHTML = '<div class="logos logos--even" style="--cols:' + cols + '">' + ids.map(logo).join('') + '</div>';
+    el.innerHTML = '<div class="logos logos--even" style="--cols:' + cols + '">' + ids.concat(wide).map(logo).join('') + '</div>';
   };
 
   R.info = function (el) {
@@ -387,7 +390,7 @@
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase' + (e.awards.length ? ' y Premios IDA' : '') + ' · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
-      var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
+      var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
       var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
@@ -439,7 +442,7 @@
         if (!img.naturalWidth || !img.naturalHeight) return;
         var ar = img.naturalWidth / img.naturalHeight, lg = img.closest('.logos--lg') ? 1 : 0;
         Object.keys(LOGO_AREA).forEach(function (k) {
-          img.style.setProperty('--lw-' + k, Math.round(Math.sqrt(LOGO_AREA[k][lg] * ar)) + 'px');
+          img.style.setProperty('--lw-' + k, Math.round(Math.sqrt(LOGO_AREA[k][lg] * (+img.dataset.scale || 1) * ar)) + 'px');
         });
       }
       if (img.complete) fit(); else img.addEventListener('load', fit, { once: true });

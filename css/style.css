@@ -290,6 +290,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .logos--even { --cw: 230px; --ch: 74px; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); justify-items: center; gap: 40px 32px; }
 .logos--even.logos--lg { --cw: 320px; --ch: 112px; }
 .logos--even > a, .logos--even > span { width: 100%; max-width: var(--cw); height: var(--ch); justify-content: center; }
+.logos--even > .is-wide { grid-column: 1 / -1; max-width: none; }   /* logo compuesto (scale): fila propia, como 3 o 4 logos juntos */
 .logos--even img { width: var(--lw-l, auto); height: auto; max-width: 100%; max-height: 100%; }
 #sponsors .pill { margin-top: 32px; }
 
@@ -397,6 +398,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .sponsors-compact .logos--even { --cw: 150px; --ch: 44px; grid-template-columns: repeat(auto-fill, 150px); justify-content: start; justify-items: start; gap: 22px 36px; }
 .sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); }
 .sponsors-compact .logos--even > a, .sponsors-compact .logos--even > span { justify-content: flex-start; }
+.sponsors-compact .logos--even > .is-wide { grid-column: 1 / -1; }
 .sponsors-compact .logos--even img { width: var(--lw-m, auto); }
 
 /* Premio mayor del año: portada grande + laurel */

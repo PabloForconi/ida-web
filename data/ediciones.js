@@ -70,6 +70,7 @@ window.IDA_DATA = {
 
   // Organizaciones (sponsors, apoyos, comunidades). `tile: true` = logo con fondo claro, va sobre placa blanca.
   // `mono: true` = logo oscuro de un color, se muestra en blanco.
+  // `scale`: logo compuesto (varios logos en uno): va en una fila propia con N veces el área de un logo.
   orgs: {
     pressover:   { name: 'Press Over', logo: 'pressover.png', url: 'https://pressover.news/' },
     ocppc:       { name: 'Observatorio de Culturas Políticas y Políticas Culturales', logo: 'ocppc.png', url: 'https://www.centrocultural.coop/OCPPC' },
@@ -78,10 +79,10 @@ window.IDA_DATA = {
     francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr' },
     maimonides:  { name: 'Universidad Maimónides', logo: 'maimonides.png', url: 'https://www.maimonides.edu/' },
     oxobox:      { name: 'Oxobox', logo: 'oxobox.png', url: 'https://oxoawards.com/' },
-    pm:          { name: 'Provincia Microcréditos', logo: 'pm-white.png', url: 'https://www.provinciamicrocreditos.com.ar/' },
+    pm:          { name: 'Provincia Microcréditos', logo: 'pm-color.png', url: 'https://www.provinciamicrocreditos.com.ar/' },
     osai:        { name: 'Fundación OSAI', logo: 'osai.png', url: 'https://www.osai.org.ar/' },
     comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-mono.png', url: 'https://comunicacion.sociales.uba.ar/', mono: true },
-    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, tile: true },
+    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 4 }, // cuatro logos en uno: fila propia y el área de 4 logos
     ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true },
     adva:        { name: 'ADVA', logo: 'adva.png', url: null },
     fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: null },
@@ -213,6 +214,7 @@ window.IDA_DATA = {
         { es: 'Primera entrega de los Premios IDA: 12 premios; Go Slimey Go!, Mejor Videojuego', en: 'First IDA Awards: 12 awards; Go Slimey Go!, Best Game' }
       ],
       video: '4j2kHT8cM8M',
+      archiveVideo: false, // el aftermovie se ve en la home, no en la página de ediciones
       photos: ['g25-01', 'g25-02', 'g25-03', 'g25-04', 'g25-05', 'g25-06', 'g25-07', 'g25-08', 'g25-09', 'g25-10', 'g25-11', 'award-25'],
       // Showcase con portada: los ganadores salen de `awards` (mismo nombre) y se muestran primero, con su etiqueta
       games: [
