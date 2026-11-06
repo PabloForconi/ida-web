@@ -141,6 +141,34 @@ window.IDA_DATA = {
       video: null, // id de YouTube del aftermovie
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
+      // Los 25 del showcase (lista de Cultura Geek, 27/7/2026; portadas de Steam o itch.io)
+      games: [
+        { game: 'Sente', steam: 1005180, cover: 'sente.jpg' },
+        { game: 'Keepers of Vyrellia', steam: 3973590, cover: 'keepers.jpg' },
+        { game: 'Portens', steam: 4609210, cover: 'portens.jpg' },
+        { game: 'La Hija del Delta', steam: 3301850, cover: 'hija-delta.jpg' },
+        { game: 'Mini-Golf Crusade', steam: 5473420, cover: 'mini-golf.jpg' },
+        { game: 'Xplorite', steam: 2720230, cover: 'xplorite.jpg' },
+        { game: 'Beencremental', steam: 4545940, cover: 'beencremental.jpg' },
+        { game: 'Phantom Gear', steam: 1802240, cover: 'phantom-gear.jpg' },
+        { game: 'Zupay: Sombras de la Independencia', steam: 4074370, cover: 'zupay.jpg' },
+        { game: 'Treetopians', steam: 3967310, cover: 'treetopians.jpg' },
+        { game: 'Kalamor', steam: 5012920, cover: 'kalamor.jpg' },
+        { game: 'The Outer Frame', steam: 4079320, cover: 'outer-frame.jpg' },
+        { game: 'Human.exe', steam: 4016270, cover: 'human-exe.jpg' },
+        { game: 'Kosenki', steam: 4121220, cover: 'kosenki.jpg' },
+        { game: 'Teios Journey', steam: 3506070, cover: 'teios.jpg' },
+        { game: 'Gaucho: Subway Escape', steam: 3272390, cover: 'gaucho.jpg' },
+        { game: 'Lucky7!', url: 'https://zaiart.itch.io/lucky7-join-the-club', cover: 'lucky7.jpg' },
+        { game: 'Speedtickers', steam: 3822390, cover: 'speedtickers.jpg' },
+        { game: 'AstroBrawl', steam: 3175020, cover: 'astrobrawl.jpg' },
+        { game: 'HAUS', steam: 4155380, cover: 'haus.jpg' },
+        { game: 'Gravity Girl', steam: 3154470, cover: 'gravity-girl.jpg' },
+        { game: 'Upwind', steam: 4103810, cover: 'upwind.jpg' },
+        { game: 'Noctámbulo', steam: 3885870, cover: 'noctambulo.jpg' },
+        { game: 'Yume no Office', steam: 2978070, cover: 'yume.jpg' },
+        { game: 'Into the Grid', steam: 2576200, cover: 'into-the-grid.jpg' }
+      ],
       awards: [
         { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg', featured: true, top: true, by: 'amd' },
         { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg' },
@@ -254,7 +282,20 @@ window.IDA_DATA = {
       ],
       video: null,
       photos: ['g24-03', 'g24-04', 'g24-05', 'g24-01', 'g24-07', 'g24-06', 'g24-09', 'g24-02', 'g24-08', 'g24-11', 'g24-10', 'g24-12'],
-      games: ['Power Solenoid', 'Cards of Prophecy', 'Era en un bosque', 'Quantum Echoes', 'Blink and Die Replay', 'Dreieck', 'Dungeon Concierge', 'Oneiro Man', 'La Salamanca', 'Por el Campo', 'The Path into the Abyss', 'Malvinas: La última carta'],
+      games: [
+        { game: 'Power Solenoid', steam: 2323340, cover: 'power-solenoid.jpg' },
+        { game: 'Cards of Prophecy', steam: 3256450, cover: 'cards-prophecy.jpg' },
+        { game: 'Era en un bosque', url: 'https://delleloper.itch.io/era-en-un-bosque-it-was-in-a-forest', cover: 'era-bosque.jpg' },
+        { game: 'Quantum Echoes', steam: 4095460, cover: 'quantum-echoes.jpg' },
+        { game: 'Blink and Die Replay', steam: 2958830, cover: 'blink-die.jpg' },
+        { game: 'Dreieck', steam: 2354050, cover: 'dreieck.jpg' },
+        { game: 'Dungeon Concierge', steam: 4186490, cover: 'dungeon-concierge.jpg' },
+        { game: 'Oneiro Man', steam: 3146700, cover: 'oneiro-man.jpg' },
+        { game: 'La Salamanca', steam: 3025180, cover: 'la-salamanca.jpg' },
+        { game: 'Por el Campo', url: 'https://tucuman-videojuegos.itch.io/por-el-campo', cover: 'por-el-campo.jpg' },
+        { game: 'The Path into the Abyss', steam: 3000460, cover: 'path-abyss.jpg' },
+        { game: 'Malvinas: La última carta', steam: 2584740, cover: 'malvinas.jpg' }
+      ],
       awards: [],
       sponsors: {
         presenta: ['pressover', 'ocppc'],

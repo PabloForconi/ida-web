@@ -384,7 +384,7 @@
         e.photos.slice(0, 9).map(function (p) { return '<a href="' + IMG + 'photos/' + p + '.jpg" target="_blank" rel="noopener">' + photo(p, '(max-width: 760px) 50vw, 30vw') + '</a>'; }).join('') + '</div></div>' : '';
       var sc = hasShowcase(e);
       var games = !e.games || !e.games.length ? '' : sc ?
-        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase y Premios IDA · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
+        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase' + (e.awards.length ? ' y Premios IDA' : '') + ' · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
