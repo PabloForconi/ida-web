@@ -290,7 +290,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .logos--even { --cw: 230px; --ch: 74px; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); justify-items: center; gap: 40px 32px; }
 .logos--even.logos--lg { --cw: 320px; --ch: 112px; }
 .logos--even > a, .logos--even > span { width: 100%; max-width: var(--cw); height: var(--ch); justify-content: center; }
-.logos--even > .is-wide { grid-column: 1 / -1; max-width: none; }   /* logo compuesto (scale): fila propia, como 3 o 4 logos juntos */
+.logos--even > .is-wide { grid-column: 1 / -1; max-width: none; }   /* logo compuesto (wide): fila propia, como 3 o 4 logos juntos */
 .logos--even img { width: var(--lw-l, auto); height: auto; max-width: 100%; max-height: 100%; }
 #sponsors .pill { margin-top: 32px; }
 
@@ -395,8 +395,8 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 /* Sponsors de cada edición: logos chicos, en columnas fijas para que queden alineados entre filas */
 .sponsors-compact .pgroup { padding: 20px 0; }
 .sponsors-compact .tiers { gap: 22px; }
-.sponsors-compact .logos--even { --cw: 150px; --ch: 44px; grid-template-columns: repeat(auto-fill, 150px); justify-content: start; justify-items: start; gap: 22px 36px; }
-.sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); }
+.sponsors-compact .logos--even { --cw: 140px; --ch: 44px; grid-template-columns: repeat(auto-fill, 140px); justify-content: start; justify-items: start; gap: 22px 24px; }
+.sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); gap: 22px 36px; }
 .sponsors-compact .logos--even > a, .sponsors-compact .logos--even > span { justify-content: flex-start; }
 .sponsors-compact .logos--even > .is-wide { grid-column: 1 / -1; }
 .sponsors-compact .logos--even img { width: var(--lw-m, auto); }
@@ -551,15 +551,15 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
 /* Showcase con portadas (ediciones): videojuegos y ganadores en una sola grilla */
 .showcase { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 24px; }
 .sc { position: relative; display: flex; flex-direction: column; }
-.sc__pic { display: grid; place-items: center; aspect-ratio: 616 / 353; border-radius: var(--radius); overflow: hidden; background: #15151c; margin-bottom: 12px; }
+.sc__pic { position: relative; display: grid; place-items: center; aspect-ratio: 616 / 353; border-radius: var(--radius); overflow: hidden; background: #15151c; margin-bottom: 12px; }
 .sc__pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
 .sc__pic img.is-ph { width: 40%; height: auto; opacity: .5; image-rendering: pixelated; }
 a.sc__pic:hover img { transform: scale(1.04); }
 .sc--win .sc__pic { box-shadow: 0 0 0 3px var(--mag); }
 .sc--top .sc__pic { box-shadow: 0 0 0 3px var(--yellow); }
-.sc__badge { position: absolute; top: 10px; left: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px 4px 8px; border-radius: 999px; background: var(--mag); color: #fff; font: 700 .68rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .06em; box-shadow: 0 2px 10px rgba(0,0,0,.45); pointer-events: none; }
+.sc__badge { position: absolute; right: 10px; bottom: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px 4px 8px; border-radius: 999px; background: var(--mag); color: #fff; font: 700 .68rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .06em; box-shadow: 0 2px 10px rgba(0,0,0,.45); pointer-events: none; }
 .sc__badge svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .sc--top .sc__badge { background: var(--yellow); color: var(--ink); }
 .sc h4 { font: 500 1.05rem/1.25 var(--f-head); margin: 0; }
 @media (max-width: 960px) { .showcase { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; } .sc h4 { font-size: .92rem; } .sc__badge { top: 7px; left: 7px; padding: 3px 8px 3px 6px; font-size: .6rem; } }
+@media (max-width: 600px) { .showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; } .sc h4 { font-size: .92rem; } .sc__badge { right: 7px; bottom: 7px; padding: 3px 8px 3px 6px; font-size: .6rem; } }

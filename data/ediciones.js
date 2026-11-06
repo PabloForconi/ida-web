@@ -70,19 +70,19 @@ window.IDA_DATA = {
 
   // Organizaciones (sponsors, apoyos, comunidades). `tile: true` = logo con fondo claro, va sobre placa blanca.
   // `mono: true` = logo oscuro de un color, se muestra en blanco.
-  // `scale`: logo compuesto (varios logos en uno): va en una fila propia con N veces el área de un logo.
+  // `scale`: multiplica el área visual del logo (1.5 = 50% más). `wide: true`: logo compuesto, va en una fila propia.
   orgs: {
     pressover:   { name: 'Press Over', logo: 'pressover.png', url: 'https://pressover.news/' },
     ocppc:       { name: 'Observatorio de Culturas Políticas y Políticas Culturales', logo: 'ocppc.png', url: 'https://www.centrocultural.coop/OCPPC' },
     ccc:         { name: 'Centro Cultural de la Cooperación', logo: 'ccc.png', url: 'https://www.centrocultural.coop/' },
     storyteller: { name: 'Storyteller', logo: 'storyteller.png', url: 'https://store.steampowered.com/app/1624540/Storyteller/?l=latam' },
-    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr' },
+    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr', scale: 2 },
     maimonides:  { name: 'Universidad Maimónides', logo: 'maimonides.png', url: 'https://www.maimonides.edu/' },
     oxobox:      { name: 'Oxobox', logo: 'oxobox.png', url: 'https://oxoawards.com/' },
     pm:          { name: 'Provincia Microcréditos', logo: 'pm-color.png', url: 'https://www.provinciamicrocreditos.com.ar/' },
     osai:        { name: 'Fundación OSAI', logo: 'osai.png', url: 'https://www.osai.org.ar/' },
-    comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-mono.png', url: 'https://comunicacion.sociales.uba.ar/', mono: true },
-    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 4 }, // cuatro logos en uno: fila propia y el área de 4 logos
+    comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-color.png', url: 'https://comunicacion.sociales.uba.ar/' },
+    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 4, wide: true }, // cuatro logos en uno: fila propia y el área de 4 logos
     ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true },
     adva:        { name: 'ADVA', logo: 'adva.png', url: null },
     fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: null },
@@ -125,7 +125,7 @@ window.IDA_DATA = {
       // Speakers internacionales (se destacan en la página de ediciones). Charlas: grilla de salas 2026.
       guests: [
         { name: 'Yoan Fanise', flag: 'fr', img: 'guest-yoan', from: { es: 'Francia', en: 'France' }, role: { es: 'Director de Valiant Hearts y Road 96', en: 'Director of Valiant Hearts and Road 96' }, talk: 'From Ubisoft to an indie success', note: { es: 'Con el apoyo de la Embajada de Francia', en: 'With the support of the French Embassy' } },
-        { name: 'Josué Monchán', flag: 'es', img: 'guest-josue', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista de Pendulo Studios (Runaway, Yesterday) y Brainwash Gang. Localizó decenas de videojuegos, entre ellos los de Lucas Pope', en: 'Writer at Pendulo Studios (Runaway, Yesterday) and Brainwash Gang. He has localized dozens of games, including Lucas Pope’s' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
+        { name: 'Josué Monchán', flag: 'es', img: 'guest-josue', from: { es: 'España', en: 'Spain' }, role: { es: 'Guionista de Pendulo Studios (Runaway, Yesterday) y Brainwash Gang', en: 'Writer at Pendulo Studios (Runaway, Yesterday) and Brainwash Gang' }, talk: 'War is fun: lo bélico lúdico y el conflicto narrativo' }
       ],
       guestsNote: { es: 'Más de 170 personas en cada charla, con el auditorio lleno.', en: 'Over 170 people at each talk, with a packed auditorium.' },
       // Exhibición digital en Steam (evento oficial dentro de la tienda). Números de la página del evento.

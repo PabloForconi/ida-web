@@ -206,11 +206,11 @@
       var pic = g.cover ? '<img src="' + IMG + 'games/' + g.cover + '" alt="" loading="lazy" width="616" height="353">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
       var top = it.wins.some(function (a) { return a.top; });
       var cats = it.wins.map(function (a) { return T(a.cat).split(' · ')[0]; }).join(', ');
+      // Etiqueta sobre la portada (abajo a la derecha); las categorías quedan en el title de la portada (al pasar el mouse)
+      if (it.wins.length) pic += '<span class="sc__badge">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Ganador</span>';
       return '<article class="sc' + (it.wins.length ? ' sc--win' : '') + (top ? ' sc--top' : '') + '">' +
         (href ? '<a class="sc__pic" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(g.game) + (g.steam ? ' en Steam' : '') + '"' + (cats ? ' title="Ganador: ' + esc(cats) + '"' : '') + '>' + pic + '</a>' : '<div class="sc__pic">' + pic + '</div>') +
-        // Etiqueta sobre la portada; las categorías quedan en el title de la portada (al pasar el mouse)
-        (it.wins.length ? '<span class="sc__badge">' +
-          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Ganador</span>' : '') +
         '<h4>' + esc(g.game) + '</h4></article>';
     }).join('') + '</div>';
   }
@@ -299,7 +299,7 @@
   function logo(id) {
     var o = D.orgs[id]; if (!o) return '';
     var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '" title="' + esc(o.name) + '"' + (o.scale ? ' data-scale="' + o.scale + '"' : '') + '>';
-    var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '') + (o.scale ? ' is-wide' : '');
+    var c = (o.tile ? 'is-tile' : '') + (o.mono ? ' is-mono' : '') + (o.wide ? ' is-wide' : '');
     return o.url ? '<a class="' + c.trim() + '" href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : '<span class="' + c.trim() + '">' + img + '</span>';
   }
   // Un grupo de sponsors es una lista de ids o una lista de niveles ([[más aporte], [resto]]): el primero va más grande
@@ -309,7 +309,7 @@
   }
   // compact: versión chica para la página de ediciones ("Presentado por" no va más grande)
   function sponsorGroups(s, compact) {
-    return [['presenta', compact ? '' : 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
+    return [['presenta', 'logos--lg'], ['apoyo', ''], ['acompanan', '']].map(function (g) {
       var t = tiers(s[g[0]]);
       return t.length ? '<div class="pgroup"><span class="pgroup__label">' + esc(U('sp.' + g[0])) + '</span><div class="tiers">' + t.map(function (ids, i) {
         return logoRow(ids, g[1] || (t.length > 1 && i === 0 ? 'logos--lg' : ''));
@@ -328,8 +328,8 @@
         [].concat.apply([], tiers(e.sponsors[g])).forEach(function (id) { if (!seen[id]) { seen[id] = 1; ids.push(id); } });
       });
     });
-    // Los logos compuestos (scale) van al final, en una fila propia
-    var wide = ids.filter(function (id) { return D.orgs[id] && D.orgs[id].scale; });
+    // Los logos compuestos (wide) van al final, en una fila propia
+    var wide = ids.filter(function (id) { return D.orgs[id] && D.orgs[id].wide; });
     ids = ids.filter(function (id) { return wide.indexOf(id) < 0; });
     // Columnas que dejen la última fila lo más llena posible (15 logos = 3 x 5)
     var cols = [6, 5, 4].reduce(function (best, c) {
