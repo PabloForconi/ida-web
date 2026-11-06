@@ -7,12 +7,9 @@ window.IDA_V2 = {
     'skip': 'Skip to content',
     'nav.menu': 'Menu',
     'brand.sub': 'Videogame expo',
-    'nav.participa': 'Get involved',
     'nav.premios': 'Awards',
     'nav.sponsors': 'Sponsors',
     'nav.ediciones': 'Editions',
-    'nav.info': 'Info',
-    'nav.news': 'Get updates',
     'hero.title': 'Building<br>Argentina’s<br>indie scene',
     'hero.thanks': 'Thanks for making IDA <span data-render="year"></span>! See you at IDA <span data-render="nextYear"></span>.',
     'stats.label': 'IDA in numbers',
@@ -20,7 +17,6 @@ window.IDA_V2 = {
     'about.title': 'Your first step into the indie scene',
     'about.lead': 'Whether you’re making your first game, already run a studio or simply love videogames, IDA is your place.',
     'about.text': 'IDA is the independent videogame expo created by <a href="https://pressover.news/" target="_blank" rel="noopener">Press Over</a>: a day of games in development, talks, networking and the IDA Awards, with free admission. The first step into indie development in Argentina.',
-    'about.cta': 'Find your place',
     'paths.title': 'Find your place',
     'paths.lead': 'Show your game, give a talk, join the team or put your brand in front of the community. There’s a way to be part of IDA <span data-render="nextYear"></span> made for you.',
     'sp.cta.title': 'Sponsor IDA <span data-render="nextYear"></span>',
@@ -83,7 +79,11 @@ window.IDA_V2 = {
       'stat.games': 'Videojuegos',
       'stat.short.games': 'videojuegos',
       'call.games.title': 'Mostrá tu videojuego',
-      'call.games.cta': 'Postulá tu videojuego'
+      'call.games.cta': 'Postulá tu videojuego',
+      'call.steam.title': 'Sumate al showcase de Steam',
+      'call.steam.text': 'Si tu videojuego es argentino y tiene página en Steam, puede ser parte de la exhibición digital de IDA {y}.',
+      'call.team.title': 'Hacé IDA con nosotros',
+      'call.team.text': 'Voluntariado, comunidades, medios y universidades: hay muchas formas de ser parte de IDA {y}.'
     },
     en: {
       'v2.stat.total': 'Attendees across {n} editions',

@@ -70,15 +70,12 @@
         '<a class="brand" href="index.html" aria-label="IDA, inicio"><img src="' + IMG + 'logos/ida.png" alt="IDA" width="95" height="33">' +
           '<span>Indie Dev Argentina<small data-i18n="brand.sub">Exposición de videojuegos</small></span></a>' +
         '<nav class="nav" id="nav" aria-label="Principal">' +
-          navLink(homeLink('#participa'), '', 'nav.participa', 'Participá') +
+          navLink('ediciones.html', 'ediciones', 'nav.ediciones', 'Ediciones') +
           navLink('premios.html', 'premios', 'nav.premios', 'Premios') +
           navLink('sponsors.html', 'sponsors', 'nav.sponsors', 'Sponsors') +
-          navLink('ediciones.html', 'ediciones', 'nav.ediciones', 'Ediciones') +
-          navLink(homeLink('#info'), '', 'nav.info', 'Información') +
         '</nav>' +
         '<div class="navbar__tools">' +
           '<div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>' +
-          '<a class="pill hide-sm" href="#newsletter" data-i18n="nav.news">Recibir novedades</a>' +
           '<button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-attr="aria-label:nav.menu" aria-label="Menú"><span></span></button>' +
         '</div>' +
       '</div></div></header>';
@@ -108,7 +105,7 @@
   };
   R.infobar = function (el) {
     var n = D.next, v = n.venue && D.venues[n.venue];
-    var items = [['date', '<span class="ib-yr">IDA ' + n.year + ' · </span>' + esc(T(n.dateLabel))]];
+    var items = [['date', esc(T(n.dateLabel) + (lang === 'en' ? ', ' : ' de ') + n.year)]];
     items.push(['hours', n.hours ? esc(n.hours) : esc(U('info.hoursTbc'))]);
     items.push(['venue', v ? '<a href="' + v.map + '" target="_blank" rel="noopener">' + '<span class="ib-long">' + esc(v.name) + '</span>' + (v.short ? '<span class="ib-short">' + esc(v.short) + '</span>' : '') + (v.address ? '<span class="infobar__addr"> (' + esc(v.address) + ')</span>' : '') + '</a>' : esc(U('info.venueTbc'))]);
     items.push(['free', esc(U('info.free'))]);
@@ -142,9 +139,11 @@
   R.paths = function (el) {
     var c = D.next.calls, y = D.next.year;
     // Sin links al pie; solo cuando una convocatoria está abierta aparece el link para postularse
+    // img: nombre de una foto (photos/<img>-800.jpg) o el <img> ya armado
+    // La etiqueta es gris si la convocatoria está cerrada y verde si está abierta
     function card(key, img, statusKey, href, ctaKey) {
-      return '<article class="path">' + photo(img) +
-        '<span class="chip">' + esc(U(statusKey)) + '</span>' +
+      return '<article class="path">' + (img.charAt(0) === '<' ? img : photo(img)) +
+        '<span class="chip chip--' + (statusKey === 'call.closed' ? 'closed' : 'open') + '">' + esc(U(statusKey)) + '</span>' +
         '<h3>' + esc(U('call.' + key + '.title')) + '</h3><p>' + esc(U('call.' + key + '.text', { y: y })) + '</p>' +
         (href ? '<a class="u-link" href="' + href + '"' + ext(href) + '>' + esc(U(ctaKey)) + '</a>' : '') + '</article>';
     }
@@ -152,9 +151,11 @@
       var o = c[key].open && c[key].url;
       return card(key, img, o ? 'call.open' : 'call.closed', o ? c[key].url : null, 'call.' + key + '.cta');
     }
-    el.innerHTML = '<div class="paths">' + call('games', 'g26-15') + call('talks', 'g26-04') +
-      card('team', 'g24-01', 'call.always') +
-      card('sponsor', 'g25-01', 'call.always') + '</div>';
+    var steamArt = '<img src="' + IMG + 'photos/steam-26.jpg" alt="" loading="lazy" decoding="async" width="800" height="450">';
+    el.innerHTML = '<div class="paths">' + call('games', 'g26-15') +
+      card('steam', steamArt, 'call.always') +
+      call('talks', 'g26-04') +
+      card('team', 'g24-01', 'call.always') + '</div>';
   };
 
   // Ganadores: portada del juego, categoría, juego y estudio
@@ -191,6 +192,27 @@
       '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
       (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
     '</div></article>';
+  }
+  // Showcase con portadas (games con objetos { game, steam|url, cover }): todos los videojuegos juntos,
+  // primero los ganadores (en el orden de `awards`), con una etiqueta por premio
+  function hasShowcase(e) { return (e.games || []).some(function (g) { return typeof g === 'object'; }); }
+  function showcaseGrid(e) {
+    var list = e.games.map(function (g, i) {
+      var wins = e.awards.filter(function (a) { return a.game === g.game; });
+      return { g: g, wins: wins, rank: wins.length ? e.awards.indexOf(wins[0]) : 1000 + i };
+    }).sort(function (a, b) { return a.rank - b.rank; });
+    return '<div class="showcase">' + list.map(function (it) {
+      var g = it.g, href = g.steam ? steamUrl(g) : g.url || '';
+      var pic = g.cover ? '<img src="' + IMG + 'games/' + g.cover + '" alt="" loading="lazy" width="616" height="353">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
+      var top = it.wins.some(function (a) { return a.top; });
+      var cats = it.wins.map(function (a) { return T(a.cat).split(' · ')[0]; }).join(', ');
+      return '<article class="sc' + (it.wins.length ? ' sc--win' : '') + (top ? ' sc--top' : '') + '">' +
+        (href ? '<a class="sc__pic" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(g.game) + (g.steam ? ' en Steam' : '') + '"' + (cats ? ' title="Ganador: ' + esc(cats) + '"' : '') + '>' + pic + '</a>' : '<div class="sc__pic">' + pic + '</div>') +
+        // Etiqueta sobre la portada; las categorías quedan en el title de la portada (al pasar el mouse)
+        (it.wins.length ? '<span class="sc__badge">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Ganador</span>' : '') +
+        '<h4>' + esc(g.game) + '</h4></article>';
+    }).join('') + '</div>';
   }
   function awardsBlock(e) {
     var top = e.awards.filter(function (a) { return a.top; })[0];
@@ -300,7 +322,7 @@
   };
   // Página de sponsors: todos los que acompañaron alguna edición
   R.wall = function (el) {
-    var seen = {}, ids = [];
+    var seen = { pressover: 1, ocppc: 1 }, ids = []; // Press Over y Culturas Políticas organizan: no van en el muro
     D.editions.forEach(function (e) {
       ['presenta', 'apoyo', 'acompanan'].forEach(function (g) {
         [].concat.apply([], tiers(e.sponsors[g])).forEach(function (id) { if (!seen[id]) { seen[id] = 1; ids.push(id); } });
@@ -360,11 +382,14 @@
       }).join('');
       var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería' + (P.photos ? ' ' + ph(U('ph.photos')) : '') + '</h3><div class="gallery">' +
         e.photos.slice(0, 9).map(function (p) { return '<a href="' + IMG + 'photos/' + p + '.jpg" target="_blank" rel="noopener">' + photo(p, '(max-width: 760px) 50vw, 30vw') + '</a>'; }).join('') + '</div></div>' : '';
-      var games = e.games && e.games.length ? '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
-        e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>' : '';
+      var sc = hasShowcase(e);
+      var games = !e.games || !e.games.length ? '' : sc ?
+        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase y Premios IDA · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
+        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
+        e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
-      var awards = e.awards.length ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
+      var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
           '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(e.hours) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +

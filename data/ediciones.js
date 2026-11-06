@@ -177,7 +177,7 @@ window.IDA_DATA = {
       // Fuente: newsletter de Press Over (11/7/2025). Cerraron los dos días de charlas.
       guests: [
         { name: 'Arturo Monedero', flag: 'es', img: 'guest-arturo', from: { es: 'España', en: 'Spain' }, role: { es: 'CEO de TLR Games y vicepresidente de AEVI', en: 'CEO of TLR Games and vice president of AEVI' }, talk: 'Cómo vender tu primer videojuego' },
-        { name: 'David Lucio', flag: 'co', img: 'guest-david', from: { es: 'Colombia', en: 'Colombia' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: null }
+        { name: 'David Lucio', flag: 'co', img: 'guest-david', from: { es: 'Colombia', en: 'Colombia' }, role: { es: 'Fundador y productor del Latin American Games Showcase', en: 'Founder and producer of the Latin American Games Showcase' }, talk: 'Cómo difundir mi videojuego y hacer networking' }
       ],
       highlights: [
         { es: 'Primera edición de dos días', en: 'First two-day edition' },
@@ -186,7 +186,30 @@ window.IDA_DATA = {
       ],
       video: '4j2kHT8cM8M',
       photos: ['g25-01', 'g25-02', 'g25-03', 'g25-04', 'g25-05', 'g25-06', 'g25-07', 'g25-08', 'g25-09', 'g25-10', 'g25-11', 'award-25'],
-      games: ['The Last Librarian', 'Rising Fox', 'Hammer Princess', 'Go Slimey Go!', 'Dead Sale', 'Letalis', 'C.A.B.A. (ex Fábulas Porteñas)', 'Piso 6', 'Zupay', 'Kernel Hearts', 'El 39', 'Shippin', 'Malvinas: La última carta', 'Pungo', 'Ruless', 'The Lost Land of Bahía Blanca', 'Cazadora', 'Not So Smart Delivery', 'House of Horror: Outside Is Better', 'Quantum Echoes', 'The Path into the Abyss'],
+      // Showcase con portada: los ganadores salen de `awards` (mismo nombre) y se muestran primero, con su etiqueta
+      games: [
+        { game: 'The Last Librarian', steam: 2602080, cover: 'last-librarian.jpg' },
+        { game: 'Rising Fox', steam: 3832050, cover: 'rising-fox.jpg' },
+        { game: 'Escape of the Hammer Princess', steam: 3136530, cover: 'hammer-princess.jpg' },
+        { game: 'Go Slimey Go!', steam: 3215230, cover: 'go-slimey.jpg' },
+        { game: 'Dead Sale', steam: 3267050, cover: 'dead-sale.jpg' },
+        { game: 'Letalis', steam: 2396200, cover: 'letalis.jpg' },
+        { game: 'C.A.B.A. (ex Fábulas Porteñas)', steam: 3279900, cover: 'fabulas.jpg' },
+        { game: 'Piso 6', steam: 3919710, cover: 'piso6.jpg' },
+        { game: 'Zupay', steam: 4074370, cover: 'zupay.jpg' },
+        { game: 'Kernel Hearts', steam: 2902170, cover: 'kernel-hearts.jpg' },
+        { game: 'El 39', steam: 3900380, cover: 'el-39.jpg' },
+        { game: 'Shippin', steam: 3334100, cover: 'shippin.jpg' },
+        { game: 'Malvinas: La última carta', steam: 2584740, cover: 'malvinas.jpg' },
+        { game: 'Pungo', steam: 3603010, cover: 'pungo.jpg' },
+        { game: 'Ruless' }, // sin página pública ni portada todavía
+        { game: 'The Lost Land of Bahía Blanca', steam: 4144100, cover: 'bahia-blanca.jpg' },
+        { game: 'Cazadora', url: 'https://pulgaescapista.itch.io/cazadora', cover: 'cazadora.jpg' },
+        { game: 'Not So Smart Delivery', steam: 3512970, cover: 'not-so-smart.jpg' },
+        { game: 'House of Horror: Outside Is Better', steam: 3152710, cover: 'house-of-horror.jpg' },
+        { game: 'Quantum Echoes', steam: 4095460, cover: 'quantum-echoes.jpg' },
+        { game: 'The Path into the Abyss', steam: 3000460, cover: 'path-abyss.jpg' }
+      ],
       awards: [
         // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2025" (12 premios, 8 juegos)
         { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg', featured: true, top: true },
@@ -218,13 +241,14 @@ window.IDA_DATA = {
       hours: '11 – 21 h',
       venue: 'ccc',
       summary: {
-        es: 'La primera IDA nació en el Centro Cultural de la Cooperación, coproducida por Press Over y la Diplomatura de Videojuegos de UBA Sociales, como un primer acercamiento al desarrollo de videojuegos independiente en Argentina.',
-        en: 'The first IDA was born at Centro Cultural de la Cooperación, co-produced by Press Over and the UBA Sociales Videogame Diploma, as a first approach to independent game development in Argentina.'
+        es: 'La primera edición se realizó en dos pisos y cuatro salas del Centro Cultural de la Cooperación, coproducida por Press Over y la Diplomatura de Videojuegos de UBA Sociales, como un primer acercamiento al desarrollo de videojuegos independiente en Argentina.',
+        en: 'The first edition took place on two floors and in four rooms of the Centro Cultural de la Cooperación, co-produced by Press Over and the UBA Sociales Videogame Diploma, as a first approach to independent game development in Argentina.'
       },
       stats: { attendees: 1500, games: 12, talks: 20, speakers: 32 },
       statsNote: null,
       highlights: [
         { es: 'Nace IDA, creado por Press Over', en: 'IDA is born, created by Press Over' },
+        { es: 'Dos pisos y cuatro salas del CCC', en: 'Two floors and four rooms at the CCC' },
         { es: 'Primer showcase de videojuegos en desarrollo: 10 elegidos por el jurado entre más de 40 obras, y 2 por Press Over', en: 'First showcase of games in development: 10 picked by the jury from over 40 entries, plus 2 by Press Over' },
         { es: 'Jurado con Daniel Benmergui (Storyteller) y Mauricio García (The Game Kitchen, Blasphemous)', en: 'Jury including Daniel Benmergui (Storyteller) and Mauricio García (The Game Kitchen, Blasphemous)' }
       ],

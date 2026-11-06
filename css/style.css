@@ -171,6 +171,8 @@ button, input { font: inherit; color: inherit; }
 .path h3 { font: 500 1.55rem/1.1 var(--f-head); text-transform: uppercase; margin: 10px 0 12px; }
 .path p { font-size: .96rem; flex: 1; }
 .chip { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--pink); color: var(--mag-ink); font: 700 .68rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .06em; }
+.chip--open { background: #d7f9df; color: #087a2c; }
+.chip--closed { background: #ececf0; color: #5c5c68; }
 
 /* ---------- Banda sponsor con form ---------- */
 .cta-band { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
@@ -502,7 +504,7 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
 @media (max-width: 600px) {
   :root { --brand-h: 58px; --nav-h: 62px; }
   .infobar__in { gap: 6px 12px; font-size: .6rem; letter-spacing: .02em; }
-  .infobar .ib-yr, .infobar .ib-long { display: none; }
+  .infobar .ib-long { display: none; }
   .infobar .ib-short { display: inline; }
   .infobar svg { width: 15px; height: 15px; }
   body { font-size: 16px; }
@@ -543,3 +545,19 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Showcase con portadas (ediciones): videojuegos y ganadores en una sola grilla */
+.showcase { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 24px; }
+.sc { position: relative; display: flex; flex-direction: column; }
+.sc__pic { display: grid; place-items: center; aspect-ratio: 616 / 353; border-radius: var(--radius); overflow: hidden; background: #15151c; margin-bottom: 12px; }
+.sc__pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.sc__pic img.is-ph { width: 40%; height: auto; opacity: .5; image-rendering: pixelated; }
+a.sc__pic:hover img { transform: scale(1.04); }
+.sc--win .sc__pic { box-shadow: 0 0 0 3px var(--mag); }
+.sc--top .sc__pic { box-shadow: 0 0 0 3px var(--yellow); }
+.sc__badge { position: absolute; top: 10px; left: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px 4px 8px; border-radius: 999px; background: var(--mag); color: #fff; font: 700 .68rem/1.4 var(--f-head); text-transform: uppercase; letter-spacing: .06em; box-shadow: 0 2px 10px rgba(0,0,0,.45); pointer-events: none; }
+.sc__badge svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.sc--top .sc__badge { background: var(--yellow); color: var(--ink); }
+.sc h4 { font: 500 1.05rem/1.25 var(--f-head); margin: 0; }
+@media (max-width: 960px) { .showcase { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .showcase { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; } .sc h4 { font-size: .92rem; } .sc__badge { top: 7px; left: 7px; padding: 3px 8px 3px 6px; font-size: .6rem; } }
