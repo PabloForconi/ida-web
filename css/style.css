@@ -395,7 +395,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 /* Sponsors de cada edición: logos chicos, en columnas fijas para que queden alineados entre filas */
 .sponsors-compact .pgroup { padding: 20px 0; }
 .sponsors-compact .tiers { gap: 22px; }
-.sponsors-compact .logos--even { --cw: 140px; --ch: 44px; grid-template-columns: repeat(auto-fill, 140px); justify-content: start; justify-items: start; gap: 22px 24px; }
+.sponsors-compact .logos--even { --cw: 145px; --ch: 52px; grid-template-columns: repeat(auto-fill, 145px); justify-content: start; justify-items: start; gap: 22px 16px; }
 .sponsors-compact .logos--even.logos--lg { --cw: 200px; --ch: 62px; grid-template-columns: repeat(auto-fill, 200px); gap: 22px 36px; }
 .sponsors-compact .logos--even > a, .sponsors-compact .logos--even > span { justify-content: flex-start; }
 .sponsors-compact .logos--even > .is-wide { grid-column: 1 / -1; }

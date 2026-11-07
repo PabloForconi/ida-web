@@ -76,14 +76,14 @@ window.IDA_DATA = {
     ocppc:       { name: 'Observatorio de Culturas Políticas y Políticas Culturales', logo: 'ocppc.png', url: 'https://www.centrocultural.coop/OCPPC' },
     ccc:         { name: 'Centro Cultural de la Cooperación', logo: 'ccc.png', url: 'https://www.centrocultural.coop/' },
     storyteller: { name: 'Storyteller', logo: 'storyteller.png', url: 'https://store.steampowered.com/app/1624540/Storyteller/?l=latam' },
-    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr', scale: 2 },
+    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr', scale: 3 },
     maimonides:  { name: 'Universidad Maimónides', logo: 'maimonides.png', url: 'https://www.maimonides.edu/' },
     oxobox:      { name: 'Oxobox', logo: 'oxobox.png', url: 'https://oxoawards.com/' },
     pm:          { name: 'Provincia Microcréditos', logo: 'pm-color.png', url: 'https://www.provinciamicrocreditos.com.ar/' },
     osai:        { name: 'Fundación OSAI', logo: 'osai.png', url: 'https://www.osai.org.ar/' },
     comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-color.png', url: 'https://comunicacion.sociales.uba.ar/' },
-    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 4, wide: true }, // cuatro logos en uno: fila propia y el área de 4 logos
-    ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true },
+    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 7, wide: true }, // cuatro logos en uno: fila propia, bien grande
+    ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true, scale: 1.8 },
     adva:        { name: 'ADVA', logo: 'adva.png', url: null },
     fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: null },
     playbold:    { name: 'Play Bold', logo: 'playbold.png', url: null },
