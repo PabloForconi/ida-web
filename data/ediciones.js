@@ -256,8 +256,8 @@ window.IDA_DATA = {
         { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', steam: 3919710, cover: 'piso6.jpg' }
       ],
       sponsors: {
-        presenta: ['pressover', 'foton', 'ocppc', 'comu'], // coproducción (nota de Press Over sobre los ganadores 2025)
-        apoyo: ['casapba', 'ubasociales', 'pm', 'ccc', 'osai'],
+        presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)
+        apoyo: ['casapba', 'ubasociales', 'pm', 'ccc', 'osai', 'comu'],
         acompanan: ['playbold', 'gameever', 'fundav', 'adva']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],
@@ -301,8 +301,8 @@ window.IDA_DATA = {
       awards: [],
       sponsors: {
         presenta: ['pressover', 'ocppc'],
-        apoyo: ['ccc', 'ubasociales', 'comu', 'osai', 'adva', 'fundav'],
-        acompanan: []
+        apoyo: ['ccc', 'ubasociales', 'comu', 'osai'],
+        acompanan: ['playbold', 'gameever', 'fundav', 'adva']
       },
       communities: [],
       placeholder: { stats: false, photos: false, video: false, awards: false }
