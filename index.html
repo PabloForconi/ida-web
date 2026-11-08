@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@700;800&family=Anton&family=Tomorrow:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=202611081417">
+  <link rel="stylesheet" href="css/style.css?v=202611081513">
 </head>
 <body data-page="home" data-title-es="IDA · Indie Dev Argentina · Exposición de videojuegos independientes" data-title-en="IDA · Indie Dev Argentina · Independent videogame expo">
 
@@ -41,17 +41,12 @@
     <div class="wrap" data-render="stats"></div>
   </section>
 
-  <!-- ============ ANUNCIO (banda rosa) ============ -->
-  <section class="band dark">
-    <div class="wrap announce" data-render="announce"></div>
-  </section>
-
   <!-- ============ DONDE LAS IDEAS DESPIERTAN ============ -->
-  <section class="band dark band--flush" id="acerca">
+  <section class="band dark" id="acerca">
     <div class="wrap split">
       <img class="split__img" src="img/photos/group-26-800.jpg" srcset="img/photos/group-26-800.jpg 800w, img/photos/group-26.jpg 1600w" sizes="(max-width: 960px) 100vw, 45vw" alt="Foto grupal de IDA 2026: el equipo, los speakers y el público con las manos en alto, detrás de las letras gigantes de IDA" data-i18n-attr="alt:about.alt" loading="lazy" width="800" height="533">
       <div>
-        <h2 class="display display--ink" data-i18n="about.title">Tu primer paso en la escena indie</h2>
+        <h2 class="display display--ink" data-i18n="about.title">Dale play</h2>
         <p class="lead" data-i18n="about.lead">Si estás haciendo tu primer videojuego, sos estudiante o simplemente amás la industria independiente, IDA es tu lugar en el mundo.</p>
         <p data-i18n="about.text">Indie Dev Argentina es un evento boutique de videojuegos creado por <a href="https://pressover.news/" target="_blank" rel="noopener">Press Over</a> que, mediante la exposición de títulos en desarrollo, charlas especializadas y premios, fomenta los nuevos talentos de la escena local. Y todo con entrada libre y gratuita.</p>
       </div>
@@ -62,7 +57,7 @@
   <section class="section" id="participa">
     <div class="wrap">
       <h2 class="display" data-i18n="paths.title">Encontrá tu lugar</h2>
-      <p class="intro" data-i18n="paths.lead">Mostrá tu videojuego en IDA y en Steam, dá una charla o sumate al equipo. Hay una forma de hacer IDA <span data-render="nextYear"></span> pensada para vos.</p>
+      <p class="intro intro--wide" data-i18n="paths.lead">Mostrá tu videojuego en IDA y en Steam, dá una charla o sumate al equipo.<br>Hay una forma de hacer IDA <span data-render="nextYear"></span> pensada para vos.</p>
       <div data-render="paths"></div>
     </div>
   </section>
@@ -71,7 +66,7 @@
   <section class="band band--mag" id="ser-sponsor">
     <div class="wrap cta-band">
       <div>
-        <h2 class="display display--ink" data-i18n="sp.cta.title">Sé sponsor de IDA <span data-render="nextYear"></span></h2>
+        <h2 class="display display--ink" data-i18n="sp.cta.title">Sé sponsor de<br>IDA <span data-render="nextYear"></span></h2>
         <p data-i18n="sp.cta.text">Conectá tu marca con la comunidad indie más grande de Argentina: desarrolladores, estudiantes, estudios y miles de jugadores en un mismo lugar.</p>
         <a class="u-link" href="sponsors.html" data-i18n="sp.cta.more">Ver la propuesta para sponsors</a>
       </div>
@@ -130,7 +125,10 @@
   <!-- ============ GANADORES (círculos, como "Festival Speakers") ============ -->
   <section class="section" id="premios">
     <div class="wrap">
-      <h2 class="display" data-i18n="aw.title">Ganadores <span data-render="year"></span></h2>
+      <div class="sec-row">
+        <h2 class="display" data-i18n="aw.title">Ganadores <span data-render="year"></span></h2>
+        <a class="pill pill--line" href="premios.html" data-i18n="aw.all">Ver todos los premios</a>
+      </div>
       <div data-render="winners"></div>
     </div>
   </section>
@@ -198,9 +196,9 @@
 <!-- Pie ("Gracias por jugar", hashtag y redes): lo arma js/main.js -->
 <div id="v2-foot"></div>
 
-<script src="data/ediciones.js?v=202611081417"></script>
-<script src="js/i18n.js?v=202611081417"></script>
-<script src="js/textos.js?v=202611081417"></script>
-<script src="js/main.js?v=202611081417"></script>
+<script src="data/ediciones.js?v=202611081513"></script>
+<script src="js/i18n.js?v=202611081513"></script>
+<script src="js/textos.js?v=202611081513"></script>
+<script src="js/main.js?v=202611081513"></script>
 </body>
 </html>

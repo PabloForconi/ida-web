@@ -127,19 +127,22 @@
     countUp(el);
   };
 
-  // Newsletter: siempre el de Press Over en Substack. El formulario manda el email directo a Substack
-  // (como su embed oficial) y la confirmación se abre en otra pestaña.
+  // Newsletter: siempre el de Press Over en Substack. initNews() manda el email a Substack desde la página
+  // (sin salir de la web); el action del formulario queda como respaldo si el JS no corre.
   var SUBSTACK = 'https://pressover.substack.com/';
   function newsForm(id, note) {
-    return '<form class="news" id="' + id + '" action="' + SUBSTACK + 'api/v1/free?nojs=true" method="post" target="_blank">' +
+    return '<form class="news" id="' + id + '" action="' + SUBSTACK + 'api/v1/free?nojs=true" method="post" target="_blank" novalidate>' +
       '<input type="hidden" name="source" value="embed"><div class="form-inline"><label class="sr-only" for="' + id + '-email">Email</label>' +
       '<input class="input" id="' + id + '-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">' +
       '<button class="pill" type="submit">' + esc(U('news.btn')) + '</button></div>' +
+      '<p class="form-status news__status" role="status"></p>' +
       (note ? '<p class="news__note">' + U('news.note', { url: SUBSTACK }) + '</p>' : '') + '</form>';
   }
   R.news = function (el) { el.innerHTML = newsForm(el.dataset.key || 'news', el.dataset.mode === 'note'); };
 
-  // Anuncio del momento (como el "Housing is now open" de GDC): estado de la convocatoria de juegos
+  // Anuncio del momento (como el "Housing is now open" de GDC): estado de la convocatoria de juegos.
+  // Sacado de la home en nov 2026; para volver a mostrarlo, después de la banda de números:
+  // <section class="band dark"><div class="wrap announce" data-render="announce"></div></section>
   R.announce = function (el) {
     var g = D.next.calls.games, open = g.open && g.url, k = open ? 'open' : 'soon';
     el.innerHTML = '<div><h2 class="display display--ink">' + esc(U('v2.ann.' + k + '.title', { y: D.next.year })) + '</h2><p>' + esc(U('v2.ann.' + k + '.text')) + '</p></div>' +
@@ -234,9 +237,9 @@
     var aw = cur.awards || [];
     if (!aw.length) { el.innerHTML = '<p>' + esc(U('aw.none')) + '</p>'; return; }
     var feat = aw.filter(function (a) { return a.featured; });
+    // el botón 'Ver todos los premios' va en la fila del título (index.html)
     el.innerHTML = winnersGrid(feat.length ? feat : aw) +
-      '<div class="winners__foot">' + (cur.placeholder && cur.placeholder.awards ? ph(U('v2.aw.ph')) : '') +
-      '<a class="u-link" href="premios.html">' + esc(U('v2.aw.all')) + '</a></div>';
+      (cur.placeholder && cur.placeholder.awards ? '<div class="winners__foot">' + ph(U('v2.aw.ph')) + '</div>' : '');
   };
   // Página de premios: todos los premios, edición por edición
   R.awardsAll = function (el) {
@@ -287,7 +290,7 @@
       cards.push('<div class="vcard vcard--soon">' + photo('g26-05') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.soon', { y: cur.year })) + '</span>' + ph(U('ph.video')) + '</div>');
     }
     withVideo.slice(0, 2).forEach(function (e) {
-      cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button>');
+      cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button>');
     });
     cards.push('<a class="vcard" href="' + D.links.youtube + '" target="_blank" rel="noopener">' + photo('g24-02') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.playlist')) + '</span></a>');
     el.innerHTML = '<div class="vcards">' + cards.slice(0, 3).join('') + '</div>';
@@ -407,7 +410,7 @@
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">' + (e.videoLabel ? 'Video' : 'Aftermovie') + '</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
-        '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button></div>' : '';
+        '<img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button></div>' : '';
       var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
@@ -673,12 +676,33 @@
     });
   }
 
+  // Newsletter de Press Over: el email va a Substack sin salir de la web. Substack no deja leer su respuesta
+  // desde otro sitio (no-cors), así que se agradece la suscripción; si el envío falla, se abre Substack.
+  function initNews() {
+    document.addEventListener('submit', function (e) {
+      var form = e.target.closest('form.news'); if (!form) return;
+      e.preventDefault();
+      var input = form.querySelector('[name="email"]'), btn = form.querySelector('[type="submit"]'), status = form.querySelector('.news__status');
+      function say(k, cls) { status.textContent = U(k); status.className = 'form-status news__status ' + (cls || ''); }
+      if (!input.checkValidity()) { say('news.invalid', 'is-err'); input.focus(); return; }
+      btn.disabled = true; say('form.sending');
+      fetch(SUBSTACK + 'api/v1/free', {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(input.value.trim()) + '&source=embed'
+      }).then(function () { form.reset(); say('news.ok', 'is-ok'); })
+        .catch(function () { say('news.err', 'is-err'); form.submit(); })
+        .then(function () { btn.disabled = false; });
+    });
+  }
+
   // ---------------------------------------------------------------- boot
   injectChrome();
   captureES();
   initNav();
   initVideo();
   initForms();
+  initNews();
   initLightbox();
   applyLang();
   // Las secciones con id (#ed-2025, #premios-2026) las arma el JS: se baja a la del link después de armarlas

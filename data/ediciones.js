@@ -140,7 +140,7 @@ window.IDA_DATA = {
         followers: 1462 // seguidores de Indie Dev Argentina en Steam (octubre 2026)
       },
       video: 'SxAnJbHlfE0', // Press Over Podcast sobre IDA 2026 (todavía no hay aftermovie)
-      videoLabel: { es: 'IDA 2026 en el Press Over Podcast', en: 'IDA 2026 on the Press Over Podcast' }, // nombre de la tarjeta si el video no es el aftermovie
+      videoLabel: { es: 'IDA 2026 en Press Over Podcast', en: 'IDA 2026 on Press Over Podcast' }, // nombre de la tarjeta si el video no es el aftermovie
       archiveVideo: false, // solo en "Así se vivió IDA" de la home, no en Ediciones
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
