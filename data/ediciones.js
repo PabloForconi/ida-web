@@ -74,16 +74,16 @@ window.IDA_DATA = {
   orgs: {
     pressover:   { name: 'Press Over', logo: 'pressover.png', url: 'https://pressover.news/' },
     ocppc:       { name: 'Observatorio de Culturas Políticas y Políticas Culturales', logo: 'ocppc.png', url: 'https://www.centrocultural.coop/OCPPC' },
-    ccc:         { name: 'Centro Cultural de la Cooperación', logo: 'ccc.png', url: 'https://www.centrocultural.coop/' },
+    ccc:         { name: 'Centro Cultural de la Cooperación', logo: 'ccc.png', url: 'https://www.centrocultural.coop/', scale: 1.4 },
     storyteller: { name: 'Storyteller', logo: 'storyteller.png', url: 'https://store.steampowered.com/app/1624540/Storyteller/?l=latam' },
-    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr', scale: 3 },
+    francia:     { name: 'Embajada de Francia · Institut Français', logo: 'francia.png', url: 'https://ar.diplomatie.gouv.fr/fr', scale: 2.2 },
     maimonides:  { name: 'Universidad Maimónides', logo: 'maimonides.png', url: 'https://www.maimonides.edu/' },
     oxobox:      { name: 'Oxobox', logo: 'oxobox.png', url: 'https://oxoawards.com/' },
     pm:          { name: 'Provincia Microcréditos', logo: 'pm-color.png', url: 'https://www.provinciamicrocreditos.com.ar/' },
     osai:        { name: 'Fundación OSAI', logo: 'osai.png', url: 'https://www.osai.org.ar/' },
     comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-color.png', url: 'https://comunicacion.sociales.uba.ar/' },
-    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 7, wide: true }, // cuatro logos en uno: fila propia, bien grande
-    ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true, scale: 1.8 },
+    casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 6.5, wide: true }, // cuatro logos en uno: fila propia, bien grande
+    ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true },
     adva:        { name: 'ADVA', logo: 'adva.png', url: null },
     fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: null },
     playbold:    { name: 'Play Bold', logo: 'playbold.png', url: null },
@@ -257,8 +257,8 @@ window.IDA_DATA = {
       ],
       sponsors: {
         presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)
-        apoyo: ['casapba', 'ubasociales', 'pm', 'ccc', 'osai', 'comu'],
-        acompanan: ['playbold', 'gameever', 'fundav', 'adva']
+        apoyo: ['casapba', 'ccc', 'ubasociales', 'pm', 'osai', 'comu'],
+        acompanan: ['adva', 'fundav', 'playbold', 'gameever']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],
       placeholder: { stats: false, photos: false, video: false, awards: false }
@@ -302,7 +302,7 @@ window.IDA_DATA = {
       sponsors: {
         presenta: ['pressover', 'ocppc'],
         apoyo: ['ccc', 'ubasociales', 'comu', 'osai'],
-        acompanan: ['playbold', 'gameever', 'fundav', 'adva']
+        acompanan: ['adva', 'fundav', 'playbold', 'gameever']
       },
       communities: [],
       placeholder: { stats: false, photos: false, video: false, awards: false }

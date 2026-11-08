@@ -412,7 +412,7 @@
         gallery + games +
         (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">Exhibición digital en Steam</h3><h4 class="steam__title">IDA en Steam</h4>') + '</div>' : '') +
         video + awards +
-        '<div class="ed__block"><h3 class="ed__label">Sponsors de esta edición</h3><div class="sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div></div>' +
+        '<div class="ed__block sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div>' +
       '</div></section>';
     }).join('');
   };
@@ -435,14 +435,35 @@
   // Equilibrio óptico de los logos: todos ocupan más o menos la misma superficie, así un logo cuadrado
   // no se ve chico al lado de uno muy ancho. Deja un ancho por contexto (lo elige el CSS):
   // --lw-l escritorio, --lw-m sponsors compactos de Ediciones, --lw-s celular. [común, destacado]
-  var LOGO_AREA = { l: [7000, 15000], m: [2600, 5200], s: [2300, 3400] };
+  // Además se compensa el peso: un logo de trazo fino (poca tinta) va algo más grande que uno macizo.
+  var LOGO_AREA = { l: [7000, 15000], m: [2600, 6000], s: [2300, 3400] };
+  var INK = {};
+  function inkOf(img) { // fracción de la caja que tiene tinta (0..1)
+    if (INK[img.src] != null) return INK[img.src];
+    var d = 0.4;
+    try {
+      var w = Math.min(160, img.naturalWidth), h = Math.max(1, Math.round(w * img.naturalHeight / img.naturalWidth));
+      var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+      var cx = cv.getContext('2d'); cx.drawImage(img, 0, 0, w, h);
+      var px = cx.getImageData(0, 0, w, h).data, s = 0;
+      var e = px.length - 4, r = w * 4 - 4; // fondo opaco (las cuatro esquinas): cuenta lo que se distingue del fondo
+      var bg = px[3] > 200 && px[r + 3] > 200 && px[e + 3] > 200 && px[e - r + 3] > 200 ? [px[0], px[1], px[2]] : null;
+      for (var i = 0; i < px.length; i += 4) {
+        s += bg ? (Math.abs(px[i] - bg[0]) + Math.abs(px[i + 1] - bg[1]) + Math.abs(px[i + 2] - bg[2]) > 90 ? 1 : 0) : px[i + 3] / 255;
+      }
+      d = s / (w * h);
+    } catch (e) {}
+    return (INK[img.src] = d);
+  }
   function fitLogos() {
     document.querySelectorAll('.logos--even img').forEach(function (img) {
       function fit() {
         if (!img.naturalWidth || !img.naturalHeight) return;
         var ar = img.naturalWidth / img.naturalHeight, lg = img.closest('.logos--lg') ? 1 : 0;
+        var ink = Math.min(1.6, Math.max(0.75, Math.sqrt(0.42 / Math.max(inkOf(img), 0.05))));
         Object.keys(LOGO_AREA).forEach(function (k) {
-          img.style.setProperty('--lw-' + k, Math.round(Math.sqrt(LOGO_AREA[k][lg] * (+img.dataset.scale || 1) * ar)) + 'px');
+          // ar^0.42 en vez de ar^0.5: los muy anchos quedan apenas más cortos, porque a lo largo pesan más
+          img.style.setProperty('--lw-' + k, Math.round(Math.sqrt(LOGO_AREA[k][lg] * (+img.dataset.scale || 1) * ink) * Math.pow(ar, 0.42)) + 'px');
         });
       }
       if (img.complete) fit(); else img.addEventListener('load', fit, { once: true });
