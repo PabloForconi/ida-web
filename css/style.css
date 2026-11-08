@@ -5,7 +5,7 @@
    botones píldora y footer con mosaico de bloques.
    Colores de IDA: magenta como color principal, azul para los números, negro para sponsors,
    rosa claro (derivado del magenta) para las bandas, verde y amarillo de acento.
-   Titulares: Bricolage Grotesque condensada (la fuente de marca de IDA). Números: Anton. Botones y etiquetas: Tomorrow. Texto: DM Sans.
+   Titulares: Saira Condensed (antes Bricolage Grotesque, la fuente de marca de IDA, en versión angosta: se veía muy parecida a GDC). Números: Anton. Botones y etiquetas: Tomorrow. Texto: DM Sans.
    ========================================================================== */
 
 :root {
@@ -23,8 +23,8 @@
   --muted: #4a4a57;
   --line: #e4e4ea;
 
-  --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
-  --f-num: 'Anton', 'Bricolage Grotesque', sans-serif;
+  --f-display: 'Saira Condensed', system-ui, sans-serif;
+  --f-num: 'Anton', 'Saira Condensed', sans-serif;
   --f-head: 'Tomorrow', system-ui, sans-serif;
   --f-body: 'DM Sans', system-ui, sans-serif;
 
@@ -157,6 +157,11 @@ button, input { font: inherit; color: inherit; }
 .announce { display: flex; align-items: center; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; }
 .announce .display { font-size: clamp(2.1rem, 4.4vw, 3.4rem); margin-bottom: .2em; }
 .announce p { margin: 0; font-size: 1.02rem; }
+.announce > div:first-child { flex: 1 1 420px; }
+.news { flex: 0 1 460px; }
+.news .input { border-color: transparent; }
+.announce .news__note, .news__note { margin: 10px 0 0; font-size: .82rem; color: var(--muted); }
+.news__note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Imagen + texto ---------- */
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
@@ -311,31 +316,29 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 
 /* ---------- Footer ---------- */
 .foot { background: var(--mag); color: #fff; }
-.tiles { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
-.t { aspect-ratio: 1; display: grid; place-items: center; font: 800 condensed clamp(3rem, 9vw, 8rem)/1 var(--f-display); overflow: hidden; }
-.t svg { width: 46%; height: auto; display: block; }
-.t svg.px { shape-rendering: crispEdges; }
-.t svg.t__sm { width: 26%; }
-.t--mag { background: var(--mag); color: #fff; }
-.t--white { background: #fff; }
-.t--blue { background: var(--blue); }
-.t--green { background: var(--green); color: var(--ink); }
-.t--black { background: var(--black); }
-.t--yellow { background: var(--yellow); color: var(--ink); }
-.t--pink { background: var(--pink-2); color: var(--blue); }
-.foot__in { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; padding-top: clamp(40px, 5vw, 64px); padding-bottom: 32px; }
-.foot__news h2 { font: 800 condensed clamp(1.8rem, 3.4vw, 2.6rem)/1 var(--f-display); text-transform: uppercase; margin-bottom: 16px; }
-.foot__news .input { border-color: transparent; }
-.foot__news .form-status { color: #fff; }
-.foot__tag { justify-self: end; text-align: right; }
+.foot__in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px 48px; align-items: stretch; padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(36px, 5vw, 56px); }
+.foot__thanks { margin: 0; font: 800 condensed clamp(3.4rem, 9vw, 8rem)/.88 var(--f-display); text-transform: uppercase; }
+.foot__thanks span { color: var(--ink); }
+.foot__tag { justify-self: end; text-align: right; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }   /* hashtag arriba y redes abajo, a la altura del título */
+.foot__tag .hashtag { margin: 0; font-size: clamp(2.6rem, 4.4vw, 3.9rem); line-height: .8; }
+.foot__news { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 20px 48px; align-items: center; padding-top: 32px; padding-bottom: 36px; position: relative; }
+.foot__news::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid rgba(255, 255, 255, .4); }
+.foot__news h2 { margin: 0 0 3px; font: 800 condensed clamp(1.5rem, 2.4vw, 1.9rem)/.95 var(--f-display); text-transform: uppercase; }   /* título + bajada, a la altura del formulario */
+.foot__news h2 span { color: var(--ink); }
+.foot__news p { margin: 0; font-weight: 500; font-size: .92rem; line-height: 1.2; }
+.foot .news { flex: none; }
+.foot .news .pill { background: var(--ink); }
+.foot .news .pill:hover { background: var(--blue); }
 .hashtag { font: 800 condensed clamp(3rem, 7vw, 5.4rem)/.9 var(--f-display); margin: 0 0 14px; }
 .socials { display: flex; gap: 10px; justify-content: flex-end; }
 .socials a { width: 46px; height: 46px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--ink); transition: background-color .15s, color .15s; }
 .socials a:hover { background: var(--ink); color: #fff; }
 .socials svg { width: 22px; height: 22px; fill: currentColor; }
-.foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-top: 18px; padding-bottom: 24px; position: relative; font: 600 .8rem/1.4 var(--f-head); }
+.foot__bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-top: 18px; padding-bottom: 24px; position: relative; font: 600 .8rem/1.4 var(--f-head); }
 .foot__bottom::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid rgba(255, 255, 255, .4); }
-.foot__bottom a { text-decoration: underline; text-underline-offset: 3px; }
+.foot__brand { display: flex; align-items: center; gap: 10px; }
+.foot__heart { width: 24px; height: auto; shape-rendering: crispEdges; }
+.foot__brand img { filter: brightness(0) invert(1); }   /* logo en blanco: los colores del logo se pierden sobre magenta */
 
 /* ==========================================================================
    Páginas internas (ediciones, premios, sponsors)
@@ -528,7 +531,7 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   :root { --brand-h: 62px; }
   .infobar__in { display: grid; grid-template-columns: repeat(2, max-content); justify-content: center; align-content: center; gap: 6px 36px; }
   .infobar__addr { display: none; }
-  .split, .cta-band, .info, .foot__in { grid-template-columns: 1fr; }
+  .split, .cta-band, .info, .foot__in, .foot__news { grid-template-columns: 1fr; }
   .features, .vcards { grid-template-columns: 1fr; max-width: 620px; }
   .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pgroup { grid-template-columns: 1fr; }
@@ -564,7 +567,6 @@ textarea.input { border-radius: 18px; resize: vertical; min-height: 110px; }
   .logos--even img, .sponsors-compact .logos--even img { width: var(--lw-s, auto); }
   .sponsors-compact .logos--even { gap: 22px 32px; }
   .tiers { gap: 26px; }
-  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .facts div { grid-template-columns: 1fr; gap: 2px; }
   .announce .pill { width: 100%; justify-content: center; }
   .audience { grid-template-columns: 1fr; }

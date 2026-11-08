@@ -139,7 +139,9 @@ window.IDA_DATA = {
         frontpage: 48,  // horas con el banner de IDA en la portada de Steam en Argentina (1 al 3 de agosto)
         followers: 1462 // seguidores de Indie Dev Argentina en Steam (octubre 2026)
       },
-      video: null, // id de YouTube del aftermovie
+      video: 'SxAnJbHlfE0', // Press Over Podcast sobre IDA 2026 (todavía no hay aftermovie)
+      videoLabel: { es: 'IDA 2026 en el Press Over Podcast', en: 'IDA 2026 on the Press Over Podcast' }, // nombre de la tarjeta si el video no es el aftermovie
+      archiveVideo: false, // solo en "Así se vivió IDA" de la home, no en Ediciones
       photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
       // Los 25 del showcase (lista de Cultura Geek, 27/7/2026; portadas de Steam o itch.io)
@@ -188,7 +190,7 @@ window.IDA_DATA = {
         acompanan: ['adva', 'fundav', 'playbold', 'gameever']
       },
       communities: ['wigar', 'acciondev', 'construct', 'godot', 'redcom', 'audiovj'],
-      placeholder: { stats: true, photos: false, video: true, awards: false }
+      placeholder: { stats: true, photos: false, video: false, awards: false }
     },
     {
       year: 2025,

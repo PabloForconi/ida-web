@@ -59,13 +59,7 @@
   function navLink(href, page, key, text) {
     return '<a href="' + href + '"' + (PAGE === page ? ' aria-current="page"' : '') + ' data-i18n="' + key + '">' + text + '</a>';
   }
-  var TILES = '<div class="tiles" aria-hidden="true">' +
-    '<span class="t t--mag">{</span>' +
-    '<span class="t t--white"><svg class="px" viewBox="0 0 9 8"><path fill="#ff0055" d="M1 0h2v1H1zM6 0h2v1H6zM0 1h4v1H0zM5 1h4v1H5zM0 2h9v2H0zM1 4h7v1H1zM2 5h5v1H2zM3 6h3v1H3zM4 7h1v1H4z"/></svg></span>' +
-    '<span class="t t--blue"><svg viewBox="0 0 24 24"><g fill="#ff009d"><path id="spoke" d="M10.2 .6h3.6v22.8h-3.6z"/><use href="#spoke" transform="rotate(45 12 12)"/><use href="#spoke" transform="rotate(90 12 12)"/><use href="#spoke" transform="rotate(135 12 12)"/></g></svg></span>' +
-    '<span class="t t--green"><svg class="px t__sm" viewBox="0 0 3 3"><path fill="#0b0b12" d="M1 0h1v1h1v1H2v1H1V2H0V1h1z"/></svg></span>' +
-    '<span class="t t--black"><svg class="px" viewBox="0 0 16 16"><path fill="#ffe500" d="M8 0h7v1H8zM7 1h2v1H7zM10 1h6v1h-6zM7 2h9v2H7zM7 4h5v1H7zM7 5h7v1H7zM0 6h1v3H0zM6 6h5v1H6zM5 7h9v1H5zM1 8h1v1H1zM4 8h7v1H4zM12 8h1v1h-1zM0 9h11v1H0zM1 10h10v1H1zM2 11h8v1H2zM3 12h6v1H3zM4 13h3v1H4zM8 13h2v1H8zM4 14h2v1H4zM9 14h1v1H9zM4 15h3v1H4zM9 15h2v1H9z"/></svg></span>' +
-    '<span class="t t--yellow">&gt;</span><span class="t t--pink">=</span><span class="t t--mag">}</span></div>';
+  var HEART = '<svg class="foot__heart" viewBox="0 0 9 8" aria-hidden="true"><path fill="currentColor" d="M1 0h2v1H1zM6 0h2v1H6zM0 1h4v1H0zM5 1h4v1H5zM0 2h9v2H0zM1 4h7v1H1zM2 5h5v1H2zM3 6h3v1H3zM4 7h1v1H4z"/></svg>';
   function injectChrome() {
     var h = document.getElementById('v2-head');
     if (h) h.outerHTML = '<header class="masthead">' +
@@ -84,16 +78,17 @@
         '</div>' +
       '</div></div></header>';
     var f = document.getElementById('v2-foot');
-    if (f) f.outerHTML = '<footer class="foot">' + TILES +
+    // Pie: cierre tipo créditos de videojuego, con el hashtag de la próxima edición y las redes
+    if (f) f.outerHTML = '<footer class="foot">' +
       '<div class="wrap foot__in">' +
-        '<div class="foot__news" id="newsletter"><h2 data-i18n="foot.news">Enterate primero de IDA <span data-render="nextYear"></span></h2>' +
-          '<form class="form" data-form="newsletter" novalidate><div class="form-inline"><label class="sr-only" for="nl-email">Email</label>' +
-          '<input class="input" id="nl-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">' +
-          '<button class="pill pill--dark" type="submit" data-i18n="foot.news.btn">Suscribirme</button></div><p class="form-status" role="status"></p></form></div>' +
+        '<p class="foot__thanks" data-i18n="foot.thanks">Gracias por <span>jugar</span></p>' +
         '<div class="foot__tag"><p class="hashtag">#IDA<span data-render="nextYear"></span></p><div data-render="socials"></div></div>' +
       '</div>' +
-      '<div class="wrap foot__bottom"><span>© <span data-render="thisYear"></span> Indie Dev Argentina · <span data-i18n="foot.by">Un evento de Press Over</span></span>' +
-        '</div></footer>';
+      '<div class="wrap foot__news"><div><h2 data-i18n="foot.news">Suscribite al newsletter de <span>Press Over</span></h2>' +
+        '<p data-i18n="foot.news.text">Para enterarte de todas las novedades de IDA.</p></div>' +
+        '<div data-render="news" data-key="news-pie"></div></div>' +
+      '<div class="wrap foot__bottom"><span class="foot__brand">' + HEART + '<img src="' + IMG + 'logos/ida.png" alt="IDA" width="76" height="26"></span>' +
+        '<span>© <span data-render="thisYear"></span> Indie Dev Argentina</span></div></footer>';
   }
 
   // ---------------------------------------------------------------- renderers
@@ -132,11 +127,23 @@
     countUp(el);
   };
 
+  // Newsletter: siempre el de Press Over en Substack. El formulario manda el email directo a Substack
+  // (como su embed oficial) y la confirmación se abre en otra pestaña.
+  var SUBSTACK = 'https://pressover.substack.com/';
+  function newsForm(id, note) {
+    return '<form class="news" id="' + id + '" action="' + SUBSTACK + 'api/v1/free?nojs=true" method="post" target="_blank">' +
+      '<input type="hidden" name="source" value="embed"><div class="form-inline"><label class="sr-only" for="' + id + '-email">Email</label>' +
+      '<input class="input" id="' + id + '-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">' +
+      '<button class="pill" type="submit">' + esc(U('news.btn')) + '</button></div>' +
+      (note ? '<p class="news__note">' + U('news.note', { url: SUBSTACK }) + '</p>' : '') + '</form>';
+  }
+  R.news = function (el) { el.innerHTML = newsForm(el.dataset.key || 'news', el.dataset.mode === 'note'); };
+
   // Anuncio del momento (como el "Housing is now open" de GDC): estado de la convocatoria de juegos
   R.announce = function (el) {
     var g = D.next.calls.games, open = g.open && g.url, k = open ? 'open' : 'soon';
     el.innerHTML = '<div><h2 class="display display--ink">' + esc(U('v2.ann.' + k + '.title', { y: D.next.year })) + '</h2><p>' + esc(U('v2.ann.' + k + '.text')) + '</p></div>' +
-      '<a class="pill" href="' + (open ? g.url : '#newsletter') + '"' + ext(open ? g.url : '') + '>' + esc(U('v2.ann.' + k + '.cta')) + '</a>';
+      (open ? '<a class="pill" href="' + g.url + '"' + ext(g.url) + '>' + esc(U('v2.ann.open.cta')) + '</a>' : newsForm('newsletter', true));
   };
 
   // 4 caminos (como "Find Your Path")
@@ -271,6 +278,8 @@
   };
 
   // 3 videos (como "Why Attend?")
+  // Nombre del video de una edición: el aftermovie, salvo que la edición diga otra cosa (videoLabel)
+  function videoLabel(e) { return e.videoLabel ? T(e.videoLabel) : U('v2.vid.after', { y: e.year }); }
   R.videos = function (el) {
     var withVideo = D.editions.filter(function (e) { return e.video && !(e.placeholder && e.placeholder.video); });
     var cards = [];
@@ -278,7 +287,7 @@
       cards.push('<div class="vcard vcard--soon">' + photo('g26-05') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.soon', { y: cur.year })) + '</span>' + ph(U('ph.video')) + '</div>');
     }
     withVideo.slice(0, 2).forEach(function (e) {
-      cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button>');
+      cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button>');
     });
     cards.push('<a class="vcard" href="' + D.links.youtube + '" target="_blank" rel="noopener">' + photo('g24-02') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.playlist')) + '</span></a>');
     el.innerHTML = '<div class="vcards">' + cards.slice(0, 3).join('') + '</div>';
@@ -397,8 +406,8 @@
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3>' + showcaseGrid(e) + '</div>' :
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
-      var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
-        '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
+      var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">' + (e.videoLabel ? 'Video' : 'Aftermovie') + '</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
+        '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button></div>' : '';
       var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
