@@ -333,10 +333,8 @@
       }).join('') + '</div></div>' : '';
     }).join('');
   }
-  R.partners = function (el) {
-    el.innerHTML = sponsorGroups(cur.sponsors) +
-      '<a class="pill pill--white" href="' + homeLink('#ser-sponsor') + '">' + esc(U('v2.sp.join', { y: D.next.year })) + '</a>';
-  };
+  // Sin botón "Quiero ser sponsor": la banda #ser-sponsor está justo arriba
+  R.partners = function (el) { el.innerHTML = sponsorGroups(cur.sponsors); };
   // Página de sponsors: todos los que acompañaron alguna edición
   R.wall = function (el) {
     var seen = { pressover: 1, ocppc: 1 }, ids = []; // Press Over y Culturas Políticas organizan: no van en el muro

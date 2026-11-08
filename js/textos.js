@@ -79,7 +79,6 @@ window.IDA_V2 = {
       'v2.aw.all': 'Ver todos los premios',
       'v2.vid.after': 'Aftermovie IDA {y}',
       'v2.past.title': 'Ediciones anteriores',
-      'v2.sp.join': 'Quiero ser sponsor de IDA {y}',
       // "videojuego" en vez de "juego": pisan los textos compartidos de ../js/i18n.js en toda la web
       'stat.games': 'Videojuegos',
       'stat.short.games': 'videojuegos',
@@ -110,7 +109,6 @@ window.IDA_V2 = {
       'v2.aw.all': 'See all awards',
       'v2.vid.after': 'IDA {y} aftermovie',
       'v2.past.title': 'Past editions',
-      'v2.sp.join': 'I want to sponsor IDA {y}',
       'stat.games': 'Games shown',
       'stat.short.games': 'games',
       'call.games.title': 'Show your game',
