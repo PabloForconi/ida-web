@@ -343,6 +343,7 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .foot__news p { margin: 0; font-weight: 500; font-size: .92rem; line-height: 1.2; }
 .foot .news { flex: none; }
 .foot .news .pill { background: var(--ink); }
+.foot__news .news__status { margin-top: 12px; font: 500 .85rem/1.3 var(--f-body); }   /* misma letra que la bajada, un poco más chica */
 .foot .news .pill:hover { background: var(--blue); }
 .hashtag { font: 800 condensed clamp(3rem, 7vw, 5.4rem)/.9 var(--f-display); margin: 0 0 14px; }
 .socials { display: flex; gap: 10px; justify-content: flex-end; }
