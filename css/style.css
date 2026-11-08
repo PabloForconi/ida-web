@@ -259,6 +259,9 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .steam__art img { width: 100%; }
 /* Captura de la página de Steam: marco tipo ventana, con la parte de abajo desvaneciéndose */
 .steam__art--shot { position: relative; box-shadow: 0 0 0 3px var(--mag), 0 24px 60px rgba(0, 0, 0, .55); }
+/* mockup con su propio marco y fondo transparente: sin borde ni recorte, apenas una sombra */
+.steam__art--mockup { border-radius: 0; overflow: visible; box-shadow: none; }
+.steam__art--mockup img { filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .5)); }
 .steam__art--shot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 18%; background: linear-gradient(transparent, rgba(16, 16, 24, .9)); pointer-events: none; }
 .steam__title { font: 800 condensed clamp(2.2rem, 4vw, 3.2rem)/.95 var(--f-display); color: var(--mag); margin: 0 0 18px; }
 

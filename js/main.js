@@ -269,8 +269,9 @@
         steamStats(s) +
         '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
         (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + ', el publisher mexicano que hizo posible el acuerdo con Valve.</p>' : '') + '</div>' +
-      '<a class="steam__art' + (s.shot ? ' steam__art--shot' : '') + '" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
-        (s.shot ? '<img src="' + IMG + 'photos/' + s.shot + '.jpg" alt="La página del evento de IDA ' + e.year + ' en Steam, con la selección de videojuegos de la exhibición presencial" loading="lazy" width="1100" height="1200">'
+      '<a class="steam__art' + (s.mockup ? ' steam__art--mockup' : s.shot ? ' steam__art--shot' : '') + '" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
+        (s.mockup ? '<img src="' + IMG + 'photos/' + s.mockup + '" alt="La página del evento de IDA ' + e.year + ' en Steam, con los videojuegos de la exhibición" loading="lazy" width="1145" height="1374">' :
+         s.shot ? '<img src="' + IMG + 'photos/' + s.shot + '.jpg" alt="La página del evento de IDA ' + e.year + ' en Steam, con la selección de videojuegos de la exhibición presencial" loading="lazy" width="1100" height="1200">'
           : '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + e.year + ', en Steam" loading="lazy" width="800" height="450">') + '</a>' +
     '</div>';
   }
