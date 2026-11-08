@@ -84,10 +84,10 @@ window.IDA_DATA = {
     comu:        { name: 'COMU · Ciencias de la Comunicación UBA', logo: 'comu-color.png', url: 'https://comunicacion.sociales.uba.ar/' },
     casapba:     { name: 'Casa de la Provincia de Buenos Aires', logo: 'casa-pba.png', url: null, mono: true, scale: 6.5, wide: true }, // cuatro logos en uno: fila propia, bien grande
     ubasociales: { name: 'Facultad de Ciencias Sociales UBA', logo: 'uba-sociales.png', url: 'https://www.sociales.uba.ar/', mono: true },
-    adva:        { name: 'ADVA', logo: 'adva.png', url: null },
-    fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: null },
-    playbold:    { name: 'Play Bold', logo: 'playbold.png', url: null },
-    gameever:    { name: 'Game Ever', logo: 'gameever.png', url: null },
+    adva:        { name: 'ADVA', logo: 'adva.png', url: 'https://adva.vg/' },
+    fundav:      { name: 'FUNDAV · Fundación Argentina de Videojuegos', logo: 'fundav.png', url: 'https://fundav.com/' },
+    playbold:    { name: 'Play Bold', logo: 'playbold.png', url: 'https://playbold.agency/' },
+    gameever:    { name: 'Game Ever', logo: 'gameever.png', url: 'https://gameeverstudio.com/' },
     foton:       { name: 'Foton Games', logo: 'foton.png', url: null },
     amd:         { name: 'AMD', logo: 'amd.svg', url: 'https://www.amd.com/', mono: true },
     // comunidades
