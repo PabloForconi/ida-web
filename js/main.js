@@ -394,8 +394,8 @@
         }).join('') + '</div></div>' : '';
       var sc = hasShowcase(e);
       var games = !e.games || !e.games.length ? '' : sc ?
-        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase' + (e.awards.length ? ' y Premios IDA' : '') + ' · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
-        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase · ' + e.games.length + '</h3><ul class="games">' +
+        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3>' + showcaseGrid(e) + '</div>' :
+        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">Aftermovie</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hqdefault.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('v2.vid.after', { y: e.year })) + '</span></button></div>' : '';
