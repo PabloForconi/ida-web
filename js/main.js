@@ -38,6 +38,10 @@
   function photo(name, sizes) {
     return '<img src="' + IMG + 'photos/' + name + '-800.jpg" srcset="' + IMG + 'photos/' + name + '-800.jpg 800w, ' + IMG + 'photos/' + name + '.jpg 1600w" sizes="' + (sizes || '(max-width: 760px) 100vw, 25vw') + '" alt="" loading="lazy" decoding="async" width="800" height="533">';
   }
+  // Foto que abre el visor (initLightbox): el visor recorre toda la lista, no solo las que se ven
+  function galLink(list, i, inner, label) {
+    return '<a href="' + IMG + 'photos/' + list[i] + '.jpg" data-gal="' + list.join(',') + '" data-i="' + i + '" aria-label="' + esc(label || U('lb.open')) + '">' + inner + '</a>';
+  }
   function venueName(e) { return D.venues[e.venue] ? D.venues[e.venue].name : ''; }
   function ext(href) { return /^https?:/.test(href) ? ' target="_blank" rel="noopener"' : ''; }
 
@@ -284,7 +288,7 @@
   R.photos = function (el) {
     // la primera foto ya está en el hero
     var list = (cur.photos || []).filter(function (p) { return p !== 'g26-01'; }).slice(0, 4);
-    el.innerHTML = '<div class="photos">' + list.map(function (p) { return '<div>' + photo(p) + '</div>'; }).join('') + '</div>' +
+    el.innerHTML = '<div class="photos">' + list.map(function (p) { return galLink(cur.photos, cur.photos.indexOf(p), photo(p)); }).join('') + '</div>' +
       (cur.placeholder && cur.placeholder.photos ? '<p class="note">' + ph(U('ph.photos')) + '</p>' : '');
   };
 
@@ -384,7 +388,10 @@
         return '<div><b>' + pre + num(e.stats[k]) + '</b><span>' + esc(U('stat.' + k)) + '</span></div>';
       }).join('');
       var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería' + (P.photos ? ' ' + ph(U('ph.photos')) : '') + '</h3><div class="gallery">' +
-        e.photos.slice(0, 9).map(function (p) { return '<a href="' + IMG + 'photos/' + p + '.jpg" target="_blank" rel="noopener">' + photo(p, '(max-width: 760px) 50vw, 30vw') + '</a>'; }).join('') + '</div></div>' : '';
+        e.photos.slice(0, 9).map(function (p, i) {
+          var more = i === 8 && e.photos.length > 9 ? e.photos.length - 9 : 0; // la última muestra cuántas quedan: el visor tiene todas
+          return galLink(e.photos, i, photo(p, '(max-width: 760px) 50vw, 30vw') + (more ? '<span class="gallery__more">+' + more + '</span>' : ''), more ? U('lb.more', { n: e.photos.length }) : '');
+        }).join('') + '</div></div>' : '';
       var sc = hasShowcase(e);
       var games = !e.games || !e.games.length ? '' : sc ?
         '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase' + (e.awards.length ? ' y Premios IDA' : '') + ' · ' + e.games.length + '</h3>' + showcaseGrid(e) + '</div>' :
@@ -404,8 +411,8 @@
           var initials = g.name.split(' ').map(function (w) { return w.charAt(0); }).join('').slice(0, 2);
           return '<article class="guest"><div class="guest__head">' +
             '<div class="guest__pic">' + (g.img ? '<img src="' + IMG + 'photos/' + g.img + '.jpg" alt="' + esc(g.name) + '" loading="lazy" width="300" height="300">' : '<span aria-hidden="true">' + esc(initials) + '</span>') + '</div>' +
-            '<div><h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p>' +
-            '<p class="guest__from">' + (g.flag ? '<img src="' + IMG + 'flags/' + g.flag + '.png" alt="" width="24" height="16">' : '') + esc(T(g.from)) + '</p></div></div>' +
+            '<div><p class="guest__from">' + (g.flag ? '<img src="' + IMG + 'flags/' + g.flag + '.png" alt="" width="24" height="16">' : '') + esc(T(g.from)) + '</p>' +
+            '<h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p></div></div>' +
             (g.talk ? '<p class="guest__talk"><span>Charla</span>«' + esc(g.talk) + '»</p>' : '') +
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
         }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
@@ -550,6 +557,89 @@
     });
   }
 
+  // Visor de fotos: foto grande, flechas, tira de miniaturas, contador y cerrar.
+  // Teclado (← → Esc), deslizar en celular y clic afuera de la foto para cerrar.
+  function initLightbox() {
+    var box, img, count, strip, list = [], at = 0, back = null, x0 = null;
+    var CHEV = function (d) { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>'; };
+    function src(i, small) { return IMG + 'photos/' + list[i] + (small ? '-800' : '') + '.jpg'; }
+    function build() {
+      box = document.createElement('div');
+      box.className = 'lb'; box.hidden = true;
+      box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
+      box.innerHTML = '<div class="lb__top"><span class="lb__count" aria-live="polite"></span>' +
+        '<button class="lb__close" type="button">' + CHEV('M6 6l12 12M18 6L6 18') + '</button></div>' +
+        '<div class="lb__stage"><button class="lb__nav lb__prev" type="button">' + CHEV('M15 5l-7 7 7 7') + '</button>' +
+        '<img class="lb__img" alt="">' +
+        '<button class="lb__nav lb__next" type="button">' + CHEV('M9 5l7 7-7 7') + '</button></div>' +
+        '<div class="lb__thumbs"></div>';
+      document.body.appendChild(box);
+      img = box.querySelector('.lb__img'); count = box.querySelector('.lb__count'); strip = box.querySelector('.lb__thumbs');
+      box.querySelector('.lb__close').addEventListener('click', close);
+      box.querySelector('.lb__prev').addEventListener('click', function () { go(at - 1); });
+      box.querySelector('.lb__next').addEventListener('click', function () { go(at + 1); });
+      box.querySelector('.lb__stage').addEventListener('click', function (e) { if (e.target === e.currentTarget) close(); });
+      strip.addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) go(+b.dataset.i); });
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') go(at - 1);
+        else if (e.key === 'ArrowRight') go(at + 1);
+        else if (e.key === 'Tab') { // el foco no se escapa del visor
+          var f = [].slice.call(box.querySelectorAll('button')).filter(function (b) { return b.offsetParent; });
+          if (e.shiftKey && document.activeElement === f[0]) { f[f.length - 1].focus(); e.preventDefault(); }
+          else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { f[0].focus(); e.preventDefault(); }
+        }
+      });
+      img.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      img.addEventListener('touchend', function (e) {
+        if (x0 == null) return;
+        var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 45) go(at + (dx < 0 ? 1 : -1));
+      });
+    }
+    function labels() {
+      box.setAttribute('aria-label', U('lb.label'));
+      box.querySelector('.lb__close').setAttribute('aria-label', U('lb.close'));
+      box.querySelector('.lb__prev').setAttribute('aria-label', U('lb.prev'));
+      box.querySelector('.lb__next').setAttribute('aria-label', U('lb.next'));
+    }
+    function go(i) {
+      at = (i + list.length) % list.length;
+      img.src = src(at);
+      count.textContent = (at + 1) + ' / ' + list.length;
+      [at - 1, at + 1].forEach(function (j) { new Image().src = src((j + list.length) % list.length); }); // las vecinas ya cargadas
+      [].forEach.call(strip.children, function (b, j) {
+        var on = j === at;
+        b.classList.toggle('is-on', on);
+        if (on) { b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block: 'nearest', inline: 'center' }); } else b.removeAttribute('aria-current');
+      });
+    }
+    function open(names, i, from) {
+      if (!box) build();
+      labels();
+      list = names; back = from;
+      strip.innerHTML = list.map(function (p, j) {
+        return '<button type="button" data-i="' + j + '" aria-label="' + (j + 1) + ' / ' + list.length + '"><img src="' + src(j, true) + '" alt="" loading="lazy"></button>';
+      }).join('');
+      box.hidden = false;
+      document.documentElement.classList.add('lb-open');
+      go(i);
+      box.querySelector('.lb__close').focus();
+    }
+    function close() {
+      box.hidden = true;
+      document.documentElement.classList.remove('lb-open');
+      img.removeAttribute('src');
+      if (back) back.focus();
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-gal]');
+      if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return; // con Ctrl/Cmd se sigue pudiendo abrir en otra pestaña
+      e.preventDefault();
+      open(a.dataset.gal.split(','), +a.dataset.i, a);
+    });
+  }
+
   // Formularios → mismo endpoint que la web actual (data/ediciones.js)
   function initForms() {
     document.addEventListener('submit', function (e) {
@@ -580,6 +670,7 @@
   initNav();
   initVideo();
   initForms();
+  initLightbox();
   applyLang();
   // Las secciones con id (#ed-2025, #premios-2026) las arma el JS: se baja a la del link después de armarlas
   if (location.hash.length > 1) {

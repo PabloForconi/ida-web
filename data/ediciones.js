@@ -232,7 +232,7 @@ window.IDA_DATA = {
         { game: 'Shippin', steam: 3334100, cover: 'shippin.jpg' },
         { game: 'Malvinas: La última carta', steam: 2584740, cover: 'malvinas.jpg' },
         { game: 'Pungo', steam: 3603010, cover: 'pungo.jpg' },
-        { game: 'Ruless' }, // sin página pública ni portada todavía
+        { game: 'Ruless', cover: 'ruless.jpg' }, // sin página pública todavía
         { game: 'The Lost Land of Bahía Blanca', steam: 4144100, cover: 'bahia-blanca.jpg' },
         { game: 'Cazadora', url: 'https://pulgaescapista.itch.io/cazadora', cover: 'cazadora.jpg' },
         { game: 'Not So Smart Delivery', steam: 3512970, cover: 'not-so-smart.jpg' },

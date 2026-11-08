@@ -83,7 +83,10 @@ window.IDA_V2 = {
       'call.steam.title': 'Sumate al showcase de Steam',
       'call.steam.text': 'Si tu videojuego es argentino y tiene página en Steam, puede ser parte de la exhibición digital de IDA {y}.',
       'call.team.title': 'Hacé IDA con nosotros',
-      'call.team.text': 'Voluntariado, comunidades, medios y universidades: hay muchas formas de ser parte de IDA {y}.'
+      'call.team.text': 'Voluntariado, comunidades, medios y universidades: hay muchas formas de ser parte de IDA {y}.',
+      'lb.label': 'Galería de fotos',
+      'lb.open': 'Ver foto ampliada',
+      'lb.more': 'Ver las {n} fotos'
     },
     en: {
       'v2.stat.total': 'Attendees across {n} editions',
@@ -101,7 +104,10 @@ window.IDA_V2 = {
       'stat.games': 'Games shown',
       'stat.short.games': 'games',
       'call.games.title': 'Show your game',
-      'call.games.cta': 'Submit your game'
+      'call.games.cta': 'Submit your game',
+      'lb.label': 'Photo gallery',
+      'lb.open': 'View larger photo',
+      'lb.more': 'See all {n} photos'
     }
   }
 };
