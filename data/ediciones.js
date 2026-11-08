@@ -175,15 +175,15 @@ window.IDA_DATA = {
       ],
       awards: [
         { cat: { es: 'Mejor Videojuego · Premio AMD', en: 'Best Game · AMD Award' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg', featured: true, top: true, by: 'amd' },
-        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg' },
-        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', steam: 2720230, cover: 'xplorite.jpg' },
-        { cat: { es: 'Mejor Multijugador o Cooperativo', en: 'Best Multiplayer or Co-op' }, game: 'AstroBrawl', studio: 'Papa Corps', steam: 3175020, cover: 'astrobrawl.jpg' },
-        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg' },
+        { cat: { es: 'Identidad Argentina', en: 'Argentine Identity' }, game: 'Zupay: Sombras de la Independencia', studio: 'Abstract Tales', steam: 4074370, cover: 'zupay.jpg', featured: true },
         { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg', featured: true },
         { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Treetopians', studio: 'Aparato Games', steam: 3967310, cover: 'treetopians.jpg' },
+        { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Xplorite', studio: 'Indie Two Games', steam: 2720230, cover: 'xplorite.jpg' },
         { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'La Hija del Delta', studio: 'Bicho Raro', steam: 3301850, cover: 'hija-delta.jpg' },
-        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Phantom Gear', studio: 'Bits Rule', steam: 1802240, cover: 'phantom-gear.jpg' },
-        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Zupay: Sombras de la Independencia', studio: 'Abstract Tales', steam: 4074370, cover: 'zupay.jpg', featured: true }
+        { cat: { es: 'Mejor Dirección de Arte', en: 'Best Art Direction' }, game: 'Teios Journey', studio: 'Serendipia Games', steam: 3506070, cover: 'teios.jpg' },
+        { cat: { es: 'Mejor Diseño de Audio', en: 'Best Audio Design' }, game: 'Phantom Gear', studio: 'Bits Rule', steam: 1802240, cover: 'phantom-gear.jpg' },
+        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'The Outer Frame', studio: 'Sapucai Games', steam: 4079320, cover: 'outer-frame.jpg' },
+        { cat: { es: 'Mejor Experiencia Multijugador', en: 'Best Multiplayer Experience' }, game: 'AstroBrawl', studio: 'Papa Corps', steam: 3175020, cover: 'astrobrawl.jpg' }
       ],
       sponsors: {
         presenta: ['pressover', 'ocppc'],
@@ -246,17 +246,17 @@ window.IDA_DATA = {
       awards: [
         // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2025" (12 premios, 8 juegos)
         { cat: { es: 'Mejor Videojuego', en: 'Best Game' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg', featured: true, top: true },
-        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
-        { cat: { es: 'Excelencia en Audio', en: 'Excellence in Audio' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
+        { cat: { es: 'Identidad Argentina', en: 'Argentine Identity' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg', featured: true },
         { cat: { es: 'Premio Press Over', en: 'Press Over Award' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg', featured: true },
-        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg' },
-        { cat: { es: 'Representación Argentina', en: 'Argentine Representation' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg', featured: true },
-        { cat: { es: 'Mejor Apartado Visual', en: 'Best Visuals' }, game: 'Quantum Echoes', studio: 'Comfy Games', steam: 4095460, cover: 'quantum-echoes.jpg' },
+        { cat: { es: 'Mejor Game Design', en: 'Best Game Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
         { cat: { es: 'Mejor Gameplay', en: 'Best Gameplay' }, game: 'Kernel Hearts', studio: 'Ephemera Games', steam: 2902170, cover: 'kernel-hearts.jpg' },
         { cat: { es: 'Mejor Narrativa', en: 'Best Narrative' }, game: 'C.A.B.A. (ex Fábulas Porteñas)', studio: 'Hypnos Team', steam: 3279900, cover: 'fabulas.jpg' },
-        { cat: { es: 'Mejor UX/UI', en: 'Best UX/UI' }, game: 'The Last Librarian', studio: 'Leandro Davel, Franco Castellacci y Juliana Zaccone', steam: 2602080, cover: 'last-librarian.jpg' },
+        { cat: { es: 'Mejor Dirección de Arte', en: 'Best Art Direction' }, game: 'Quantum Echoes', studio: 'Comfy Games', steam: 4095460, cover: 'quantum-echoes.jpg' },
+        { cat: { es: 'Mejor Diseño de Audio', en: 'Best Audio Design' }, game: 'Go Slimey Go!', studio: 'Tembac, Chabbie, Joacoyco y Toni Leys', steam: 3215230, cover: 'go-slimey.jpg' },
+        { cat: { es: 'Mejor Idea Original', en: 'Best Original Idea' }, game: 'Malvinas: La última carta', studio: 'El Burro Studio', steam: 2584740, cover: 'malvinas.jpg' },
+        { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', steam: 3919710, cover: 'piso6.jpg' },
         { cat: { es: 'Mejor Pixel Art', en: 'Best Pixel Art' }, game: 'Letalis', studio: 'Monkiato', steam: 2396200, cover: 'letalis.jpg' },
-        { cat: { es: 'Mejor Videojuego de Terror', en: 'Best Horror Game' }, game: 'Piso 6', studio: 'NostalgyStudios', steam: 3919710, cover: 'piso6.jpg' }
+        { cat: { es: 'Mejor Diseño UX/UI', en: 'Best UX/UI Design' }, game: 'The Last Librarian', studio: 'Leandro Davel, Franco Castellacci y Juliana Zaccone', steam: 2602080, cover: 'last-librarian.jpg' }
       ],
       sponsors: {
         presenta: ['pressover', 'foton', 'ocppc'], // coproducción (nota de Press Over sobre los ganadores 2025)
