@@ -257,12 +257,12 @@
       (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
       (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
   }
-  // Bloque completo (texto, números, botón y arte). head = lo que va arriba del texto (título de la home o etiqueta de la edición)
-  function steamBlock(e, head) {
+  // Bloque completo (texto, números, botón y arte). head = lo que va arriba del texto (título de la home o etiqueta de la edición), text = el párrafo
+  function steamBlock(e, head, text) {
     var s = e.steam;
     return '<div class="steam">' +
       '<div>' + head +
-        '<p class="lead">El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos: un evento oficial dentro de la tienda, con demos para probar, descuentos y la selección completa de la exhibición presencial. Durante sus primeras 48 horas, el banner de IDA estuvo en la portada de Steam para todos los usuarios de Argentina.</p>' +
+        '<p class="lead">' + text + '</p>' +
         steamStats(s) +
         '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
         (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + ', el publisher mexicano que hizo posible el acuerdo con Valve.</p>' : '') + '</div>' +
@@ -275,7 +275,8 @@
   R.steam = function (el) {
     var sec = el.closest('section');
     if (!cur.steam) { if (sec) sec.hidden = true; return; }
-    el.innerHTML = steamBlock(cur, '<p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p><h2 class="display">IDA en Steam</h2>');
+    el.innerHTML = steamBlock(cur, '<p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p><h2 class="display">IDA en Steam</h2>',
+      'El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos. Una exhibición oficial dentro de la tienda que reunió demos jugables, descuentos y la selección completa de proyectos presentes en la muestra física de IDA. Durante sus primeras 48 horas, el banner del evento ocupó la portada de Steam para todos los usuarios de Argentina, llevando el talento de nuestros desarrolladores a millones de jugadores.');
   };
 
   // 3 videos (como "Why Attend?")
@@ -423,7 +424,8 @@
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
         }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
         gallery + games +
-        (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">Exhibición digital en Steam</h3><h4 class="steam__title">IDA en Steam</h4>') + '</div>' : '') +
+        (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">Exhibición digital en Steam</h3><h4 class="steam__title">IDA en Steam</h4>',
+          'IDA llevó la escena indie argentina a Steam con el primer showcase de la plataforma dedicado exclusivamente a videojuegos nacionales. La exhibición reunió demos jugables, descuentos y todos los proyectos seleccionados para la muestra presencial. Durante las primeras 48 horas, el evento tuvo presencia en la portada de Steam para todos los usuarios de Argentina.') + '</div>' : '') +
         video + awards +
         '<div class="ed__block sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div>' +
       '</div></section>';
