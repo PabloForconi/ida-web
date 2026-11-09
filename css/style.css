@@ -110,7 +110,6 @@ button, input { font: inherit; color: inherit; }
 }
 .u-link:hover { color: var(--mag-ink); }
 .band--dark .u-link { color: #fff; }
-.ph { display: inline-block; padding: 2px 8px; border: 1px dashed #b39500; background: #fff7b0; color: #5a4a00; font: 700 .66rem/1.5 var(--f-head); text-transform: uppercase; letter-spacing: .06em; border-radius: 4px; }
 
 /* ---------- Barra de info (magenta) + marca y nav (negra) ---------- */
 .masthead { position: sticky; top: calc(-1 * var(--brand-h)); z-index: 50; color: #fff; }
@@ -277,7 +276,6 @@ a.winner__pic:hover img, a.topwin__pic:hover img { transform: scale(1.04); }
 .vcard__play { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; background: #fff; z-index: 1; }
 .vcard__play::after { content: ''; position: absolute; left: 27px; top: 21px; border-left: 20px solid var(--ink); border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
 .vcard__label { position: absolute; left: 16px; bottom: 20px; z-index: 1; background: var(--ink); padding: 6px 10px; font: 700 .74rem/1.2 var(--f-head); text-transform: uppercase; letter-spacing: .06em; }
-.vcard .ph { position: absolute; right: 14px; top: 14px; z-index: 1; }
 .vcard--frame { cursor: auto; }
 .vcard--soon { cursor: default; }
 

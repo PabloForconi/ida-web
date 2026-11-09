@@ -19,7 +19,7 @@
   `guests`: speakers internacionales; `flag` = código de país (img/flags/<código>.png), `img` = foto cuadrada en img/photos (sin foto, van las iniciales).
   Sponsors: cada grupo es una lista de ids, o una lista de niveles ([[grandes], [resto]]) cuando
   algunos aportaron más: el primer nivel se muestra más grande y cada nivel, con logos del mismo tamaño.
-  `placeholder: true` muestra la etiqueta PLACEHOLDER en la web: sacarla cuando el dato sea real.
+  `placeholder`: marca datos provisorios (no se muestra en la web; `video: true` oculta el video de esa edición).
 */
 window.IDA_DATA = {
 

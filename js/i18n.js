@@ -5,11 +5,6 @@
 window.IDA_I18N = {
   ui: {
     es: {
-      'ph': 'Placeholder',
-      'ph.stats': 'incluye datos provisorios de {y}',
-      'ph.photos': 'fotos de ejemplo',
-      'ph.video': 'video pendiente',
-      'ph.numbers': 'números provisorios',
       'next.label': 'Próxima edición',
       'cd.days': 'Días', 'cd.hours': 'Horas', 'cd.min': 'Minutos',
       'stat.editions': 'Ediciones', 'stat.attendees': 'Asistentes', 'stat.games': 'Juegos exhibidos', 'stat.talks': 'Charlas', 'stat.speakers': 'Speakers',
@@ -64,11 +59,6 @@ window.IDA_I18N = {
       'lb.close': 'Cerrar', 'lb.prev': 'Foto anterior', 'lb.next': 'Foto siguiente'
     },
     en: {
-      'ph': 'Placeholder',
-      'ph.stats': 'includes provisional {y} figures',
-      'ph.photos': 'sample photos',
-      'ph.video': 'video pending',
-      'ph.numbers': 'provisional figures',
       'next.label': 'Next edition',
       'cd.days': 'Days', 'cd.hours': 'Hours', 'cd.min': 'Minutes',
       'stat.editions': 'Editions', 'stat.attendees': 'Attendees', 'stat.games': 'Games shown', 'stat.talks': 'Talks', 'stat.speakers': 'Speakers',

@@ -34,7 +34,6 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function num(n) { return Number(n).toLocaleString(lang === 'en' ? 'en-US' : 'es-AR'); }
   function numK(n) { return n < 1000 ? num(n) : (Math.round(n / 100) / 10).toLocaleString(lang === 'en' ? 'en-US' : 'es-AR') + 'k'; }
-  function ph(extra) { return '<span class="ph">' + esc(U('ph')) + (extra ? ' · ' + esc(extra) : '') + '</span>'; }
   function photo(name, sizes) {
     return '<img src="' + IMG + 'photos/' + name + '-800.jpg" srcset="' + IMG + 'photos/' + name + '-800.jpg 800w, ' + IMG + 'photos/' + name + '.jpg 1600w" sizes="' + (sizes || '(max-width: 760px) 100vw, 25vw') + '" alt="" loading="lazy" decoding="async" width="800" height="533">';
   }
@@ -238,8 +237,7 @@
     if (!aw.length) { el.innerHTML = '<p>' + esc(U('aw.none')) + '</p>'; return; }
     var feat = aw.filter(function (a) { return a.featured; });
     // el botón 'Ver todos los premios' va en la fila del título (index.html)
-    el.innerHTML = winnersGrid(feat.length ? feat : aw) +
-      (cur.placeholder && cur.placeholder.awards ? '<div class="winners__foot">' + ph(U('v2.aw.ph')) + '</div>' : '');
+    el.innerHTML = winnersGrid(feat.length ? feat : aw);
   };
   // Página de premios: todos los premios, edición por edición
   R.awardsAll = function (el) {
@@ -247,7 +245,6 @@
       return '<section class="section' + (i % 2 ? ' dark' : '') + '" id="premios-' + e.year + '"><div class="wrap">' +
         '<div class="yhead"><span class="yhead__year">' + e.year + '</span><h2 class="display">Premios IDA ' + e.year + '</h2>' +
         '<a class="u-link" href="ediciones.html#ed-' + e.year + '">Ver la edición ' + e.year + '</a></div>' +
-        (e.placeholder && e.placeholder.awards ? '<p class="note">' + ph(U('v2.aw.ph')) + '</p>' : '') +
         awardsBlock(e) + '</div></section>';
     }).join('');
   };
@@ -288,7 +285,7 @@
     var withVideo = D.editions.filter(function (e) { return e.video && !(e.placeholder && e.placeholder.video); });
     var cards = [];
     if (cur.placeholder && cur.placeholder.video || !cur.video) {
-      cards.push('<div class="vcard vcard--soon">' + photo('g26-05') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.soon', { y: cur.year })) + '</span>' + ph(U('ph.video')) + '</div>');
+      cards.push('<div class="vcard vcard--soon">' + photo('g26-05') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.soon', { y: cur.year })) + '</span></div>');
     }
     withVideo.slice(0, 2).forEach(function (e) {
       cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button>');
@@ -301,8 +298,7 @@
   R.photos = function (el) {
     // la primera foto ya está en el hero
     var list = (cur.photos || []).filter(function (p) { return p !== 'g26-01'; }).slice(0, 4);
-    el.innerHTML = '<div class="photos">' + list.map(function (p) { return galLink(cur.photos, cur.photos.indexOf(p), photo(p)); }).join('') + '</div>' +
-      (cur.placeholder && cur.placeholder.photos ? '<p class="note">' + ph(U('ph.photos')) + '</p>' : '');
+    el.innerHTML = '<div class="photos">' + list.map(function (p) { return galLink(cur.photos, cur.photos.indexOf(p), photo(p)); }).join('') + '</div>';
   };
 
   R.past = function (el) {
@@ -370,8 +366,7 @@
     var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Videojuegos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
     el.innerHTML = '<div class="stats">' + items.map(function (i) {
       return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
-    }).join('') + '</div>' +
-      (cur.placeholder && cur.placeholder.stats ? '<p class="statband__note">' + ph('incluye datos provisorios de ' + cur.year) + '</p>' : '');
+    }).join('') + '</div>';
     countUp(el);
   };
 
@@ -398,7 +393,7 @@
         var pre = k === 'attendees' ? '+' : '';
         return '<div><b>' + pre + num(e.stats[k]) + '</b><span>' + esc(U('stat.' + k)) + '</span></div>';
       }).join('');
-      var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería' + (P.photos ? ' ' + ph(U('ph.photos')) : '') + '</h3><div class="gallery">' +
+      var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería</h3><div class="gallery">' +
         e.photos.slice(0, 9).map(function (p, i) {
           var more = i === 8 && e.photos.length > 9 ? e.photos.length - 9 : 0; // la última muestra cuántas quedan: el visor tiene todas
           return galLink(e.photos, i, photo(p, '(max-width: 760px) 50vw, 30vw') + (more ? '<span class="gallery__more">+' + more + '</span>' : ''), more ? U('lb.more', { n: e.photos.length }) : '');
@@ -410,13 +405,13 @@
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">' + (e.videoLabel ? 'Video' : 'Aftermovie') + '</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button></div>' : '';
-      var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA' + (P.awards ? ' ' + ph(U('v2.aw.ph')) : '') + '</h3>' + awardsBlock(e) + '</div>' : '';
+      var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
           '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(e.hours) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +
         '<div class="ed__intro"><p class="lead">' + esc(T(e.summary)) + '</p><ul class="topics">' + e.highlights.map(function (h) { return '<li>' + esc(T(h)) + '</li>'; }).join('') + '</ul></div>' +
         '<div class="ed__stats">' + stats + '</div>' +
-        ((e.statsNote || P.stats) ? '<p class="note">' + (e.statsNote ? esc(T(e.statsNote)) + ' ' : '') + (P.stats ? ph(U('ph.numbers')) : '') + '</p>' : '') +
+        (e.statsNote ? '<p class="note">' + esc(T(e.statsNote)) + '</p>' : '') +
         (e.guests && e.guests.length ? '<div class="ed__block"><h3 class="ed__label">Speakers internacionales</h3><div class="guests">' + e.guests.map(function (g) {
           // Tarjeta de speaker: foto redonda (o iniciales), nombre, cargo, bandera y país; debajo, la charla
           var initials = g.name.split(' ').map(function (w) { return w.charAt(0); }).join('').slice(0, 2);
