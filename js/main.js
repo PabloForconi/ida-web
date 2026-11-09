@@ -67,11 +67,16 @@
         '<a class="brand" href="index.html" aria-label="IDA, inicio"><img src="' + IMG + 'logos/ida.png" alt="IDA" width="95" height="33">' +
           '<span>Indie Dev Argentina<small data-i18n="brand.sub">Exposición de videojuegos</small></span></a>' +
         '<nav class="nav" id="nav" aria-label="Principal">' +
+          // Participá, Steam y FAQ son atajos a secciones de la home
+          navLink(homeLink('#participa'), '', 'nav.participa', 'Participá') +
           navLink('ediciones.html', 'ediciones', 'nav.ediciones', 'Ediciones') +
           navLink('premios.html', 'premios', 'nav.premios', 'Premios') +
+          navLink(homeLink('#steam'), '', 'nav.steam', 'Steam') +
           navLink('sponsors.html', 'sponsors', 'nav.sponsors', 'Sponsors') +
+          navLink(homeLink('#info'), '', 'nav.faq', 'FAQ') +
         '</nav>' +
         '<div class="navbar__tools">' +
+          '<a class="pill navbar__news" href="#newsletter" data-i18n="nav.news">Newsletter</a>' +
           '<div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>' +
           '<button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-attr="aria-label:nav.menu" aria-label="Menú"><span></span></button>' +
         '</div>' +
@@ -83,7 +88,7 @@
         '<p class="foot__thanks" data-i18n="foot.thanks">Gracias por <span>jugar</span></p>' +
         '<div class="foot__tag"><p class="hashtag">#IDA<span data-render="nextYear"></span></p><div data-render="socials"></div></div>' +
       '</div>' +
-      '<div class="wrap foot__news"><div><h2 data-i18n="foot.news">Suscribite al newsletter de <span>Press Over</span></h2>' +
+      '<div class="wrap foot__news" id="newsletter"><div><h2 data-i18n="foot.news">Suscribite al newsletter de <span>Press Over</span></h2>' +
         '<p data-i18n="foot.news.text">Para enterarte de todas las novedades de IDA.</p></div>' +
         '<div data-render="news" data-key="news-pie"></div></div>' +
       '<div class="wrap foot__bottom"><span class="foot__brand">' + HEART + '<img src="' + IMG + 'logos/ida.png" alt="IDA" width="76" height="26"></span>' +
