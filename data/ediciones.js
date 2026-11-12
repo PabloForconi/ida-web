@@ -38,8 +38,8 @@ window.IDA_DATA = {
   },
 
   config: {
-    // Formspree (https://formspree.io): crear un form, copiar su endpoint acá.
-    formEndpoint: 'https://formspree.io/f/REEMPLAZAR',
+    // enviar.php manda el formulario por mail desde el hosting (necesita PHP: en GitHub Pages da error de envío)
+    formEndpoint: 'enviar.php',
     mediaKit: 'docs/IDA-media-kit.pdf', // PDF para sponsors (placeholder)
     contactEmail: 'hola@indiedevargentina.com' // placeholder
   },
@@ -136,14 +136,17 @@ window.IDA_DATA = {
         shot: 'steam-page-26',    // captura de la página del evento en Steam (se muestra en lugar del arte)
         partner: 'Skull Queens Games',
         games: 150,     // la página lista 152; la prensa habló de "+150"
-        featured: 25,   // la selección de la exhibición presencial
+        // featured: 25 de la exhibición presencial; se sacó de la web por poco relevante (nov 2026)
         frontpage: 48,  // horas con el banner de IDA en la portada de Steam en Argentina (1 al 3 de agosto)
-        followers: 1462 // seguidores de Indie Dev Argentina en Steam (octubre 2026)
+        followers: 1462, // seguidores de Indie Dev Argentina en Steam (octubre 2026)
+        views: 1000000,   // "más de un millón" de visualizaciones de la página del evento (se muestra grande, arriba)
+        wishlists: 60000  // "más de 60 mil" wishlists sumadas por los videojuegos del evento (ídem)
       },
       video: 'SxAnJbHlfE0', // Press Over Podcast sobre IDA 2026 (todavía no hay aftermovie)
       videoLabel: { es: 'IDA 2026 en Press Over Podcast', en: 'IDA 2026 on Press Over Podcast' }, // nombre de la tarjeta si el video no es el aftermovie
       archiveVideo: false, // solo en "Así se vivió IDA" de la home, no en Ediciones
-      photos: ['g26-01', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
+      // después de la primera, las cuatro de "El poder de la comunidad" en la home
+      photos: ['g26-01', 'g26-18', 'g26-19', 'g26-20', 'g26-21', 'g26-02', 'g26-03', 'g26-04', 'g26-05', 'g26-06', 'g26-07', 'g26-08', 'g26-09', 'g26-10', 'g26-11', 'g26-12', 'g26-13', 'g26-14'],
       // Fuente: pressover.news, "Videojuegos ganadores de Indie Dev Argentina 2026"
       // Los 25 del showcase (lista de Cultura Geek, 27/7/2026; portadas de Steam o itch.io)
       games: [

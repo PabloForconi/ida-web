@@ -172,8 +172,8 @@
     var steamArt = '<img src="' + IMG + 'photos/steam-call.jpg" alt="" loading="lazy" decoding="async" width="800" height="600">';
     el.innerHTML = '<div class="paths">' + call('games', 'g26-15') +
       card('steam', steamArt, 'call.always') +
-      call('talks', 'g26-04') +
-      card('team', 'g24-01', 'call.always') + '</div>';
+      call('talks', 'g26-16') +
+      card('team', 'g26-17', 'call.always') + '</div>';
   };
 
   // Ganadores: portada del juego, categoría, juego y estudio
@@ -255,12 +255,17 @@
   };
 
   // Exhibición digital en Steam (edition.steam)
+  // +1 M / +60 mil: redondeado como lo dice la prensa
+  function bigNum(n) { return '+' + (n >= 1e6 ? num(Math.floor(n / 1e6)) + ' M' : num(Math.floor(n / 1000)) + ' mil'); }
   function steamStats(s) {
-    return '<div class="steam__stats">' +
+    return (s.views || s.wishlists ? '<div class="steam__hl">' +
+      (s.views ? '<div><b>' + bigNum(s.views) + '</b><span>visualizaciones</span></div>' : '') +
+      (s.wishlists ? '<div><b>' + bigNum(s.wishlists) + '</b><span>wishlists conseguidas</span></div>' : '') + '</div>' : '') +
+      '<div class="steam__stats">' +
       '<div><b>+' + num(s.games) + '</b><span>videojuegos argentinos</span></div>' +
       (s.featured ? '<div><b>' + num(s.featured) + '</b><span>de la exhibición presencial</span></div>' : '') +
       (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
-      (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores en Steam</span></div>' : '') + '</div>';
+      (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores<br>en Steam</span></div>' : '') + '</div>';
   }
   // Bloque completo (texto, números, botón y arte). head = lo que va arriba del texto (título de la home o etiqueta de la edición), text = el párrafo
   function steamBlock(e, head, text) {
@@ -270,7 +275,7 @@
         '<p class="lead">' + text + '</p>' +
         steamStats(s) +
         '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
-        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina y ' + esc(s.partner) + ', el publisher mexicano que hizo posible el acuerdo con Valve.</p>' : '') + '</div>' +
+        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina, Press Over y ' + esc(s.partner) + ' (el publisher mexicano que hizo posible el acuerdo con Valve).</p>' : '') + '</div>' +
       '<a class="steam__art' + (s.mockup ? ' steam__art--mockup' : s.shot ? ' steam__art--shot' : '') + '" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
         (s.mockup ? '<img src="' + IMG + 'photos/' + s.mockup + '" alt="La página del evento de IDA ' + e.year + ' en Steam, con los videojuegos de la exhibición" loading="lazy" width="1096" height="1367">' :
          s.shot ? '<img src="' + IMG + 'photos/' + s.shot + '.jpg" alt="La página del evento de IDA ' + e.year + ' en Steam, con la selección de videojuegos de la exhibición presencial" loading="lazy" width="1100" height="1200">'
@@ -281,7 +286,7 @@
     var sec = el.closest('section');
     if (!cur.steam) { if (sec) sec.hidden = true; return; }
     el.innerHTML = steamBlock(cur, '<p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p><h2 class="display">IDA en Steam</h2>',
-      'El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos. Una exhibición oficial dentro de la tienda que reunió demos jugables, descuentos y la selección completa de proyectos presentes en la muestra física de IDA. Durante sus primeras 48 horas, el banner del evento ocupó la portada de Steam para todos los usuarios de Argentina, llevando el talento de nuestros desarrolladores a millones de jugadores.');
+      'El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos. Una exhibición oficial dentro de la tienda que reunió demos jugables, descuentos y la selección completa de proyectos presentes en la muestra física de IDA. Durante sus primeras 48 horas, el banner del evento ocupó la portada de Steam para todos los usuarios de Argentina, llevando el talento de nuestros desarrolladores a millones de jugadores. La página del evento superó el millón de visualizaciones y sumó más de 60 mil wishlists para los videojuegos argentinos.');
   };
 
   // 3 videos (como "Why Attend?")
@@ -296,8 +301,9 @@
     withVideo.slice(0, 2).forEach(function (e) {
       cards.push('<button class="vcard" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '"><img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button>');
     });
-    cards.push('<a class="vcard" href="' + D.links.youtube + '" target="_blank" rel="noopener">' + photo('g24-02') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.playlist')) + '</span></a>');
-    el.innerHTML = '<div class="vcards">' + cards.slice(0, 3).join('') + '</div>';
+    cards.push('<a class="vcard" href="' + D.links.youtube + '" target="_blank" rel="noopener">' + photo('talk-25') + '<span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(U('video.playlist')) + '</span></a>');
+    // al revés: las charlas primero y el video de la última edición al final
+    el.innerHTML = '<div class="vcards">' + cards.slice(0, 3).reverse().join('') + '</div>';
   };
 
   // 4 fotos (como "The Power of Community")
