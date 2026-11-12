@@ -201,7 +201,7 @@ window.IDA_DATA = {
       ord: { es: 'Segunda edición', en: 'Second edition' },
       tag: { es: 'Expansión', en: 'Expansion' },
       date: { es: '19 y 20 de julio', en: 'July 19 & 20' },
-      hours: 'Sáb 11 – 19 h · Dom 11 – 18 h',
+      hours: { es: 'Sáb 11 – 19 h · Dom 11 – 18 h', en: 'Sat 11 – 19 h · Sun 11 – 18 h' },
       venue: 'casapba',
       summary: {
         es: 'IDA creció a dos días en la Casa de la Provincia de Buenos Aires, sumó speakers internacionales y entregó por primera vez los Premios IDA.',

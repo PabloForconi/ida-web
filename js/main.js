@@ -24,9 +24,9 @@
     return 'es';
   }
   function T(o) { return o == null ? '' : (typeof o === 'string' ? o : (o[lang] != null ? o[lang] : o.es)); }
-  // Strings de renderers: primero los de v2, después los de la web actual
+  // Strings de renderers: primero los de textos.js y después los de i18n.js, siempre en el idioma elegido antes que en español
   function U(k, vars) {
-    var s = [V.ui[lang], V.ui.es, I.ui[lang], I.ui.es].reduce(function (f, d) { return f != null ? f : (d && d[k] != null ? d[k] : null); }, null);
+    var s = [V.ui[lang], I.ui[lang], V.ui.es, I.ui.es].reduce(function (f, d) { return f != null ? f : (d && d[k] != null ? d[k] : null); }, null);
     if (s == null) s = k;
     if (vars) Object.keys(vars).forEach(function (v) { s = s.split('{' + v + '}').join(vars[v]); });
     return s;
@@ -41,6 +41,8 @@
   function galLink(list, i, inner, label) {
     return '<a href="' + IMG + 'photos/' + list[i] + '.jpg" data-gal="' + list.join(',') + '" data-i="' + i + '" aria-label="' + esc(label || U('lb.open')) + '">' + inner + '</a>';
   }
+  // Lista de autores de un premio ('A, B y C'): en inglés el último 'y' pasa a 'and'
+  function studioName(st) { return lang === 'en' ? String(st || '').replace(/ y (?=[^,]*$)/, ' and ') : st; }
   function venueName(e) { return D.venues[e.venue] ? D.venues[e.venue].name : ''; }
   function ext(href) { return /^https?:/.test(href) ? ' target="_blank" rel="noopener"' : ''; }
 
@@ -64,9 +66,9 @@
     if (h) h.outerHTML = '<header class="masthead">' +
       '<div class="infobar"><div class="wrap infobar__in" data-render="infobar"></div></div>' +
       '<div class="navbar"><div class="wrap navbar__in">' +
-        '<a class="brand" href="index.html" aria-label="IDA, inicio"><img src="' + IMG + 'logos/ida.png" alt="IDA" width="95" height="33">' +
+        '<a class="brand" href="index.html" aria-label="IDA, inicio" data-i18n-attr="aria-label:nav.home"><img src="' + IMG + 'logos/ida.png" alt="IDA" width="95" height="33">' +
           '<span>Indie Dev Argentina<small data-i18n="brand.sub">Exposición de videojuegos</small></span></a>' +
-        '<nav class="nav" id="nav" aria-label="Principal">' +
+        '<nav class="nav" id="nav" aria-label="Principal" data-i18n-attr="aria-label:nav.main">' +
           // Participá, Steam y FAQ son atajos a secciones de la home
           navLink(homeLink('#participa'), '', 'nav.participa', 'Participá') +
           navLink('ediciones.html', 'ediciones', 'nav.ediciones', 'Ediciones') +
@@ -77,7 +79,7 @@
         '</nav>' +
         '<div class="navbar__tools">' +
           '<a class="pill navbar__news" href="#newsletter" data-i18n="nav.news">Newsletter</a>' +
-          '<div class="lang" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>' +
+          '<div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label:nav.lang"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button></div>' +
           '<button class="burger" type="button" aria-expanded="false" aria-controls="nav" data-i18n-attr="aria-label:nav.menu" aria-label="Menú"><span></span></button>' +
         '</div>' +
       '</div></div></header>';
@@ -137,7 +139,7 @@
   function newsForm(id, note) {
     return '<form class="news" id="' + id + '" action="' + SUBSTACK + 'api/v1/free?nojs=true" method="post" target="_blank" novalidate>' +
       '<input type="hidden" name="source" value="embed"><div class="form-inline"><label class="sr-only" for="' + id + '-email">Email</label>' +
-      '<input class="input" id="' + id + '-email" type="email" name="email" required placeholder="tu@email.com" autocomplete="email">' +
+      '<input class="input" id="' + id + '-email" type="email" name="email" required placeholder="' + esc(U('news.ph')) + '" autocomplete="email">' +
       '<button class="pill" type="submit">' + esc(U('news.btn')) + '</button></div>' +
       '<p class="form-status news__status" role="status"></p>' +
       (note ? '<p class="news__note">' + U('news.note', { url: SUBSTACK }) + '</p>' : '') + '</form>';
@@ -181,19 +183,19 @@
   function steamUrl(a) { return a.steam ? 'https://store.steampowered.com/app/' + a.steam + '/' : ''; }
   // La portada es el link a Steam cuando el juego tiene id
   function picLink(a, pic, cls) {
-    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(a.game) + ' en Steam" title="Ver ' + esc(a.game) + ' en Steam">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
+    return a.steam ? '<a class="' + cls + '" href="' + steamUrl(a) + '" target="_blank" rel="noopener" aria-label="' + esc(U('steam.on', { g: a.game })) + '" title="' + esc(U('steam.see', { g: a.game })) + '">' + pic + '</a>' : '<div class="' + cls + '">' + pic + '</div>';
   }
   // "Presentado por" + logo del sponsor del premio (award.by = id de orgs)
   function awardBy(a, cls) {
     var o = a.by && D.orgs[a.by]; if (!o || PAGE !== 'premios') return ''; // solo en la página de premios
     var img = '<img src="' + IMG + 'logos/' + o.logo + '" alt="' + esc(o.name) + '">';
-    return '<p class="award-by ' + cls + '"><span>Presentado por</span>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : img) + '</p>';
+    return '<p class="award-by ' + cls + '"><span>' + esc(U('sp.presenta')) + '</span>' + (o.url ? '<a href="' + o.url + '" target="_blank" rel="noopener">' + img + '</a>' : img) + '</p>';
   }
   function winnerCard(a) {
     var pic = a.cover ? '<img src="' + IMG + 'games/' + a.cover + '" alt="" loading="lazy">' :
       a.img ? '<img src="' + IMG + 'photos/' + a.img + '-800.jpg" alt="" loading="lazy">' : '<img class="is-ph" src="' + IMG + 'logos/ida.png" alt="">';
     return '<article class="winner">' + picLink(a, pic, 'winner__pic') +
-      '<p class="winner__cat">' + esc(a.by ? T(a.cat).split(' · ')[0] : T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(a.studio) + '</p>' + awardBy(a, 'award-by--sm') +
+      '<p class="winner__cat">' + esc(a.by ? T(a.cat).split(' · ')[0] : T(a.cat)) + '</p><h3>' + esc(a.game) + '</h3><p>' + esc(studioName(a.studio)) + '</p>' + awardBy(a, 'award-by--sm') +
       '</article>';
   }
   function winnersGrid(list) {
@@ -207,8 +209,8 @@
     return '<article class="topwin">' + picLink(a, pic, 'topwin__pic') + '<div class="topwin__body">' +
       '<div class="laurel"><img src="' + IMG + 'deco/laurel-color.png" alt="" width="385" height="337"><span class="laurel__txt"><b>' + esc(cat[0]) + '</b><i>' + e.year + '</i></span></div>' +
       (a.by ? awardBy(a, '') : (cat[1] ? '<p class="topwin__extra">' + esc(cat[1]) + '</p>' : '')) +
-      '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(a.studio) + '</p>' +
-      (also.length ? '<p class="topwin__also">También ganó: ' + esc(also.join(', ')) + '</p>' : '') +
+      '<h3>' + esc(a.game) + '</h3><p class="topwin__studio">' + esc(studioName(a.studio)) + '</p>' +
+      (also.length ? '<p class="topwin__also">' + esc(U('aw.also')) + ' ' + esc(also.join(', ')) + '</p>' : '') +
     '</div></article>';
   }
   // Showcase con portadas (games con objetos { game, steam|url, cover }): todos los videojuegos juntos,
@@ -226,9 +228,9 @@
       var cats = it.wins.map(function (a) { return T(a.cat).split(' · ')[0]; }).join(', ');
       // Etiqueta sobre la portada (abajo a la derecha); las categorías quedan en el title de la portada (al pasar el mouse)
       if (it.wins.length) pic += '<span class="sc__badge">' +
-          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Ganador</span>';
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>' + esc(U('aw.winner')) + '</span>';
       return '<article class="sc' + (it.wins.length ? ' sc--win' : '') + (top ? ' sc--top' : '') + '">' +
-        (href ? '<a class="sc__pic" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(g.game) + (g.steam ? ' en Steam' : '') + '"' + (cats ? ' title="Ganador: ' + esc(cats) + '"' : '') + '>' + pic + '</a>' : '<div class="sc__pic">' + pic + '</div>') +
+        (href ? '<a class="sc__pic" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(g.steam ? U('steam.on', { g: g.game }) : g.game) + '"' + (cats ? ' title="' + esc(U('aw.winner')) + ': ' + esc(cats) + '"' : '') + '>' + pic + '</a>' : '<div class="sc__pic">' + pic + '</div>') +
         '<h4>' + esc(g.game) + '</h4></article>';
     }).join('') + '</div>';
   }
@@ -248,24 +250,24 @@
   R.awardsAll = function (el) {
     el.innerHTML = D.editions.filter(function (e) { return e.awards.length; }).map(function (e, i) {
       return '<section class="section' + (i % 2 ? ' dark' : '') + '" id="premios-' + e.year + '"><div class="wrap">' +
-        '<div class="yhead"><span class="yhead__year">' + e.year + '</span><h2 class="display">Premios IDA ' + e.year + '</h2>' +
-        '<a class="u-link" href="ediciones.html#ed-' + e.year + '">Ver la edición ' + e.year + '</a></div>' +
+        '<div class="yhead"><span class="yhead__year">' + e.year + '</span><h2 class="display">' + esc(U('aw.year', { y: e.year })) + '</h2>' +
+        '<a class="u-link" href="ediciones.html#ed-' + e.year + '">' + esc(U('aw.edition', { y: e.year })) + '</a></div>' +
         awardsBlock(e) + '</div></section>';
     }).join('');
   };
 
   // Exhibición digital en Steam (edition.steam)
   // +1 M / +60 mil: redondeado como lo dice la prensa
-  function bigNum(n) { return '+' + (n >= 1e6 ? num(Math.floor(n / 1e6)) + ' M' : num(Math.floor(n / 1000)) + ' mil'); }
+  function bigNum(n) { return '+' + (n >= 1e6 ? num(Math.floor(n / 1e6)) + U('num.M') : num(Math.floor(n / 1000)) + U('num.k')); }
   function steamStats(s) {
     return (s.views || s.wishlists ? '<div class="steam__hl">' +
-      (s.views ? '<div><b>' + bigNum(s.views) + '</b><span>visualizaciones</span></div>' : '') +
-      (s.wishlists ? '<div><b>' + bigNum(s.wishlists) + '</b><span>wishlists conseguidas</span></div>' : '') + '</div>' : '') +
+      (s.views ? '<div><b>' + bigNum(s.views) + '</b><span>' + U('steam.views') + '</span></div>' : '') +
+      (s.wishlists ? '<div><b>' + bigNum(s.wishlists) + '</b><span>' + U('steam.wishlists') + '</span></div>' : '') + '</div>' : '') +
       '<div class="steam__stats">' +
-      '<div><b>+' + num(s.games) + '</b><span>videojuegos argentinos</span></div>' +
-      (s.featured ? '<div><b>' + num(s.featured) + '</b><span>de la exhibición presencial</span></div>' : '') +
-      (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>en la portada de Steam Argentina</span></div>' : '') +
-      (s.followers ? '<div><b>' + num(s.followers) + '</b><span>seguidores<br>en Steam</span></div>' : '') + '</div>';
+      '<div><b>+' + num(s.games) + '</b><span>' + U('steam.games') + '</span></div>' +
+      (s.featured ? '<div><b>' + num(s.featured) + '</b><span>' + U('steam.featured') + '</span></div>' : '') +
+      (s.frontpage ? '<div><b>' + s.frontpage + ' h</b><span>' + U('steam.frontpage') + '</span></div>' : '') +
+      (s.followers ? '<div><b>' + num(s.followers) + '</b><span>' + U('steam.followers') + '</span></div>' : '') + '</div>';
   }
   // Bloque completo (texto, números, botón y arte). head = lo que va arriba del texto (título de la home o etiqueta de la edición), text = el párrafo
   function steamBlock(e, head, text) {
@@ -274,19 +276,18 @@
       '<div>' + head +
         '<p class="lead">' + text + '</p>' +
         steamStats(s) +
-        '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">Ver el evento en Steam</a>' +
-        (s.partner ? '<p class="note">Presentado por Indie Dev Argentina, Press Over y ' + esc(s.partner) + ' (el publisher mexicano que hizo posible el acuerdo con Valve).</p>' : '') + '</div>' +
-      '<a class="steam__art' + (s.mockup ? ' steam__art--mockup' : s.shot ? ' steam__art--shot' : '') + '" href="' + s.url + '" target="_blank" rel="noopener" aria-label="Abrir el evento de IDA en Steam">' +
-        (s.mockup ? '<img src="' + IMG + 'photos/' + s.mockup + '" alt="La página del evento de IDA ' + e.year + ' en Steam, con los videojuegos de la exhibición" loading="lazy" width="1096" height="1367">' :
-         s.shot ? '<img src="' + IMG + 'photos/' + s.shot + '.jpg" alt="La página del evento de IDA ' + e.year + ' en Steam, con la selección de videojuegos de la exhibición presencial" loading="lazy" width="1100" height="1200">'
-          : '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="Indie Dev Argentina, Video Game Exhibition ' + e.year + ', en Steam" loading="lazy" width="800" height="450">') + '</a>' +
+        '<a class="pill" href="' + s.url + '" target="_blank" rel="noopener">' + esc(U('steam.cta')) + '</a>' +
+        (s.partner ? '<p class="note">' + esc(U('steam.partner', { p: s.partner })) + '</p>' : '') + '</div>' +
+      '<a class="steam__art' + (s.mockup ? ' steam__art--mockup' : s.shot ? ' steam__art--shot' : '') + '" href="' + s.url + '" target="_blank" rel="noopener" aria-label="' + esc(U('steam.open')) + '">' +
+        (s.mockup ? '<img src="' + IMG + 'photos/' + s.mockup + '" alt="' + esc(U('steam.alt', { y: e.year })) + '" loading="lazy" width="1096" height="1367">' :
+         s.shot ? '<img src="' + IMG + 'photos/' + s.shot + '.jpg" alt="' + esc(U('steam.alt', { y: e.year })) + '" loading="lazy" width="1100" height="1200">'
+          : '<img src="' + IMG + 'photos/' + s.img + '.jpg" alt="' + esc(U('steam.altArt', { y: e.year })) + '" loading="lazy" width="800" height="450">') + '</a>' +
     '</div>';
   }
   R.steam = function (el) {
     var sec = el.closest('section');
     if (!cur.steam) { if (sec) sec.hidden = true; return; }
-    el.innerHTML = steamBlock(cur, '<p class="kicker">Nuevo en ' + cur.year + ' · primera exhibición digital</p><h2 class="display">IDA en Steam</h2>',
-      'El primer showcase de Steam dedicado exclusivamente a videojuegos argentinos. Una exhibición oficial dentro de la tienda que reunió demos jugables, descuentos y la selección completa de proyectos presentes en la muestra física de IDA. Durante sus primeras 48 horas, el banner del evento ocupó la portada de Steam para todos los usuarios de Argentina, llevando el talento de nuestros desarrolladores a millones de jugadores. La página del evento superó el millón de visualizaciones y sumó más de 60 mil wishlists para los videojuegos argentinos.');
+    el.innerHTML = steamBlock(cur, '<p class="kicker">' + esc(U('steam.kicker', { y: cur.year })) + '</p><h2 class="display">' + esc(U('steam.title')) + '</h2>', esc(U('steam.text')));
   };
 
   // 3 videos (como "Why Attend?")
@@ -375,7 +376,7 @@
   R.totals = function (el) {
     var t = { attendees: 0, games: 0, talks: 0, speakers: 0 };
     D.editions.forEach(function (e) { Object.keys(t).forEach(function (k) { t[k] += e.stats[k] || 0; }); });
-    var items = [[D.editions.length, '', 'Ediciones'], [t.attendees, '+', 'Asistentes', 1], [t.games, '', 'Videojuegos'], [t.talks, '', 'Charlas'], [t.speakers, '', 'Speakers']];
+    var items = [[D.editions.length, '', U('stat.editions')], [t.attendees, '+', U('stat.attendees'), 1], [t.games, '', U('stat.games')], [t.talks, '', U('stat.talks')], [t.speakers, '', U('stat.speakers')]];
     el.innerHTML = '<div class="stats">' + items.map(function (i) {
       return '<div class="stat"><b data-count="' + i[0] + '" data-prefix="' + i[1] + '"' + (i[3] ? ' data-k="1"' : '') + '>' + i[1] + (i[3] ? numK(i[0]) : num(i[0])) + '</b><span>' + esc(i[2]) + '</span></div>';
     }).join('') + '</div>';
@@ -405,38 +406,37 @@
         var pre = k === 'attendees' ? '+' : '';
         return '<div><b>' + pre + num(e.stats[k]) + '</b><span>' + esc(U('stat.' + k)) + '</span></div>';
       }).join('');
-      var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">Galería</h3><div class="gallery">' +
+      var gallery = e.photos.length ? '<div class="ed__block"><h3 class="ed__label">' + esc(U('edp.gallery')) + '</h3><div class="gallery">' +
         e.photos.slice(0, 9).map(function (p, i) {
           var more = i === 8 && e.photos.length > 9 ? e.photos.length - 9 : 0; // la última muestra cuántas quedan: el visor tiene todas
           return galLink(e.photos, i, photo(p, '(max-width: 760px) 50vw, 30vw') + (more ? '<span class="gallery__more">+' + more + '</span>' : ''), more ? U('lb.more', { n: e.photos.length }) : '');
         }).join('') + '</div></div>' : '';
       var sc = hasShowcase(e);
       var games = !e.games || !e.games.length ? '' : sc ?
-        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3>' + showcaseGrid(e) + '</div>' :
-        '<div class="ed__block"><h3 class="ed__label">Videojuegos del showcase</h3><ul class="games">' +
+        '<div class="ed__block"><h3 class="ed__label">' + esc(U('edp.showcase')) + '</h3>' + showcaseGrid(e) + '</div>' :
+        '<div class="ed__block"><h3 class="ed__label">' + esc(U('edp.showcase')) + '</h3><ul class="games">' +
         e.games.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join('') + '</ul></div>';
       var video = e.video && !P.video && e.archiveVideo !== false ? '<div class="ed__block"><h3 class="ed__label">' + (e.videoLabel ? 'Video' : 'Aftermovie') + '</h3><button class="vcard ed__video" type="button" data-yt="' + e.video + '" aria-label="' + esc(U('video.play', { y: e.year })) + '">' +
         '<img src="https://i.ytimg.com/vi/' + e.video + '/hq720.jpg" alt="" loading="lazy"><span class="vcard__play" aria-hidden="true"></span><span class="vcard__label">' + esc(videoLabel(e)) + '</span></button></div>' : '';
-      var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">Premios IDA</h3>' + awardsBlock(e) + '</div>' : '';
+      var awards = e.awards.length && !sc ? '<div class="ed__block"><h3 class="ed__label">' + esc(U('edp.awards')) + '</h3>' + awardsBlock(e) + '</div>' : '';
       return '<section class="edition dark' + (i % 2 ? ' dark--ink' : '') + '" id="ed-' + e.year + '"><div class="wrap">' +
         '<header class="ed__head"><span class="ed__year">' + e.year + '</span><div><p class="ed__ord">' + esc(T(e.ord)) + ' · ' + esc(T(e.tag)) + '</p>' +
-          '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(e.hours) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +
+          '<p class="ed__meta">' + esc(T(e.date)) + ' · ' + esc(T(e.hours)) + ' · ' + esc(v.name || '') + (v.address ? ', ' + esc(v.address) : '') + '</p></div></header>' +
         '<div class="ed__intro"><p class="lead">' + esc(T(e.summary)) + '</p><ul class="topics">' + e.highlights.map(function (h) { return '<li>' + esc(T(h)) + '</li>'; }).join('') + '</ul></div>' +
         '<div class="ed__stats">' + stats + '</div>' +
         (e.statsNote ? '<p class="note">' + esc(T(e.statsNote)) + '</p>' : '') +
-        (e.guests && e.guests.length ? '<div class="ed__block"><h3 class="ed__label">Speakers internacionales</h3><div class="guests">' + e.guests.map(function (g) {
+        (e.guests && e.guests.length ? '<div class="ed__block"><h3 class="ed__label">' + esc(U('edp.guests')) + '</h3><div class="guests">' + e.guests.map(function (g) {
           // Tarjeta de speaker: foto redonda (o iniciales), nombre, cargo, bandera y país; debajo, la charla
           var initials = g.name.split(' ').map(function (w) { return w.charAt(0); }).join('').slice(0, 2);
           return '<article class="guest"><div class="guest__head">' +
             '<div class="guest__pic">' + (g.img ? '<img src="' + IMG + 'photos/' + g.img + '.jpg" alt="' + esc(g.name) + '" loading="lazy" width="300" height="300">' : '<span aria-hidden="true">' + esc(initials) + '</span>') + '</div>' +
             '<div><p class="guest__from">' + (g.flag ? '<img src="' + IMG + 'flags/' + g.flag + '.png" alt="" width="24" height="16">' : '') + esc(T(g.from)) + '</p>' +
             '<h4>' + esc(g.name) + '</h4><p class="guest__role">' + esc(T(g.role)) + '</p></div></div>' +
-            (g.talk ? '<p class="guest__talk"><span>Charla</span>«' + esc(g.talk) + '»</p>' : '') +
+            (g.talk ? '<p class="guest__talk"><span>' + esc(U('edp.talk')) + '</span>«' + esc(g.talk) + '»</p>' : '') +
             (g.note ? '<p class="guest__note">' + esc(T(g.note)) + '</p>' : '') + '</article>';
         }).join('') + '</div>' + (e.guestsNote ? '<p class="note">' + esc(T(e.guestsNote)) + '</p>' : '') + '</div>' : '') +
         gallery + games +
-        (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">Exhibición digital en Steam</h3><h4 class="steam__title">IDA en Steam</h4>',
-          'IDA llevó la escena indie argentina a Steam con el primer showcase de la plataforma dedicado exclusivamente a videojuegos nacionales. La exhibición reunió demos jugables, descuentos y todos los proyectos seleccionados para la muestra presencial. Durante las primeras 48 horas, el evento tuvo presencia en la portada de Steam para todos los usuarios de Argentina.') + '</div>' : '') +
+        (e.steam ? '<div class="ed__block">' + steamBlock(e, '<h3 class="ed__label">' + esc(U('steam.edLabel')) + '</h3><h4 class="steam__title">' + esc(U('steam.title')) + '</h4>', esc(U('steam.edText'))) + '</div>' : '') +
         video + awards +
         '<div class="ed__block sponsors-compact">' + sponsorGroups(e.sponsors, true) + '</div>' +
       '</div></section>';

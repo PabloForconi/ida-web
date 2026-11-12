@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@700;800&family=Anton&family=Tomorrow:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=202611121231">
+  <link rel="stylesheet" href="css/style.css?v=202611121305">
 </head>
 <body data-page="ediciones" data-title-es="Ediciones · IDA · Indie Dev Argentina" data-title-en="Editions · IDA · Indie Dev Argentina">
 
@@ -28,15 +28,15 @@
   <!-- ============ ENCABEZADO DE PÁGINA ============ -->
   <section class="phero">
     <div class="wrap">
-      <p class="crumbs"><a href="index.html">IDA</a> / Ediciones</p>
-      <h1>Ediciones</h1>
-      <p class="lead">La historia de IDA, año por año: números, fotos, videojuegos, ganadores y sponsors de cada edición, de la más nueva a la primera.</p>
+      <p class="crumbs"><a href="index.html">IDA</a> / <span data-i18n="ed.crumb">Ediciones</span></p>
+      <h1 data-i18n="ed.h1">Ediciones</h1>
+      <p class="lead" data-i18n="ed.lead">La historia de IDA, año por año: números, fotos, videojuegos, ganadores y sponsors de cada edición, de la más nueva a la primera.</p>
       <div class="ynav" data-render="yearNav"></div>
     </div>
   </section>
 
   <!-- ============ IDA EN NÚMEROS (acumulado) ============ -->
-  <section class="statband" aria-label="IDA en números">
+  <section class="statband" aria-label="IDA en números" data-i18n-attr="aria-label:stats.label">
     <div class="wrap" data-render="totals"></div>
   </section>
 
@@ -47,11 +47,11 @@
   <section class="section">
     <div class="wrap growth-split">
       <div>
-        <h2 class="display">Asistentes por edición</h2>
+        <h2 class="display" data-i18n="ed.growth.attendees">Asistentes por edición</h2>
         <div data-render="growth" data-key="attendees"></div>
       </div>
       <div>
-        <h2 class="display">Videojuegos por edición</h2>
+        <h2 class="display" data-i18n="ed.growth.games">Videojuegos por edición</h2>
         <div data-render="growth" data-key="games"></div>
       </div>
     </div>
@@ -61,9 +61,9 @@
 
 <div id="v2-foot"></div>
 
-<script src="data/ediciones.js?v=202611121231"></script>
-<script src="js/i18n.js?v=202611121231"></script>
-<script src="js/textos.js?v=202611121231"></script>
-<script src="js/main.js?v=202611121231"></script>
+<script src="data/ediciones.js?v=202611121305"></script>
+<script src="js/i18n.js?v=202611121305"></script>
+<script src="js/textos.js?v=202611121305"></script>
+<script src="js/main.js?v=202611121305"></script>
 </body>
 </html>
